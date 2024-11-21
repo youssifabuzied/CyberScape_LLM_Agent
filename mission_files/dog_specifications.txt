@@ -1,0 +1,8 @@
+Here are a set of actions that the dog can do:
+
+- MOVE_TO(x, y) (walk to coordinate (x, y))
+- SCAN_AREA (search for the ball in the nearby area. can scan up to 2 meters in all directions. So, for example, if it is located at x = 10, it can see the range of x = 8 to x = 12 only)
+- CHECK_BALL (while scanning the area, it checks if it can see the ball. It can happen only after sending the SCAN_AREA command)
+- PICK_UP_OBJECT (pick up the ball when found)
+- RETURN_TO_BASE (bring the ball back to the starting point)
+- DROP_OBJECT (drop the ball at the base)

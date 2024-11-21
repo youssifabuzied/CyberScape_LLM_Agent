@@ -1,0 +1,3 @@
+Phase 1: Start at point (5,5) and divide the 50x50 meters field into 25 squares of 10x10 meters each. Create a grid to represent these squares and assign a unique identifier to each square.
+Phase 2: Systematically fly over each square in a zig-zag or row-by-row pattern, scanning for the ball. Once the ball is detected in a square, record the identifier of that square and communicate it to the robot dog.
+Phase 3: Provide the dog with the identifier of the square containing the ball and wait for confirmation that the dog has received the information.

@@ -1,0 +1,10 @@
+Drone Plan:
+Phase 1: Start at point (5,5) and divide the 50x50 meters field into 25 squares of 10x10 meters each. Create a grid to represent these squares and assign a unique identifier to each square.
+Phase 2: Systematically fly over each square in a zig-zag or row-by-row pattern, scanning for the ball. Once the ball is detected in a square, record the identifier of that square and communicate it to the robot dog.
+Phase 3: Provide the dog with the identifier of the square containing the ball and wait for confirmation that the dog has received the information.
+
+Dog Plan:
+Phase 1: Start at point (25,25) and wait for communication from the drone regarding the location of the ball. Once the identifier of the square containing the ball is received, move to the center of that square.
+Phase 2: Scan the area in a spiral or zig-zag pattern, starting from the center of the square, to locate the ball within the 10x10 meters square. Use the 2-meter scanning range to search for the ball in all directions.
+Phase 3: Once the ball is located, move to the ball and pick it up.
+Phase 4: Return to the starting point (25,25) with the ball, navigating through the field using the scanning range to avoid obstacles.
