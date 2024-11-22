@@ -1,5 +1,5 @@
 Here are the set of actions that the drone can do:
 - FLY_UP_OVER(X,Y): This instruction informs the drone to fly 10 meters in the air to be exactly over the point (X,Y).
-- DO_SCANNING: Given that the location of the drone is at (X,Y),  With this action the drone can scan the square having the coordinates (X-5, Y-5), (X+5,Y-5), (X+5,Y+5), (X-5,Y+5).
+- DO_SCANNING: Given that the location of the drone is at (X,Y),  With this action the drone can scan the square having the coordinates (X-5, Y-5), (X+5,Y-5), (X+5,Y+5), (X-5,Y+5). For example if you want to scan the square of coordnates (0,0), (0,10), (10,0), (10,10). You need to be above coordnate (5,5) to see all directions.
 - CHECK_BALL: After scanning the drone should check if it found the ball.
 - INFORM_DOG: If the drone found the ball, it should inform the dog to come to the location (X,Y) and start searching for the ball.

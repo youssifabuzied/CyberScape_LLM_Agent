@@ -1,0 +1,7 @@
+Phase 1: Start at point (25,25) and receive the coordinates of the 10x10 meters square containing the ball from the drone.
+Phase 2: Move to the center of the 10x10 meters square and start scanning the area using a spiral search algorithm:
+- Start at the center point and move 2 meters in a straight line (e.g., north direction).
+- Turn 90 degrees (e.g., east direction) and move 2 meters.
+- Continue turning 90 degrees and moving 2 meters in a spiral pattern, increasing the distance by 2 meters each time.
+Phase 3: Continue the spiral search until the ball is found.
+Phase 4: Once the ball is found, pick it up and return to the starting point (25,25).

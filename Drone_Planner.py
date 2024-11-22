@@ -38,7 +38,7 @@ def main():
     You should stick to this format and do not write any side notes or explanations.
     '''
     client = openai.OpenAI(
-        api_key="b37a4309-f1a2-4fd9-b015-eacac68fd6e5",
+        api_key=os.getenv("samba_nova_api_key"),
         base_url="https://api.sambanova.ai/v1",
     )
     message_history = [
