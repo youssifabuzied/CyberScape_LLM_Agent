@@ -76,7 +76,8 @@ def initiate_plan():
         Dog Plan:
         Phase 1: -----------------------------
         Phase 2: ------------------------------
-        Do not write any header in the response or side notes or explanations. If the mission require scanning an area greating than the scanning capabailities of the robots, define a sprial search algorithm to make them scan the large area.'''
+        Do not write any header in the response or side notes or explanations. If the mission require scanning an area greating than the scanning capabailities of the robots, define a sprial search algorithm to make them scan the large area.
+        If the robots need to send messages to other robots. this should only be done through the adaptive planning module. Also, they should do the same when wanting to receive messages.'''
     print(os.getenv("samba_nova_api_key"))
     client = openai.OpenAI(
         api_key=os.getenv("samba_nova_api_key"),

@@ -1,115 +1,69 @@
 Phase 1:
-MOVE_TO(25,25)
-GET_COORDINATES()
-GO_TO_PHASE(2)
+dog.move_to(25,25)
+dog.wait_for_signal()
+dog.process_messages()
+dog.communicate_with_apm()
 
 Phase 2:
-MOVE_TO((received_x + 5), (received_y + 5))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 5), (received_y + 7))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 7), (received_y + 7))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 7), (received_y + 5))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 7), (received_y + 3))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 5), (received_y + 3))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 3), (received_y + 3))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 3), (received_y + 5))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 3), (received_y + 7))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE GO_TO_PHASE(3)
+if dog.get_position_data() == (25,25):
+    dog.move_to(X,Y)  # X,Y is the center of the identified square
+    dog.detect_with_camera()
+    if detection was successful:
+        Phase 3
+    else:
+        dog.rotate(90)
+        dog.move_to(X+2,Y)
+        dog.detect_with_camera()
+        if detection was successful:
+            Phase 3
+        else:
+            dog.rotate(90)
+            dog.move_to(X+2,Y+2)
+            dog.detect_with_camera()
+            if detection was successful:
+                Phase 3
+            else:
+                dog.rotate(90)
+                dog.move_to(X,Y+2)
+                dog.detect_with_camera()
+                if detection was successful:
+                    Phase 3
+                else:
+                    dog.rotate(90)
+                    dog.move_to(X-2,Y+2)
+                    dog.detect_with_camera()
+                    if detection was successful:
+                        Phase 3
+                    else:
+                        dog.rotate(90)
+                        dog.move_to(X-2,Y)
+                        dog.detect_with_camera()
+                        if detection was successful:
+                            Phase 3
+                        else:
+                            dog.rotate(90)
+                            dog.move_to(X-2,Y-2)
+                            dog.detect_with_camera()
+                            if detection was successful:
+                                Phase 3
+                            else:
+                                dog.rotate(90)
+                                dog.move_to(X,Y-2)
+                                dog.detect_with_camera()
+                                if detection was successful:
+                                    Phase 3
+                                else:
+                                    dog.rotate(90)
+                                    dog.move_to(X+2,Y-2)
+                                    dog.detect_with_camera()
+                                    if detection was successful:
+                                        Phase 3
 
 Phase 3:
-MOVE_TO((received_x + 3), (received_y + 9))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 5), (received_y + 9))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 7), (received_y + 9))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 9), (received_y + 9))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 9), (received_y + 7))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 9), (received_y + 5))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 9), (received_y + 3))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 9), (received_y + 1))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 7), (received_y + 1))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 5), (received_y + 1))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 3), (received_y + 1))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 1), (received_y + 1))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 1), (received_y + 3))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 1), (received_y + 5))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 1), (received_y + 7))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE MOVE_TO((received_x + 1), (received_y + 9))
-SCAN_AREA
-CHECK_BALL
-IF CHECK_BALL == TRUE THEN GO_TO_PHASE(4)
-ELSE GO_TO_PHASE(1)
+dog.move_to(X,Y)  # X,Y is the position of the ball
+dog.jump()
+dog.detect_with_camera()
 
 Phase 4:
-PICK_UP_OBJECT
-RETURN_TO_BASE
-DROP_OBJECT
+dog.move_to(25,25)
+dog.return_to_base()

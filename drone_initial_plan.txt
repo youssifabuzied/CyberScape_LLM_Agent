@@ -1,5 +1,4 @@
-Phase 1: Fly to point (0,0) and start scanning the 10x10 meters square area.
-Phase 2: If the ball is not found, move 10 meters to the right (east direction) and scan the next 10x10 meters square area.
-Phase 3: Continue moving 10 meters to the right and scanning until the entire row is covered.
-Phase 4: Move 10 meters up (north direction) and repeat phases 2-3 until the entire field is covered.
-Phase 5: Once the ball is located within a 10x10 meters square, communicate the coordinates to the robot dog.
+Phase 1: Start at point (5,5) and divide the 50x50 meters field into 25 squares of 10x10 meters each. Create a grid to represent these squares and assign a unique identifier to each square.
+Phase 2: Systematically fly over each square in a zig-zag pattern, starting from the top left square (0,0) and moving right, then down, then left, and so on. At each square, use sensors to determine if the ball is present.
+Phase 3: If the ball is detected in a square, record the square's identifier and send a message to the adaptive planning module with the identifier.
+Phase 4: Continue scanning the remaining squares until the entire field has been covered or a message is received from the adaptive planning module to stop scanning.
