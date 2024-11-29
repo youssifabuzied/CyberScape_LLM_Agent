@@ -1,75 +1,18 @@
-class RobotDog:
-    def __init__(self, initial_position: (float, float)):  # type: ignore
-        # Initializes the robot dog's starting position as a (latitude, longitude) tuple
-        self.position = initial_position
-        self.messages_to_process = []  # Queue to hold messages for processing
-        self.base_position = (0, 0)  # Default base position for the robot dog
-
-    def move_to(self, coordinates: (float, float)):  # type: ignore
-        # Moves the robot dog to a specified set of coordinates
-        self.position = coordinates
-        print(f"Moving to {coordinates}")
-
-    def rotate(self, angle: float):
-        # Rotates the robot dog by a specified angle (degrees)
-        print(f"Rotating {angle} degrees")
-
-    def detect_with_camera(self) -> [(float, float), bool]:  # type: ignore
-        # Simulates detecting an object with the camera
-        # Returns the position of the object and whether the detection was successful
-        print("Detecting with camera")
-
-    def jump(self):
-        # Simulates the robot dog jumping over an obstacle
-        print("Jumping over obstacle")
-
-    def get_lidar_info(self) -> dict:
-        # Simulates retrieving LIDAR data for mapping or obstacle detection
-        print("Getting LIDAR information")
-
-    def check_obstacle_height(self) -> float:
-        # Checks the height of an obstacle and returns it (example: 1.5 meters)
-        height = 1.5
-        print(f"Obstacle height: {height} meters")
-        return height
-
-    def check_distance_to_object(self) -> float:
-        # Checks the distance to an object and returns it (example: 10 meters)
-        distance = 10
-        print(f"Distance to object: {distance} meters")
-        return distance
-
-    def get_position_data(self) -> (float, float):  # type: ignore
-        # Returns the current position of the robot dog
-        return self.position
-
-    def process_messages(self):
-        # Processes messages in the robot dog's queue
-        for message in self.messages_to_process:
-            print(f"Processing message: {message}")
-        self.messages_to_process = []  # Clears the queue after processing
-
-    def wait_for_signal(self):
-        # Simulates waiting for a signal to act
-        print("Waiting for signal")
-
-    def communicate_with_apm(self) -> [dict, str]:  # type: ignore
-        # Simulates communication with the Adaptive Planning Module (APM)
-        # Could return the current state and other details
-        print("Communicating with APM:")
-
-    def monitor_task(self, task: str) -> str:
-        # Monitors the status of a specific task
-        task_status = "success"  # Simplified example; would normally evaluate task progress
-        print(f"Task status: {task_status}")
-        return task_status
-
-    def send_feedback_for_rethinking(self):
-        # Sends feedback to the planning module for reevaluating a task
-        feedback = self.monitor_task("Task feedback")
-        print(f"Sending feedback for rethinking the plan: {feedback}")
-
-    def return_to_base(self):
-        # Commands the robot dog to return to its base position
-        self.move_to(self.base_position)
-        print("Returning to base position")
+// move_to(x,y) // move to specific coordinates (latitude, longitude)
+// rotate(angle) // rotate angle degrees
+// detect_with_camera(object) // detect objects with the camera, return position and detection status. Can only detect up to 2 meters in all directions. For example, if you want to detect an onject in the square characterized by points (0,0) , (0,4), (4,0) , (4,4), the dog should be at point (2,2) 
+// jump() // jump over an obstacle
+// get_lidar_info() // retrieve LIDAR data for mapping or obstacle detection
+// check_obstacle_height() // check and return the height of an obstacle
+// check_distance_to_object() // check and return the distance to an object
+// get_position_data() // return the current position as (latitude, longitude)
+// process_messages() // process messages in the queue and clear it
+// wait_for_signal() // wait for a signal to act
+// communicate_with_apm(data) // communicate with the Adaptive Planning Module (APM)
+// monitor_task(task) // monitor the status of a specific task and return the status
+// send_feedback_for_rethinking() // send feedback to reevaluate a task
+// return_to_base() // return the robot dog to its base position
+Remarks:
+If the APM communicates coordinates to go to, it will be given in this format (X,Y). So, you do not need to do any processing for them just use them directly. If you are expecting coordinates of a square, the coordinates you will receive are the center of the square.
+If you got a higher level plan that require scanning an area, you should make sure that the plan you generate will make the robot scan the whole area.
+Do not use excessive indentation.

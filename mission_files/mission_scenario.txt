@@ -1,6 +1,6 @@
 Mission Scenario: We have a drone and a robot dog. 
-    We also have a mission to pick up a ball from a field of size 50x50 meters. The goal is to locate a ball residing in a 1x1 cell.
-    The drone can fly over the field and can determine the 10x10 meters square having the ball. The drone is initially located at point (5,5). Also, it can communicate
-    with the robot dog when necessary. The dog robot must scan the area, locate the ball, and bring it back to the starting point located at point (25,25) and has to start scanning from there.
-    While scanning the area, the dog can scan up to 2 meters in all directions. So, for example, if it is located at x = 10, it can see the range of x = 8 to x = 12 only) and same for the y direction. 
-    Generate a high-level plan for the collaboration between the drone and the robot dog to finish this mission. Make sure that the drone follows a systematic approach to cover the whole field area. 
+We also have a mission to pick up a ball from a field of size 50x50 meters. The goal is to locate a ball residing in a 1x1 cell.
+The drone can fly over the field and can determine the 10x10 meters square having the ball. The drone is initially located at point (5,5). Also, it can communicate
+with the robot dog when necessary. The dog robot must scan the area, locate the ball, and bring it back to the starting point located at point (25,25) and has to start scanning from there.
+While scanning the area, the dog can scan up to 2 meters in all directions. So, for example, if it is located at x = 10, it can see the range of x = 8 to x = 12 only and same for the y direction. 
+Generate a high-level plan for the collaboration between the drone and the robot dog to finish this mission. Make sure that the drone follows a systematic approach to cover the whole field area. 

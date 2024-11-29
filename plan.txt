@@ -1,23 +1,19 @@
 Drone Plan:
 Phase 1: Start at point (5,5) and divide the 50x50 meters field into 25 squares of 10x10 meters each. Create a grid to represent these squares and assign a unique identifier to each square.
-Phase 2: Systematically fly over each square in a zig-zag pattern, starting from the top left square (0,0) and moving right, then down, then left, and so on. At each square, use sensors to determine if the ball is present.
-Phase 3: If the ball is detected in a square, record the square's identifier and send a message to the adaptive planning module with the identifier.
-Phase 4: Continue scanning the remaining squares until the entire field has been covered or a message is received from the adaptive planning module to stop scanning.
+Phase 2: Systematically fly over each square in a zig-zag pattern, starting from the top left square (0,0) and moving right, then down, then left, and so on. At each square, use sensors to detect the presence of the ball.
+Phase 3: Once the ball is detected in a 10x10 meters square, record the square's identifier and coordinates (x, y) of the square's center. Send a message to the adaptive planning module to inform the robot dog about the ball's location.
+Phase 4: Wait for confirmation from the adaptive planning module that the robot dog has received the message and is moving towards the ball's location.
 
 Dog Plan:
-Phase 1: Start at point (25,25) and wait for a message from the adaptive planning module with the identifier of the 10x10 meters square containing the ball.
-Phase 2: Upon receiving the message, move to the center of the identified square and start a spiral search algorithm to scan the area. The spiral search will involve moving in a circular pattern, starting from the center and increasing the radius by 2 meters after each complete circle.
-Phase 3: Continue the spiral search until the ball is detected. Once detected, move to the ball's location and pick it up.
-Phase 4: After picking up the ball, navigate back to the starting point (25,25) using a shortest path algorithm.
+Phase 1: Start at point (25,25) and wait for a message from the adaptive planning module about the ball's location. Once received, move towards the center of the 10x10 meters square where the ball is located.
+Phase 2: Upon arriving at the square, initiate a spiral search algorithm to scan the 10x10 meters area. Start at the center of the square and move in a spiral pattern, scanning 2 meters in all directions at each step.
+Phase 3: Continue the spiral search until the ball is detected. Once detected, move towards the ball and pick it up.
+Phase 4: After picking up the ball, move back to the starting point (25,25) and send a message to the adaptive planning module to confirm the mission's completion.
 
 Spiral Search Algorithm:
-- Start at the center of the square (x, y)
-- Set the initial radius to 2 meters
-- Move in a circular pattern around the center, scanning the area within the current radius
-- If the ball is not detected, increase the radius by 2 meters and repeat the circular pattern
-- Continue increasing the radius and scanning until the ball is detected or the entire square has been covered
-
-Adaptive Planning Module:
-- Receive messages from the drone with the identifier of the square containing the ball
-- Send messages to the dog with the identifier of the square containing the ball
-- Receive messages from the dog when the ball has been picked up and the mission is complete
+- Start at the center of the 10x10 meters square (x, y).
+- Move 2 meters in the x-direction (east) and scan the area.
+- Move 2 meters in the y-direction (north) and scan the area.
+- Move 2 meters in the x-direction (west) and scan the area.
+- Move 2 meters in the y-direction (south) and scan the area.
+- Continue this pattern, increasing the distance from the center by 2 meters at each step, until the ball is detected or the entire 10x10 meters area is scanned.

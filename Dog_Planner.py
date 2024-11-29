@@ -41,14 +41,14 @@ def main():
     {dog_specifications} \n
     Your output format should be as follows:
     Phase 1:
-    dog.move_to(X,Y)
+    RobotDog.move_to(X,Y)
     .........
     Phase 2:
     .........
     Phase 3:
     .........
-    You should stick to this format and do not write any side notes or explanations. You should only write a set of instructions not a python code. If the objective of some phase is reached, you should move immediately to the following one.
-    Feel free to use only if statmentents. You cannot use loops. Your output should not be a python code but a set of instructions. Do not use functions other than the listed functions in the specifications file.
+    You should stick to this format and do not write any side notes or explanations. You should only write a set of instructions. If the objective of some phase is reached, you should move immediately to the following one.
+    Feel free to use only if statmentents. You cannot use loops. Do not use instructions other than the listed functions in the specifications file.
     '''
     client = openai.OpenAI(
         api_key=os.getenv("samba_nova_api_key"),
