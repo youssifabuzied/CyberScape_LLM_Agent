@@ -2,6 +2,8 @@ import openai
 import os
 import asyncio
 import subprocess
+import argparse
+
 
 async def run_python_script(command):
     try:
@@ -45,7 +47,7 @@ def initiate_plan():
     # mission_scenario_path = input("Enter the path to mission_scenario.txt: ")
     # drone_specifications_path = input("Enter the path to drone_specifications.txt: ")
     # dog_specifications_path = input("Enter the path to dog_specifications.txt: ")
-    mission_scenario_path = "mission_files/mission_scenario.txt"
+    mission_scenario_path = "mission_files/octagon_mission.txt"
     drone_specifications_path = "mission_files/drone_specifications.txt"
     dog_specifications_path = "mission_files/dog_specifications.txt"
 
@@ -160,8 +162,16 @@ def parse_dog_plan(file_path, output_file_path):
     except Exception as e:
         print(f"An error occurred: {e}")
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Plan Generator for robot missions")
+
+    # Add arguments for the file paths
+    parser.add_argument("mission_file", help="Path to the plan file")
+
+    # Parse the arguments
+    args = parser.parse_args()
     # initiate_plan()
-    high_level_plan_command = "python High_Level_Plan_Generator.py mission_files/mission_scenario.txt"
+    mission_file = args.mission_file
+    high_level_plan_command = f"python High_Level_Plan_Generator.py {mission_file}"
     asyncio.run(run_python_script(high_level_plan_command))
     input_plan_file = 'plan.txt'  # The input file containing both plans
     output_drone_file = 'drone_initial_plan.txt'
@@ -173,10 +183,10 @@ if __name__ == "__main__":
     # Call the function to parse the drone plan
 
     drone_command = (
-        f"python3 Drone_Planner.py mission_files/mission_scenario.txt mission_files/drone_specifications.txt {output_drone_file}"
+        f"python3 Drone_Planner.py {mission_file} mission_files/drone_specifications.txt {output_drone_file}"
     )
     asyncio.run(run_python_script(drone_command))
     dog_command = (
-        f"python3 Dog_Planner.py mission_files/mission_scenario.txt mission_files/dog_specifications.txt {output_dog_file}"
+        f"python3 Dog_Planner.py {mission_file} mission_files/dog_specifications.txt {output_dog_file}"
     )
     asyncio.run(run_python_script(dog_command))

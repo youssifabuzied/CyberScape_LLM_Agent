@@ -1,159 +1,37 @@
 Phase 1:
-RobotDog.move_to(25,25)
-RobotDog.process_messages()
-data = RobotDog.get_position_data()
-if data == "failure message":
-    RobotDog.return_to_base()
-else:
-    coordinates = data
-    RobotDog.move_to(coordinates[0], coordinates[1])
+RobotDog.rotate(45)
 
 Phase 2:
-RobotDog.detect_with_camera("ball")
-data = RobotDog.get_position_data()
-if data[1] == "detected":
-    RobotDog.move_to(data[0][0], data[0][1])
-else:
-    RobotDog.move_to(coordinates[0] + 2, coordinates[1])
-    RobotDog.detect_with_camera("ball")
-    data = RobotDog.get_position_data()
-    if data[1] == "detected":
-        RobotDog.move_to(data[0][0], data[0][1])
-    else:
-        RobotDog.move_to(coordinates[0] + 2, coordinates[1] + 2)
-        RobotDog.detect_with_camera("ball")
-        data = RobotDog.get_position_data()
-        if data[1] == "detected":
-            RobotDog.move_to(data[0][0], data[0][1])
-        else:
-            RobotDog.move_to(coordinates[0], coordinates[1] + 2)
-            RobotDog.detect_with_camera("ball")
-            data = RobotDog.get_position_data()
-            if data[1] == "detected":
-                RobotDog.move_to(data[0][0], data[0][1])
-            else:
-                RobotDog.move_to(coordinates[0] - 2, coordinates[1] + 2)
-                RobotDog.detect_with_camera("ball")
-                data = RobotDog.get_position_data()
-                if data[1] == "detected":
-                    RobotDog.move_to(data[0][0], data[0][1])
-                else:
-                    RobotDog.move_to(coordinates[0] - 2, coordinates[1])
-                    RobotDog.detect_with_camera("ball")
-                    data = RobotDog.get_position_data()
-                    if data[1] == "detected":
-                        RobotDog.move_to(data[0][0], data[0][1])
-                    else:
-                        RobotDog.move_to(coordinates[0] - 2, coordinates[1] - 2)
-                        RobotDog.detect_with_camera("ball")
-                        data = RobotDog.get_position_data()
-                        if data[1] == "detected":
-                            RobotDog.move_to(data[0][0], data[0][1])
-                        else:
-                            RobotDog.move_to(coordinates[0], coordinates[1] - 2)
-                            RobotDog.detect_with_camera("ball")
-                            data = RobotDog.get_position_data()
-                            if data[1] == "detected":
-                                RobotDog.move_to(data[0][0], data[0][1])
-                            else:
-                                RobotDog.move_to(coordinates[0] + 2, coordinates[1] - 2)
-                                RobotDog.detect_with_camera("ball")
-                                data = RobotDog.get_position_data()
-                                if data[1] == "detected":
-                                    RobotDog.move_to(data[0][0], data[0][1])
-                                else:
-                                    RobotDog.move_to(coordinates[0] + 4, coordinates[1] - 2)
-                                    RobotDog.detect_with_camera("ball")
-                                    data = RobotDog.get_position_data()
-                                    if data[1] == "detected":
-                                        RobotDog.move_to(data[0][0], data[0][1])
-                                    else:
-                                        RobotDog.move_to(coordinates[0] + 4, coordinates[1])
-                                        RobotDog.detect_with_camera("ball")
-                                        data = RobotDog.get_position_data()
-                                        if data[1] == "detected":
-                                            RobotDog.move_to(data[0][0], data[0][1])
-                                        else:
-                                            RobotDog.move_to(coordinates[0] + 4, coordinates[1] + 2)
-                                            RobotDog.detect_with_camera("ball")
-                                            data = RobotDog.get_position_data()
-                                            if data[1] == "detected":
-                                                RobotDog.move_to(data[0][0], data[0][1])
-                                            else:
-                                                RobotDog.move_to(coordinates[0] + 4, coordinates[1] + 4)
-                                                RobotDog.detect_with_camera("ball")
-                                                data = RobotDog.get_position_data()
-                                                if data[1] == "detected":
-                                                    RobotDog.move_to(data[0][0], data[0][1])
-                                                else:
-                                                    RobotDog.move_to(coordinates[0] + 2, coordinates[1] + 4)
-                                                    RobotDog.detect_with_camera("ball")
-                                                    data = RobotDog.get_position_data()
-                                                    if data[1] == "detected":
-                                                        RobotDog.move_to(data[0][0], data[0][1])
-                                                    else:
-                                                        RobotDog.move_to(coordinates[0], coordinates[1] + 4)
-                                                        RobotDog.detect_with_camera("ball")
-                                                        data = RobotDog.get_position_data()
-                                                        if data[1] == "detected":
-                                                            RobotDog.move_to(data[0][0], data[0][1])
-                                                        else:
-                                                            RobotDog.move_to(coordinates[0] - 2, coordinates[1] + 4)
-                                                            RobotDog.detect_with_camera("ball")
-                                                            data = RobotDog.get_position_data()
-                                                            if data[1] == "detected":
-                                                                RobotDog.move_to(data[0][0], data[0][1])
-                                                            else:
-                                                                RobotDog.move_to(coordinates[0] - 4, coordinates[1] + 4)
-                                                                RobotDog.detect_with_camera("ball")
-                                                                data = RobotDog.get_position_data()
-                                                                if data[1] == "detected":
-                                                                    RobotDog.move_to(data[0][0], data[0][1])
-                                                                else:
-                                                                    RobotDog.move_to(coordinates[0] - 4, coordinates[1] + 2)
-                                                                    RobotDog.detect_with_camera("ball")
-                                                                    data = RobotDog.get_position_data()
-                                                                    if data[1] == "detected":
-                                                                        RobotDog.move_to(data[0][0], data[0][1])
-                                                                    else:
-                                                                        RobotDog.move_to(coordinates[0] - 4, coordinates[1])
-                                                                        RobotDog.detect_with_camera("ball")
-                                                                        data = RobotDog.get_position_data()
-                                                                        if data[1] == "detected":
-                                                                            RobotDog.move_to(data[0][0], data[0][1])
-                                                                        else:
-                                                                            RobotDog.move_to(coordinates[0] - 4, coordinates[1] - 2)
-                                                                            RobotDog.detect_with_camera("ball")
-                                                                            data = RobotDog.get_position_data()
-                                                                            if data[1] == "detected":
-                                                                                RobotDog.move_to(data[0][0], data[0][1])
-                                                                            else:
-                                                                                RobotDog.move_to(coordinates[0] - 4, coordinates[1] - 4)
-                                                                                RobotDog.detect_with_camera("ball")
-                                                                                data = RobotDog.get_position_data()
-                                                                                if data[1] == "detected":
-                                                                                    RobotDog.move_to(data[0][0], data[0][1])
-                                                                                else:
-                                                                                    RobotDog.move_to(coordinates[0] - 2, coordinates[1] - 4)
-                                                                                    RobotDog.detect_with_camera("ball")
-                                                                                    data = RobotDog.get_position_data()
-                                                                                    if data[1] == "detected":
-                                                                                        RobotDog.move_to(data[0][0], data[0][1])
-                                                                                    else:
-                                                                                        RobotDog.move_to(coordinates[0], coordinates[1] - 4)
-                                                                                        RobotDog.detect_with_camera("ball")
-                                                                                        data = RobotDog.get_position_data()
-                                                                                        if data[1] == "detected":
-                                                                                            RobotDog.move_to(data[0][0], data[0][1])
-                                                                                        else:
-                                                                                            RobotDog.move_to(coordinates[0] + 2, coordinates[1] - 4)
-                                                                                            RobotDog.detect_with_camera("ball")
-                                                                                            data = RobotDog.get_position_data()
-                                                                                            if data[1] == "detected":
-                                                                                                RobotDog.move_to(data[0][0], data[0][1])
-                                                                                            else:
-                                                                                                RobotDog.communicate_with_apm("failure")
+RobotDog.move_forward(10)
+RobotDog.rotate(135)
 
 Phase 3:
-RobotDog.move_to(25,25)
-RobotDog.communicate_with_apm("success")
+RobotDog.move_forward(10)
+RobotDog.rotate(135)
+
+Phase 4:
+RobotDog.move_forward(10)
+RobotDog.rotate(135)
+
+Phase 5:
+RobotDog.move_forward(10)
+RobotDog.rotate(135)
+
+Phase 6:
+RobotDog.move_forward(10)
+RobotDog.rotate(135)
+
+Phase 7:
+RobotDog.move_forward(10)
+RobotDog.rotate(135)
+
+Phase 8:
+RobotDog.move_forward(10)
+RobotDog.rotate(135)
+
+Phase 9:
+RobotDog.move_forward(10)
+RobotDog.rotate(135)
+
+Phase 10:
+RobotDog.rotate(45)

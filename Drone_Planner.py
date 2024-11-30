@@ -72,7 +72,8 @@ def main():
     Phase 3:
     .........
     You should stick to this format and do not write any side notes or explanations. You should only write a set of instructions. If the objective of some phase is reached, you should move immediately to the following one.
-    Feel free to use only if statmentents. You are not allowed to use any kind of loops. Do not use functions other than the listed functions in the specifications file.
+    Feel free to use only if statmentents. You are not allowed to use any kind of loops. Do not use functions other than the listed functions in the specifications file. If the high level plan says that the drone should not do anything, the drone needs to stay idle waiting for messages from the APM and do nothing.
+    You should only care about the drone part not any other robot. Again if the plan is for the robot dog only, you should stand idle and only wait for messages.
     '''
     client = openai.OpenAI(
         api_key=os.getenv("samba_nova_api_key"),
