@@ -1,0 +1,26 @@
+RobotDog.get_lidar_data()       # Invalid: Non-existent function
+RobotDog.process_message()      # Invalid: Non-existent function
+RobotDog.send_feedback()        # Invalid: Non-existent function
+Drone.send_feedback()        # Invalid: Non-existent function
+Drone.report_back()
+RobotDog.go_to((10.0, 20.0))  # Expected Mapping: RobotDog.move_to((10.0, 20.0))
+RobotDog.turn(90.0)  # Expected Mapping: RobotDog.rotate(90.0)
+RobotDog.gather_sensor_data()  # Expected Mapping: RobotDog.get_lidar_info()
+RobotDog.assess_obstacle_height()  # Expected Mapping: RobotDog.check_obstacle_height()
+RobotDog.measure_distance_to_object()  # Expected Mapping: RobotDog.check_distance_to_object()
+RobotDog.current_position()  # Expected Mapping: RobotDog.get_position_data()
+RobotDog.process_incoming_messages()  # Expected Mapping: RobotDog.process_messages()
+RobotDog.wait_for_instruction()  # Expected Mapping: RobotDog.wait_for_signal()
+RobotDog.communicate_with_central_system()  # Expected Mapping: RobotDog.communicate_with_apm()
+RobotDog.evaluate_task_progress("delivery")  # Expected Mapping: RobotDog.monitor_task()
+RobotDog.provide_feedback_for_replanning()  # Expected Mapping: RobotDog.send_feedback_for_rethinking()
+RobotDog.return_to_starting_point()  # Expected Mapping: RobotDog.return_to_base()
+RobotDog.check_obstacle_height_in_front()  # Expected Mapping: RobotDog.check_obstacle_height()
+RobotDog.determine_distance_to_closest_object()  # Expected Mapping: RobotDog.check_distance_to_object()
+RobotDog.get_current_position()  # Expected Mapping: RobotDog.get_position_data()
+RobotDog.handle_incoming_messages()  # Expected Mapping: RobotDog.process_messages()
+RobotDog.pause_until_signal()  # Expected Mapping: RobotDog.wait_for_signal()
+RobotDog.exchange_data_with_central_station()  # Expected Mapping: RobotDog.communicate_with_apm()
+RobotDog.assess_task_completion("delivery")  # Expected Mapping: RobotDog.monitor_task()
+RobotDog.offer_suggestions_for_replanning()  # Expected Mapping: RobotDog.send_feedback_for_rethinking()
+RobotDog.return_to_home_base()  # Expected Mapping: RobotDog.return_to_base()

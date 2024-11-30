@@ -1,0 +1,29 @@
+RobotDog.move_to([10.0, 20.0])  # Invalid: List instead of tuple
+RobotDog.rotate("ninety")       # Invalid: String instead of float
+RobotDog.detect_with_camera(42) # Invalid: Unexpected argument
+RobotDog.jump(5)                # Invalid: Unexpected argument
+RobotDog.get_lidar_data()       # Invalid: Non-existent function
+RobotDog.check_obstacle_height("low")  # Invalid: String instead of no arguments
+RobotDog.check_distance_to_object("far")  # Invalid: String instead of no arguments
+RobotDog.get_position_data((10, 10))  # Invalid: Unexpected argument
+RobotDog.process_message()      # Invalid: Non-existent function
+RobotDog.wait_for_signal("start")  # Invalid: Unexpected argument
+RobotDog.communicate_with_apm("message")  # Invalid: Unexpected argument
+RobotDog.monitor_task(123)      # Invalid: Integer instead of string
+RobotDog.send_feedback()        # Invalid: Non-existent function
+RobotDog.return_to_base(5)      # Invalid: Unexpected argument
+
+Drone.move_forward("fast")   # Invalid: String instead of float
+Drone.move_to_point([50.0, 30.0, 10.0])  # Invalid: List instead of tuple
+Drone.rotate("forty-five")   # Invalid: String instead of float
+Drone.get_position_data(5)   # Invalid: Unexpected argument
+Drone.get_camera_data("image")  # Invalid: Unexpected argument
+Drone.detect_with_camera(10, 20)  # Invalid: Unexpected arguments
+Drone.scan_area((10, 20), (15, 25))  # Invalid: Tuples with missing elements
+Drone.process_message()      # Invalid: Non-existent function
+Drone.wait_for_signal(10)    # Invalid: Unexpected argument
+Drone.communicate_with_apm("error")  # Invalid: Unexpected argument
+Drone.monitor_task(12345)    # Invalid: Integer instead of string
+Drone.send_feedback()        # Invalid: Non-existent function
+Drone.fly("high")            # Invalid: String instead of float
+Drone.return_to_base("now")  # Invalid: String instead of no arguments

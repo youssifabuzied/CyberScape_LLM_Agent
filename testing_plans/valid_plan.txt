@@ -1,0 +1,29 @@
+RobotDog.move_to((10.0, 20.0))  # Valid
+RobotDog.rotate(90.0)           # Valid
+RobotDog.detect_with_camera("object")   # Valid
+RobotDog.jump()                 # Valid
+RobotDog.get_lidar_info()       # Valid
+RobotDog.check_obstacle_height()  # Valid
+RobotDog.check_distance_to_object()  # Valid
+RobotDog.get_position_data()    # Valid
+RobotDog.process_messages()     # Valid
+RobotDog.wait_for_signal()      # Valid
+RobotDog.communicate_with_apm((10.0, 20.0)) # Valid
+RobotDog.monitor_task("patrol") # Valid
+RobotDog.send_feedback_for_rethinking()  # Valid
+RobotDog.return_to_base()       # Valid
+
+Drone.move_forward(15.0)     # Valid
+Drone.move_to_point((50.0, 30.0, 10.0))  # Valid
+Drone.rotate(45.0)           # Valid
+Drone.get_position_data()    # Valid
+Drone.get_camera_data()      # Valid
+Drone.detect_with_camera("object")   # Valid
+Drone.scan_area((10.0, 20.0, 5.0), (15.0, 25.0, 10.0))  # Valid
+Drone.process_messages()     # Valid
+Drone.wait_for_signal()      # Valid
+Drone.communicate_with_apm((10.0, 20.0)) # Valid
+Drone.monitor_task("delivery")  # Valid
+Drone.send_feedback_for_rethinking()  # Valid
+Drone.fly(100.0)             # Valid
+Drone.return_to_base()       # Valid
