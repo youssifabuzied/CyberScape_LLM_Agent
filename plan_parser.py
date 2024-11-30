@@ -1,4 +1,10 @@
-def parser(plan_file: str) -> str:
+import openai
+import os
+import argparse
+from Manager import read_file
+
+
+def Pparser(plan_file: str) -> str:
     """
     Processes a plan file:
     - Deletes lines starting with 'Phase'.
@@ -9,42 +15,47 @@ def parser(plan_file: str) -> str:
     :param plan_file: Path to the file containing the plan.
     :return: A string containing the filtered plan with proper formatting.
     """
-    # Read the plan from the file
-    with open(plan_file, 'r') as f:
-        plan_lines = f.readlines()
+    prompt = f'''
+    We had the following instructions sent to a robot to execute
+    {plan_file}
+    Your task is to extract the instructions that the robot will execute. Instructions are in this format:
+    Drone.instruction()
+    RobotDog.instruction() // depends on the type of the robot
+    You will find the instructions mixed with if statments or assign statments. You need to only to extract the instructions and the paramters passed to them. 
+    Output instructions such that each instruction is on a line. You need to extract the instructions yourself. Do nor output a code that does so. Do it yourself and output the parsed instructions to me.
+    Output the instructions directly without saying here are the instructions.
+    '''
+    client = openai.OpenAI(
+        api_key=os.getenv("samba_nova_api_key"),
+        base_url="https://api.sambanova.ai/v1",
+    )
+    message_history = [
+        {"role": "system", "content": "You are a helpful assistant"},
+        {"role": "user", "content":prompt},
+    ]
+    response = client.chat.completions.create(
+        model='Meta-Llama-3.1-405B-Instruct',
+        messages=message_history,
+        temperature=0.1,
+        top_p=0.1
+    )
+    return response.choices[0].message.content
 
-    filtered_lines = []
-    for line in plan_lines:
-        stripped_line = line.strip()
-        # Skip lines starting with "Phase"
-        if stripped_line.startswith("Phase"):
-            continue
-        # Remove "if not" and keep the rest of the line
-        elif stripped_line.startswith("if not"):
-            filtered_line = stripped_line[7:].strip()
-        # Remove "if" and keep the rest of the line
-        elif stripped_line.startswith("if"):
-            filtered_line = stripped_line[3:].strip()
-        else:
-            filtered_line = stripped_line
+def main():
+    parser = argparse.ArgumentParser(description="Parsing instructions")
 
-        # Remove colon at the end of the line if it exists
-        if filtered_line.endswith(":"):
-            filtered_line = filtered_line[:-1].strip()
+    # Add arguments for the file paths
+    parser.add_argument("plan_file_path", help="Path to the plan file")
 
-        if filtered_line:  # Only add non-empty lines
-            filtered_lines.append(filtered_line)
+    # Parse the arguments
+    args = parser.parse_args()
+    print("Instructions are being parsed.............")
 
-    # Join lines and ensure the first character of the plan is uppercase
-    for i in range(0, len(filtered_lines)):
-        filtered_lines[i] = filtered_lines[i][0].upper() + filtered_lines[i][1:]
-
-    filtered_plan = "\n".join(filtered_lines)
-  
-    return filtered_plan
-
-# Example usage
-plan_file_path = input("Enter the plan file:")
-
-filtered_plan = parser(plan_file_path)
-print(filtered_plan)
+    plan_file_path = args.plan_file_path
+    plan_file = read_file(plan_file_path)
+    # print(plan_file)
+    filtered_plan = Pparser(plan_file)
+    with open(f"parsed_{plan_file_path}", "w") as file:
+        file.write(filtered_plan)
+if __name__ == "__main__":
+    main()

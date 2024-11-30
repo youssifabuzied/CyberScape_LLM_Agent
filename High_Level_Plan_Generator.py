@@ -41,7 +41,7 @@ def main():
         Phase 2: ------------------------------
         Do not write any header in the response or side notes or explanations. If the mission require scanning an area greating than the scanning capabailities of the robots, define a sprial search algorithm to make them scan the large area.
         If the robots need to send messages to other robots. this should only be done through the adaptive planning module. Also, they should do the same when wanting to receive messages.'''
-    print(os.getenv("samba_nova_api_key"))
+    # print(os.getenv("samba_nova_api_key"))
     client = openai.OpenAI(
         api_key=os.getenv("samba_nova_api_key"),
         base_url="https://api.sambanova.ai/v1",
@@ -60,6 +60,7 @@ def main():
     print(generated_plan)
     rating = 0
     count = 0
+    final_plan = ""
     while(True):
         prompt = f'''
         We had the following mission:
@@ -96,14 +97,17 @@ def main():
             top_p=0.1
         )
         new_rating, modified_plan = extract_rating_and_plan(response.choices[0].message.content)
-        print(response.choices[0].message.content)
-        print("Rating:", new_rating)
-        print("Modified Plan:", modified_plan)
+        # print(response.choices[0].message.content)
+        # print("Rating:", new_rating)
+        # print("Modified Plan:", modified_plan)
         if(new_rating <= rating or new_rating == 10 or count == 2):
+            final_plan = generated_plan
             break
         rating = new_rating
         generated_plan = modified_plan
         count += 1
+    with open("plan.txt", 'w') as output_file:
+        output_file.write(final_plan)
 
 
 

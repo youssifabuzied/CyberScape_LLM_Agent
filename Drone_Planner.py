@@ -2,7 +2,33 @@ import openai
 import os
 import argparse
 from Manager import read_file
+import asyncio
+import subprocess
+async def run_python_script(command):
+    try:
+        # Create the subprocess and await its completion
+        count = 0
+        # for i in range (0,1000000):
+        #     count +=1
+        process = await asyncio.create_subprocess_shell(
+            command, 
+            stdout=asyncio.subprocess.PIPE, 
+            stderr=asyncio.subprocess.PIPE
+        )
 
+        # Wait for the process to complete and capture the output and error
+        stdout, stderr = await process.communicate()
+
+        # Decode and print the result
+        print("Output of the script:\n")
+        if stdout:
+            print(stdout.decode())  # Print the standard output of the script
+        if stderr:
+            print("Error output:\n")
+            print(stderr.decode())  # Print any error messages
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 
 def main():
@@ -64,5 +90,7 @@ def main():
     )
     with open("drone_low_level_plan.txt", "w") as file:
         file.write(response.choices[0].message.content)
+    command = ("python3 plan_parser.py drone_low_level_plan.txt")
+    asyncio.run(run_python_script(command))
 if __name__ == "__main__":
     main()

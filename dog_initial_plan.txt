@@ -1,6 +1,6 @@
-Phase 1: Start at point (25,25) and wait for a message from the adaptive planning module about the ball's location. Once received, move towards the center of the 10x10 meters square where the ball is located.
+Phase 1: Start at point (25,25) and wait for a message from the adaptive planning module about the ball's location. Once received, move towards the center of the 10x10 meters square where the ball is located. If a failure message is received, terminate the mission.
 Phase 2: Upon arriving at the square, initiate a spiral search algorithm to scan the 10x10 meters area. Start at the center of the square and move in a spiral pattern, scanning 2 meters in all directions at each step.
-Phase 3: Continue the spiral search until the ball is detected. Once detected, move towards the ball and pick it up.
+Phase 3: Continue the spiral search until the ball is detected. Once detected, move towards the ball and pick it up. If the ball is not detected after scanning the entire 10x10 meters area, send a failure message to the adaptive planning module.
 Phase 4: After picking up the ball, move back to the starting point (25,25) and send a message to the adaptive planning module to confirm the mission's completion.
 
 Spiral Search Algorithm:

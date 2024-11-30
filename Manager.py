@@ -7,8 +7,8 @@ async def run_python_script(command):
     try:
         # Create the subprocess and await its completion
         count = 0
-        for i in range (0,1000000):
-            count +=1
+        # for i in range (0,1000000):
+        #     count +=1
         process = await asyncio.create_subprocess_shell(
             command, 
             stdout=asyncio.subprocess.PIPE, 
@@ -160,7 +160,9 @@ def parse_dog_plan(file_path, output_file_path):
     except Exception as e:
         print(f"An error occurred: {e}")
 if __name__ == "__main__":
-    initiate_plan()
+    # initiate_plan()
+    high_level_plan_command = "python High_Level_Plan_Generator.py mission_files/mission_scenario.txt"
+    asyncio.run(run_python_script(high_level_plan_command))
     input_plan_file = 'plan.txt'  # The input file containing both plans
     output_drone_file = 'drone_initial_plan.txt'
     output_dog_file = "dog_initial_plan.txt"  # The output file for the drone plan

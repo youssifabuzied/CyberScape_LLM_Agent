@@ -82,13 +82,10 @@ if not Drone.detect_with_camera("ball"):
 Phase 3:
 if Drone.detect_with_camera("ball"):
     Drone.get_position_data()
-    var x = Drone.get_position_data()[0]
-    var y = Drone.get_position_data()[1]
-    Drone.communicate_with_apm((x,y))
-    Drone.wait_for_signal()
+    Drone.communicate_with_apm(Drone.get_position_data())
+else:
+    Drone.communicate_with_apm("failure")
 
 Phase 4:
+Drone.wait_for_signal()
 Drone.process_messages()
-Drone.monitor_task("robot_dog_received_message")
-if Drone.monitor_task("robot_dog_received_message") == "success":
-    Drone.return_to_base()
