@@ -4,6 +4,10 @@ import argparse
 from Manager import read_file
 import asyncio
 import subprocess
+import time
+
+from Similarity_Mapping_Module import parse_plan, validate_plan
+
 async def run_python_script(command):
     try:
         # Create the subprocess and await its completion
@@ -29,6 +33,22 @@ async def run_python_script(command):
 
     except Exception as e:
         print(f"An error occurred: {e}")
+
+# Function to call OpenAI's LLM to regenerate the plan based on errors
+def regenerate_plan_with_errors(errors, message_history):
+    # Add the errors to the message history
+    error_messages = "\n".join(errors)
+    message_history.append({"role": "user", "content": f"The following errors were found in your last plan:\n{error_messages}\nPlease regenerate the plan taking these errors into account."})
+
+    # Make the API call again with the updated conversation history
+    response = openai.ChatCompletion.create(
+        model='Meta-Llama-3.1-405B-Instruct',
+        messages=message_history,
+        temperature=0.05,
+        top_p=0.05
+    )
+    return response.choices[0].message.content
+
 
 def main():
     parser = argparse.ArgumentParser(description="Read and display the contents of mission, dog, and dog specifications files.")
@@ -89,9 +109,46 @@ def main():
         temperature=0.05,
         top_p=0.05
     )
+    
+    low_level_plan = response.choices[0].message.content
     with open("dog_low_level_plan.txt", "w") as file:
-        file.write(response.choices[0].message.content)
-    command = ("python3 plan_parser.py dog_low_level_plan.txt")
+        file.write(low_level_plan)
+
+    command = "python3 plan_parser.py dog_low_level_plan.txt"
     asyncio.run(run_python_script(command))
+
+    # Read the plan from the file and validate it
+    with open("dog_low_level_plan.txt", "r") as file:
+        dog_low_level_plan = file.read()
+
+    parsed_plan = parse_plan(dog_low_level_plan)
+    validation_results, new_plan = validate_plan(parsed_plan)
+
+    # Check if there are errors in the plan
+    while validation_results:
+        print("Errors found in the plan. Regenerating the plan...")
+
+        # Append errors to message history and regenerate the plan
+        updated_plan = regenerate_plan_with_errors(validation_results, message_history)
+
+        # Save the updated plan and validate again
+        with open("dog_low_level_plan.txt", "w") as file:
+            file.write(updated_plan)
+
+        # Run the parser again with the new plan
+        command = "python3 plan_parser.py dog_low_level_plan.txt"
+        asyncio.run(run_python_script(command))
+
+        # Re-validate the plan
+        with open("dog_low_level_plan.txt", "r") as file:
+            dog_low_level_plan = file.read()
+
+        parsed_plan = parse_plan(dog_low_level_plan)
+        validation_results, new_plan = validate_plan(parsed_plan)
+
+    print("No errors found. New plan is:")
+    for command in new_plan:
+        print(command)
+
 if __name__ == "__main__":
     main()

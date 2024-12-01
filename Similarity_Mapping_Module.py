@@ -1,8 +1,9 @@
 import ast
+import sys
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# Step 1: Define the RobotDog and Drone commands with expected arguments
+# Define the RobotDog and Drone commands with expected arguments
 COMMANDS = {
     "RobotDog": {
         "move_to": [("coordinates", tuple)],
@@ -38,10 +39,10 @@ COMMANDS = {
     }
 }
 
-# Step 2: Load a pre-trained SentenceTransformer model
+# Load a pre-trained SentenceTransformer model
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# Step 3: Embed the function names for both Dog and Drone
+# Embed the function names for both Dog and Drone
 command_embeddings = {
     entity: {
         command: model.encode(command)
@@ -50,7 +51,7 @@ command_embeddings = {
     for entity, commands in COMMANDS.items()
 }
 
-# Step 4: Parse the LLM-generated plan using the `ast` module
+# Parse the LLM-generated plan using the `ast` module
 def parse_plan(plan_text):
     """
     Parses a string of function calls and extracts the method names and arguments.
@@ -70,7 +71,7 @@ def parse_plan(plan_text):
 
     return methods_called
 
-# Step 5: Validate the parsed plan using cosine similarity and argument checking
+# Validate the parsed plan using cosine similarity and argument checking
 def validate_plan(parsed_plan):
     """
     Validates parsed plan against the RobotDog and Drone commands.
@@ -105,11 +106,7 @@ def validate_plan(parsed_plan):
         }
 
         # Debug: Log similarity scores
-        print(f"Similarity scores for '{function_name}' ({entity}): {similarities}")
-
-        # # Find the best match
-        # best_match = max(similarities, key=similarities.get)
-        # similarity_score = similarities[best_match]
+        # print(f"Similarity scores for '{function_name}' ({entity}): {similarities}")
 
         # Check for exact match first
         if function_name in command_embeddings[entity]:
@@ -138,7 +135,7 @@ def validate_plan(parsed_plan):
             else:
                 # Add matched command to the new plan
                 new_plan.append(f"{entity}.{best_match}({', '.join(map(str, arguments))})")
-                results.append(f"'{function_name}' matched to '{best_match}' in '{entity}' with similarity {similarity_score:.2f} and valid arguments.")
+                # results.append(f"'{function_name}' matched to '{best_match}' in '{entity}' with similarity {similarity_score:.2f} and valid arguments.")
         else:
             results.append(f"Error: '{function_name}' did not match any known function in '{entity}'.")
 
@@ -146,125 +143,33 @@ def validate_plan(parsed_plan):
     print(f"Exact matches: {match_score}")
     return results, new_plan
 
-# Step 6: Example LLM-generated plan
-# Test 1: All valid commands
-plan_text_valid = """
-RobotDog.move_to((10.0, 20.0))  # Valid
-RobotDog.rotate(90.0)           # Valid
-RobotDog.detect_with_camera()   # Valid
-RobotDog.jump()                 # Valid
-RobotDog.get_lidar_info()       # Valid
-RobotDog.check_obstacle_height()  # Valid
-RobotDog.check_distance_to_object()  # Valid
-RobotDog.get_position_data()    # Valid
-RobotDog.process_messages()     # Valid
-RobotDog.wait_for_signal()      # Valid
-RobotDog.communicate_with_apm() # Valid
-RobotDog.monitor_task("patrol") # Valid
-RobotDog.send_feedback_for_rethinking()  # Valid
-RobotDog.return_to_base()       # Valid
+# Read the plan from a file
+def read_plan_from_file(filename):
+    with open(filename, 'r') as file:
+        return file.read()
 
-Drone.move_forward(15.0)     # Valid
-Drone.move_to_point((50.0, 30.0, 10.0))  # Valid
-Drone.rotate(45.0)           # Valid
-Drone.get_position_data()    # Valid
-Drone.get_camera_data()      # Valid
-Drone.detect_with_camera()   # Valid
-Drone.scan_area((10.0, 20.0, 5.0), (15.0, 25.0, 10.0))  # Valid
-Drone.process_messages()     # Valid
-Drone.wait_for_signal()      # Valid
-Drone.communicate_with_apm() # Valid
-Drone.monitor_task("delivery")  # Valid
-Drone.send_feedback_for_rethinking()  # Valid
-Drone.fly(100.0)             # Valid
-Drone.return_to_base()       # Valid
-"""
+# Main entry point for the program
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python Similarity_Mapping_Module.py <path_to_plan_file>")
+        sys.exit(1)
 
-plan_text_invalid = """
-RobotDog.move_to([10.0, 20.0])  # Invalid: List instead of tuple
-RobotDog.rotate("ninety")       # Invalid: String instead of float
-RobotDog.detect_with_camera(42) # Invalid: Unexpected argument
-RobotDog.jump(5)                # Invalid: Unexpected argument
-RobotDog.get_lidar_data()       # Invalid: Non-existent function
-RobotDog.check_obstacle_height("low")  # Invalid: String instead of no arguments
-RobotDog.check_distance_to_object("far")  # Invalid: String instead of no arguments
-RobotDog.get_position_data((10, 10))  # Invalid: Unexpected argument
-RobotDog.process_message()      # Invalid: Non-existent function
-RobotDog.wait_for_signal("start")  # Invalid: Unexpected argument
-RobotDog.communicate_with_apm("message")  # Invalid: Unexpected argument
-RobotDog.monitor_task(123)      # Invalid: Integer instead of string
-RobotDog.send_feedback()        # Invalid: Non-existent function
-RobotDog.return_to_base(5)      # Invalid: Unexpected argument
+    filename = sys.argv[1]
+    plan_text = read_plan_from_file(filename)
 
-Drone.move_forward("fast")   # Invalid: String instead of float
-Drone.move_to_point([50.0, 30.0, 10.0])  # Invalid: List instead of tuple
-Drone.rotate("forty-five")   # Invalid: String instead of float
-Drone.get_position_data(5)   # Invalid: Unexpected argument
-Drone.get_camera_data("image")  # Invalid: Unexpected argument
-Drone.detect_with_camera(10, 20)  # Invalid: Unexpected arguments
-Drone.scan_area((10, 20), (15, 25))  # Invalid: Tuples with missing elements
-Drone.process_message()      # Invalid: Non-existent function
-Drone.wait_for_signal(10)    # Invalid: Unexpected argument
-Drone.communicate_with_apm("error")  # Invalid: Unexpected argument
-Drone.monitor_task(12345)    # Invalid: Integer instead of string
-Drone.send_feedback()        # Invalid: Non-existent function
-Drone.fly("high")            # Invalid: String instead of float
-Drone.return_to_base("now")  # Invalid: String instead of no arguments
-"""
+    # Parse and validate the plan
+    parsed_plan = parse_plan(plan_text)
+    validation_results, new_plan = validate_plan(parsed_plan)
 
-plan_text_nonexistent = """
-RobotDog.get_lidar_data()       # Invalid: Non-existent function
-RobotDog.process_message()      # Invalid: Non-existent function
-RobotDog.send_feedback()        # Invalid: Non-existent function
-Drone.send_feedback()        # Invalid: Non-existent function
-Drone.report_back()
-RobotDog.go_to((10.0, 20.0))  # Expected Mapping: RobotDog.move_to((10.0, 20.0))
-RobotDog.turn(90.0)  # Expected Mapping: RobotDog.rotate(90.0)
-RobotDog.gather_sensor_data()  # Expected Mapping: RobotDog.get_lidar_info()
-RobotDog.assess_obstacle_height()  # Expected Mapping: RobotDog.check_obstacle_height()
-RobotDog.measure_distance_to_object()  # Expected Mapping: RobotDog.check_distance_to_object()
-RobotDog.current_position()  # Expected Mapping: RobotDog.get_position_data()
-RobotDog.process_incoming_messages()  # Expected Mapping: RobotDog.process_messages()
-RobotDog.wait_for_instruction()  # Expected Mapping: RobotDog.wait_for_signal()
-RobotDog.communicate_with_central_system()  # Expected Mapping: RobotDog.communicate_with_apm()
-RobotDog.evaluate_task_progress("delivery")  # Expected Mapping: RobotDog.monitor_task()
-RobotDog.provide_feedback_for_replanning()  # Expected Mapping: RobotDog.send_feedback_for_rethinking()
-RobotDog.return_to_starting_point()  # Expected Mapping: RobotDog.return_to_base()
-RobotDog.check_obstacle_height_in_front()  # Expected Mapping: RobotDog.check_obstacle_height()
-RobotDog.determine_distance_to_closest_object()  # Expected Mapping: RobotDog.check_distance_to_object()
-RobotDog.get_current_position()  # Expected Mapping: RobotDog.get_position_data()
-RobotDog.handle_incoming_messages()  # Expected Mapping: RobotDog.process_messages()
-RobotDog.pause_until_signal()  # Expected Mapping: RobotDog.wait_for_signal()
-RobotDog.exchange_data_with_central_station()  # Expected Mapping: RobotDog.communicate_with_apm()
-RobotDog.assess_task_completion("delivery")  # Expected Mapping: RobotDog.monitor_task()
-RobotDog.offer_suggestions_for_replanning()  # Expected Mapping: RobotDog.send_feedback_for_rethinking()
-RobotDog.return_to_home_base()  # Expected Mapping: RobotDog.return_to_base()
-"""
+    # Print the results
+    if validation_results:
+        print("Validation Errors:")
+        for result in validation_results:
+            print(result)
+    else:
+        print("No errors found. New plan:")
+        for command in new_plan:
+            print(command)
 
-# Parse the valid plan
-parsed_valid_plan = parse_plan(plan_text_valid)
-validation_results_valid, new_plan_valid = validate_plan(parsed_valid_plan)
-
-# Print results for the valid plan
-print("Test 1: All Valid Commands")
-print("Validation Results:")
-for result in validation_results_valid:
-    print(result)
-
-print("\nNew Plan:")
-for command in new_plan_valid:
-    print(command)
-
-# Parse the invalid plan
-parsed_invalid_plan = parse_plan(plan_text_nonexistent)
-validation_results_invalid, new_plan_invalid = validate_plan(parsed_invalid_plan)
-
-# Print results for the invalid plan
-print("\nTest 2: Invalid Commands")
-print("Validation Results:")
-for result in validation_results_invalid:
-    print(result)
-
-print("\nNew Plan:")
-for command in new_plan_invalid:
-    print(command)
+if __name__ == "__main__":
+    main()
