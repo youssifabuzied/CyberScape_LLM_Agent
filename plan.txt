@@ -1,31 +1,15 @@
 Drone Plan:
-Phase 1: Do nothing
-Phase 2: Do nothing
+Phase 1: Stay idle.
+Phase 2: Stay idle.
 
 Dog Plan:
-Phase 1: Rotate 45 degrees clockwise
-Phase 2: Move forward 10 units
-Phase 3: Rotate 135 degrees clockwise
-Phase 4: Move forward 10 units
-Phase 5: Rotate 135 degrees clockwise
-Phase 6: Move forward 10 units
-Phase 7: Rotate 135 degrees clockwise
-Phase 8: Move forward 10 units
-Phase 9: Rotate 135 degrees clockwise
-Phase 10: Move forward 10 units
-Phase 11: Rotate 135 degrees clockwise
-Phase 12: Move forward 10 units
-Phase 13: Rotate 135 degrees clockwise
-Phase 14: Move forward 10 units
-Phase 15: Rotate 45 degrees clockwise 
-
-However, since the octagon is symmetric, we can simplify the phases as follows:
-
-Dog Plan:
-Phase 1: Rotate 45 degrees clockwise
-Phase 2-15: 
-    For i = 1 to 8
-    Move forward 10 units
-    Rotate 135 degrees clockwise
-    End for 
-Phase 16: Rotate 45 degrees clockwise
+Phase 1: Rotate 45 degrees counterclockwise.
+Phase 2: Move forward 5 units.
+Phase 3: Check for obstacles using sensors.
+Phase 4: If obstacle detected, rotate 90 degrees clockwise and move forward 2 units.
+Phase 5: If no obstacle detected, move forward 5 units.
+Phase 6: Repeat phases 3-5 until a total distance of 10 units is covered.
+Phase 7: Rotate 45 degrees counterclockwise.
+Phase 8: Repeat phases 2-7 until all 8 sides of the octagon are covered.
+Phase 9: If the number of rotations exceeds 16 or the total distance covered exceeds 80 units, stop and send a message to the adaptive planning module to request a new plan.
+Phase 10: If the robot dog is at the starting point (20,20) and has completed 8 sides, stop the mission.

@@ -1,2 +1,2 @@
-Phase 1: Do nothing
-Phase 2: Do nothing
+Phase 1: Stay idle.
+Phase 2: Stay idle.

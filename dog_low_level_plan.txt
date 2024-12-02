@@ -1,37 +1,108 @@
 Phase 1:
-RobotDog.rotate(45)
+RobotDog.rotate(-45)
 
 Phase 2:
-RobotDog.move_forward(10)
-RobotDog.rotate(135)
+RobotDog.move_forward(5)
 
 Phase 3:
-RobotDog.move_forward(10)
-RobotDog.rotate(135)
-
-Phase 4:
-RobotDog.move_forward(10)
-RobotDog.rotate(135)
-
-Phase 5:
-RobotDog.move_forward(10)
-RobotDog.rotate(135)
+obstacle_info = RobotDog.get_lidar_info()
+if obstacle_info == "obstacle detected":
+    Phase 4:
+    RobotDog.rotate(90)
+    RobotDog.move_forward(2)
+else:
+    Phase 5:
+    RobotDog.move_forward(5)
 
 Phase 6:
-RobotDog.move_forward(10)
-RobotDog.rotate(135)
-
-Phase 7:
-RobotDog.move_forward(10)
-RobotDog.rotate(135)
+position_data = RobotDog.get_position_data()
+if position_data == (25, 25):
+    Phase 7:
+    RobotDog.rotate(-45)
+else:
+    Phase 3:
+    obstacle_info = RobotDog.get_lidar_info()
+    if obstacle_info == "obstacle detected":
+        Phase 4:
+        RobotDog.rotate(90)
+        RobotDog.move_forward(2)
+    else:
+        Phase 5:
+        RobotDog.move_forward(5)
 
 Phase 8:
-RobotDog.move_forward(10)
-RobotDog.rotate(135)
+position_data = RobotDog.get_position_data()
+if position_data == (30, 20):
+    RobotDog.rotate(-45)
+    RobotDog.move_forward(5)
+    obstacle_info = RobotDog.get_lidar_info()
+    if obstacle_info == "obstacle detected":
+        RobotDog.rotate(90)
+        RobotDog.move_forward(2)
+    else:
+        RobotDog.move_forward(5)
+elif position_data == (30, 30):
+    RobotDog.rotate(-45)
+    RobotDog.move_forward(5)
+    obstacle_info = RobotDog.get_lidar_info()
+    if obstacle_info == "obstacle detected":
+        RobotDog.rotate(90)
+        RobotDog.move_forward(2)
+    else:
+        RobotDog.move_forward(5)
+elif position_data == (20, 30):
+    RobotDog.rotate(-45)
+    RobotDog.move_forward(5)
+    obstacle_info = RobotDog.get_lidar_info()
+    if obstacle_info == "obstacle detected":
+        RobotDog.rotate(90)
+        RobotDog.move_forward(2)
+    else:
+        RobotDog.move_forward(5)
+elif position_data == (10, 30):
+    RobotDog.rotate(-45)
+    RobotDog.move_forward(5)
+    obstacle_info = RobotDog.get_lidar_info()
+    if obstacle_info == "obstacle detected":
+        RobotDog.rotate(90)
+        RobotDog.move_forward(2)
+    else:
+        RobotDog.move_forward(5)
+elif position_data == (10, 20):
+    RobotDog.rotate(-45)
+    RobotDog.move_forward(5)
+    obstacle_info = RobotDog.get_lidar_info()
+    if obstacle_info == "obstacle detected":
+        RobotDog.rotate(90)
+        RobotDog.move_forward(2)
+    else:
+        RobotDog.move_forward(5)
+elif position_data == (10, 10):
+    RobotDog.rotate(-45)
+    RobotDog.move_forward(5)
+    obstacle_info = RobotDog.get_lidar_info()
+    if obstacle_info == "obstacle detected":
+        RobotDog.rotate(90)
+        RobotDog.move_forward(2)
+    else:
+        RobotDog.move_forward(5)
+elif position_data == (20, 10):
+    RobotDog.rotate(-45)
+    RobotDog.move_forward(5)
+    obstacle_info = RobotDog.get_lidar_info()
+    if obstacle_info == "obstacle detected":
+        RobotDog.rotate(90)
+        RobotDog.move_forward(2)
+    else:
+        RobotDog.move_forward(5)
 
 Phase 9:
-RobotDog.move_forward(10)
-RobotDog.rotate(135)
+rotation_count = 16
+distance_covered = 80
+if rotation_count > 16 or distance_covered > 80:
+    RobotDog.communicate_with_apm("Request new plan")
 
 Phase 10:
-RobotDog.rotate(45)
+position_data = RobotDog.get_position_data()
+if position_data == (20, 20):
+    RobotDog.process_messages()
