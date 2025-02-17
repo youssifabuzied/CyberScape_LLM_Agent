@@ -82,7 +82,7 @@ def initiate_plan():
         If the robots need to send messages to other robots. this should only be done through the adaptive planning module. Also, they should do the same when wanting to receive messages.'''
     print(os.getenv("samba_nova_api_key"))
     client = openai.OpenAI(
-        api_key=os.getenv("samba_nova_api_key"),
+        api_key="b37a4309-f1a2-4fd9-b015-eacac68fd6e5",
         base_url="https://api.sambanova.ai/v1",
     )
     message_history = [

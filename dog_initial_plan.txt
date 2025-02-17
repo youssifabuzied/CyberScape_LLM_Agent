@@ -1,25 +1,8 @@
-Phase 1: Rotate 45 degrees clockwise
-Phase 2: Move forward 10 units
-Phase 3: Rotate 135 degrees clockwise
-Phase 4: Move forward 10 units
-Phase 5: Rotate 135 degrees clockwise
-Phase 6: Move forward 10 units
-Phase 7: Rotate 135 degrees clockwise
-Phase 8: Move forward 10 units
-Phase 9: Rotate 135 degrees clockwise
-Phase 10: Move forward 10 units
-Phase 11: Rotate 135 degrees clockwise
-Phase 12: Move forward 10 units
-Phase 13: Rotate 135 degrees clockwise
-Phase 14: Move forward 10 units
-Phase 15: Rotate 45 degrees clockwise
+Phase 1: Wait for the message from the drone with the identifier of the 10x10 meters square containing the ball.
+Phase 2: Move to the center of the identified square and start scanning the area in a spiral search pattern, beginning from the center and moving outwards in 2-meter increments.
+Phase 3: Continue scanning until the ball is detected within the 2-meter scanning range.
+Phase 4: Once the ball is detected, move towards it and pick it up.
+Phase 5: Return to the starting point (25,25) with the ball.
+Phase 6: If the ball is not detected after scanning the entire square, notify the drone and wait for further instructions.
 
-However, since the octagon is symmetric, we can simplify the phases as follows:
-
-Phase 1: Rotate 45 degrees clockwise
-Phase 2-15:
-For i = 1 to 8
-Move forward 10 units
-Rotate 135 degrees clockwise
-End for
-Phase 16: Rotate 45 degrees clockwise
+Spiral Search Algorithm (for Dog) remains the same.

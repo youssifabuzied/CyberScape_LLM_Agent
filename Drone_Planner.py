@@ -76,7 +76,7 @@ def main():
     You should only care about the drone part not any other robot. Again if the plan is for the robot dog only, you should stand idle and only wait for messages.
     '''
     client = openai.OpenAI(
-        api_key=os.getenv("samba_nova_api_key"),
+        api_key="b37a4309-f1a2-4fd9-b015-eacac68fd6e5",
         base_url="https://api.sambanova.ai/v1",
     )
     message_history = [

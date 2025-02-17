@@ -76,7 +76,7 @@ def main():
     Feel free to use only if statmentents. You cannot use loops. Do not use instructions other than the listed functions in the specifications file.
     '''
     client = openai.OpenAI(
-        api_key=os.getenv("samba_nova_api_key"),
+        api_key="b37a4309-f1a2-4fd9-b015-eacac68fd6e5",
         base_url="https://api.sambanova.ai/v1",
     )
     message_history = [

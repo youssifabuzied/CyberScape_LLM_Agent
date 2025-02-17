@@ -1,116 +1,138 @@
-import openai
 import os
 import argparse
-from Manager import read_file
 import re
+from langchain.chat_models import ChatOpenAI
+from langchain.schema import SystemMessage, HumanMessage
+from langchain.prompts import PromptTemplate
+from Manager import read_file
 
 def extract_rating_and_plan(text):
-    # Regular expression to find the rating (a number following "Rating: ")
+    """Extracts the rating and modified plan using regex."""
     rating_match = re.search(r'Rating: (\d+)', text)
-    
-    # Regular expression to capture everything following "Modified_Plan:"
     plan_match = re.search(r'Modified_Plan:\s*(.*)', text, re.DOTALL)
     
-    # Extract the rating and plan
     if rating_match and plan_match:
         rating = int(rating_match.group(1))
         modified_plan = plan_match.group(1).strip()
         return rating, modified_plan
-    else:
-        return None, None
+    return None, None
 
-def main():
-    parser = argparse.ArgumentParser(description="Generate and refine a high level plan for the mission")
-
-    # Add arguments for the file paths
-    parser.add_argument("mission_scenario", help="Path to the mission_scenario.txt file")
-
-    # Parse the arguments
-    args = parser.parse_args()
-    print("High level plan is being generated.............")
-
-    initial_mission = read_file(args.mission_scenario)
+def generate_plan(llm, mission_text):
+    """Generates an initial plan using the LLM."""
+    prompt = f"""
+    {mission_text}
     
-    adapted_scenario_content = initial_mission+ "/n"+  '''Your plan should be of this format:
-        Drone Plan:
-        Phase 1: ----------------------------
-        Phase 2: ---------------------------
-        -------
-        Dog Plan:
-        Phase 1: -----------------------------
-        Phase 2: ------------------------------
-        Do not write any header in the response or side notes or explanations. If the mission require scanning an area greating than the scanning capabailities of the robots, define a sprial search algorithm to make them scan the large area.
-        If the robots need to send messages to other robots. this should only be done through the adaptive planning module. Also, they should do the same when wanting to receive messages.'''
-    # print(os.getenv("samba_nova_api_key"))
-    client = openai.OpenAI(
-        api_key=os.getenv("samba_nova_api_key"),
-        base_url="https://api.sambanova.ai/v1",
-    )
-    message_history = [
-        {"role": "system", "content": "You are a helpful assistant"},
-        {"role": "user", "content":adapted_scenario_content},
-    ]
-    response = client.chat.completions.create(
-        model='Meta-Llama-3.1-405B-Instruct',
-        messages=message_history,
-        temperature=0.1,
-        top_p=0.1
-    )
-    generated_plan = response.choices[0].message.content
-    print(generated_plan)
+    Your plan should be structured as clear, step-by-step instructions.
+    Each phase must be a concise and actionable sentence.
+    
+    Example format:
+    
+    Drone Plan:
+    Phase 1: Take off and navigate to the designated search area.
+    Phase 2: Perform a spiral search to scan the entire region.
+    -------
+    Dog Plan:
+    Phase 1: Move to the mission start point and begin ground-level scanning.
+    Phase 2: Relay findings to the adaptive planning module before proceeding.
+    
+    """
+
+    """
+    Ensure that:
+    - All instructions are straightforward and executable.
+    - If an area exceeds scanning capabilities, define a spiral search pattern.
+    - Communication between robots happens only through the adaptive planning module.
+    
+    Do not include any headers, explanations, or additional notes in your response."""
+    response = llm.invoke([SystemMessage(content="You are a helpful assistant"), HumanMessage(content=prompt)])
+    return response.content.strip()
+
+def refine_plan(llm, mission_text, generated_plan):
+    """Refines the plan iteratively until it meets rubric criteria with a rating of 10."""
     rating = 0
     count = 0
-    final_plan = ""
-    while(True):
-        prompt = f'''
+    final_plan = generated_plan
+
+    prompt_template = PromptTemplate(
+        input_variables=["mission", "plan"],
+        template="""
         We had the following mission:
-        {initial_mission}
-        And we used an LLM to generate the following high level plan:
-        {generated_plan}
-        Give a rating for this plan from 1 to 10 and fine tune it to make its rating 10 if it is lower than 10.
-        Just give the rating and the refined plan without any explanation. In your rating you should only focus on whether the plan is logical and identify any issues that would make it unable to finish the mission.
-        Do not consider optimizations related to speed, latency, or communication.
-        Your output should be of this format:
-        Rating: #
+        {mission}
+
+        And we used an LLM to generate the following high-level plan:
+        {plan}
+
+        Evaluate this plan based on the following rubric:
+
+        - **Logical Soundness (1-10):** Is the plan coherent and free of contradictions?
+        - **Feasibility (1-10):** Can the robots execute the tasks given their capabilities?
+        - **Completeness (1-10):** Does the plan cover all mission objectives?
+        - **Communication Rules (Pass/Fail):** Does the plan respect that all communication happens only via the adaptive planning module?
+
+        Provide a structured response as follows:
+
+        ```
+        Rating: [Overall Rating (1-10)]
+        Issues Identified:
+        - [List any logical, feasibility, or completeness issues]
+        - [If the plan violates communication rules, mention it]
+
         Modified_Plan:
         Drone Plan:
-        Phase 1: ----------------------------
-        Phase 2: ---------------------------
+        Phase 1: [Provide a clear instruction]
+        Phase 2: [Provide a clear instruction]
         -------
         Dog Plan:
-        Phase 1: -----------------------------
-        Phase 2: ------------------------------
-        In case of no modifcation, give the plan a rating of 10 and print the same plan in the modified plan. Do not write any explanation or reasons for the modification.
-        '''
-        client = openai.OpenAI(
-            api_key=os.getenv("samba_nova_api_key"),
-            base_url="https://api.sambanova.ai/v1",
-        )
-        message_history = [
-            {"role": "system", "content": "You are a helpful assistant"},
-            {"role": "user", "content":prompt},
-        ]
-        response = client.chat.completions.create(
-            model='Meta-Llama-3.1-405B-Instruct',
-            messages=message_history,
-            temperature=0.1,
-            top_p=0.1
-        )
-        new_rating, modified_plan = extract_rating_and_plan(response.choices[0].message.content)
-        # print(response.choices[0].message.content)
-        # print("Rating:", new_rating)
-        # print("Modified Plan:", modified_plan)
-        if(new_rating <= rating or new_rating == 10 or count == 2):
-            final_plan = generated_plan
+        Phase 1: [Provide a clear instruction]
+        Phase 2: [Provide a clear instruction]
+        ```
+
+        - If the plan is already perfect, assign it a rating of **10** and return the same plan.
+        - Do **not** provide explanations—just return the structured output.
+        """
+    )
+
+    while count < 3:
+        response = llm.invoke([HumanMessage(content=prompt_template.format(mission=mission_text, plan=final_plan))])
+        new_rating, modified_plan = extract_rating_and_plan(response.content)
+
+        if new_rating is None or new_rating <= rating or new_rating == 10:
             break
+
         rating = new_rating
-        generated_plan = modified_plan
+        final_plan = modified_plan
         count += 1
+
+    return final_plan
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Generate and refine a high-level plan for the mission")
+    parser.add_argument("mission_scenario", help="Path to the mission_scenario.txt file")
+    args = parser.parse_args()
+
+    print("Generating high-level mission plan...")
+
+    mission_text = read_file(args.mission_scenario)
+    if not mission_text:
+        print("Error: Mission scenario file is empty or missing.")
+        return
+
+    # Initialize LangChain LLM
+    llm = ChatOpenAI(
+        api_key="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",
+        base_url="https://openrouter.ai/api/v1",
+        model_name="deepseek/deepseek-r1:free",
+        temperature=0.1
+    )
+
+    generated_plan = generate_plan(llm, mission_text)
+    refined_plan = refine_plan(llm, mission_text, generated_plan)
+
     with open("plan.txt", 'w') as output_file:
-        output_file.write(final_plan)
+        output_file.write(refined_plan)
 
+    print("Mission Plan written to plan.txt")
 
-
-    # print("Mission Plan is written to plan.txt")
 if __name__ == "__main__":
     main()
