@@ -1,8 +1,5 @@
-Phase 1: Wait for the message from the drone with the identifier of the 10x10 meters square containing the ball.
-Phase 2: Move to the center of the identified square and start scanning the area in a spiral search pattern, beginning from the center and moving outwards in 2-meter increments.
-Phase 3: Continue scanning until the ball is detected within the 2-meter scanning range.
-Phase 4: Once the ball is detected, move towards it and pick it up.
-Phase 5: Return to the starting point (25,25) with the ball.
-Phase 6: If the ball is not detected after scanning the entire square, notify the drone and wait for further instructions.
-
-Spiral Search Algorithm (for Dog) remains the same.
+Phase 1: Move from the starting point (25,25) to the 10x10 meter square identified by the drone, avoiding obstacles if necessary.
+Phase 2: Begin scanning the 10x10 meter square in a grid pattern, covering 2 meters in all directions at each step.
+Phase 3: Locate the ball within the 1x1 meter cell and pick it up.
+Phase 4: Return to the starting point (25,25) with the ball, avoiding obstacles if necessary, and confirm completion via the adaptive planning module.
+```

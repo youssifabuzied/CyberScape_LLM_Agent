@@ -26,15 +26,15 @@ def Pparser(plan_file: str) -> str:
     Output the instructions directly without saying here are the instructions.
     '''
     client = openai.OpenAI(
-        api_key="b37a4309-f1a2-4fd9-b015-eacac68fd6e5",
-        base_url="https://api.sambanova.ai/v1",
+        api_key="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",
+        base_url="https://openrouter.ai/api/v1",
     )
     message_history = [
         {"role": "system", "content": "You are a helpful assistant"},
         {"role": "user", "content":prompt},
     ]
     response = client.chat.completions.create(
-        model='Meta-Llama-3.1-405B-Instruct',
+        model='deepseek/deepseek-chat:free',
         messages=message_history,
         temperature=0.1,
         top_p=0.1

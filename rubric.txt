@@ -1,0 +1,14 @@
+# Drone Middle-Level Plan Evaluation Rubric
+
+## **1. Correctness of Execution**
+- [ ] Does the plan correctly implement all steps required by the high-level plan?
+- [ ] Are all phases logically structured to achieve the mission goals?
+
+## **2. Coverage of All Conditions **
+- [ ] Does the plan include handling for different possible outcomes (e.g., if a scan detects an object, if it does not)?
+
+
+## **3. Proper Phase Structuring (10%)**
+- [ ] Is the plan divided into distinct **phases**, where each phase represents a complete, independent step in the mission?
+- [ ] Does each phase execute **only after confirming the previous one is completed**?
+- [ ] Are any unnecessary dependencies or incorrect sequencing present?

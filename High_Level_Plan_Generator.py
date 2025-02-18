@@ -44,6 +44,7 @@ def generate_plan(llm, mission_text):
     - Communication between robots happens only through the adaptive planning module.
     
     Do not include any headers, explanations, or additional notes in your response."""
+    print(llm)
     response = llm.invoke([SystemMessage(content="You are a helpful assistant"), HumanMessage(content=prompt)])
     return response.content.strip()
 
@@ -120,9 +121,9 @@ def main():
 
     # Initialize LangChain LLM
     llm = ChatOpenAI(
-        api_key="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",
+        api_key="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",
         base_url="https://openrouter.ai/api/v1",
-        model_name="deepseek/deepseek-r1:free",
+        model_name="deepseek/deepseek-chat:free",
         temperature=0.1
     )
 

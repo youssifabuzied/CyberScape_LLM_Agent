@@ -1,3 +1,4 @@
-Phase 1: Divide the 50x50 meters field into 25 squares of 10x10 meters each and assign a unique identifier to each square.
-Phase 2: Start scanning the squares in a systematic order (e.g., left to right, top to bottom), beginning from the top-left square (0,0).
-Phase 3: Once the drone detects the ball in a square, communicate the identifier of that square to the robot dog through the adaptive planning module and stop scanning.
+Phase 1: Take off from the initial position (5,5) and begin scanning the 50x50 meter field in a grid pattern, dividing it into 10x10 meter squares.
+Phase 2: Systematically scan each 10x10 meter square to identify the one containing the ball.
+Phase 3: Once the 10x10 meter square with the ball is identified, communicate the coordinates to the robot dog via the adaptive planning module.
+Phase 4: Hover above the identified 10x10 meter square to provide real-time guidance to the robot dog if needed, ensuring all communication is routed through the adaptive planning module.

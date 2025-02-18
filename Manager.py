@@ -172,7 +172,7 @@ if __name__ == "__main__":
     # initiate_plan()
     mission_file = args.mission_file
     high_level_plan_command = f"python High_Level_Plan_Generator.py {mission_file}"
-    asyncio.run(run_python_script(high_level_plan_command))
+  #  asyncio.run(run_python_script(high_level_plan_command))
     input_plan_file = 'plan.txt'  # The input file containing both plans
     output_drone_file = 'drone_initial_plan.txt'
     output_dog_file = "dog_initial_plan.txt"  # The output file for the drone plan
@@ -183,10 +183,10 @@ if __name__ == "__main__":
     # Call the function to parse the drone plan
 
     drone_command = (
-        f"python3 Drone_Planner.py {mission_file} mission_files/drone_specifications.txt {output_drone_file}"
+        f"python3 Drone_Planner.py {mission_file} mission_files/drone_specifications.txt {output_drone_file} rubric.txt drone_middle_level_plan.txt"
     )
     asyncio.run(run_python_script(drone_command))
     dog_command = (
         f"python3 Dog_Planner.py {mission_file} mission_files/dog_specifications.txt {output_dog_file}"
     )
-    asyncio.run(run_python_script(dog_command))
+   # asyncio.run(run_python_script(dog_command))

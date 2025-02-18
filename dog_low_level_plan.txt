@@ -1,56 +1,50 @@
+```
 Phase 1:
-RobotDog.wait_for_signal()
+RobotDog.move_to(25,25)
+if RobotDog.has_reached(25,25):
+    RobotDog.wait_for_signal()
+RobotDog.process_messages()
+RobotDog.move_to(X,Y)
+if RobotDog.has_reached(X,Y):
+    RobotDog.communicate_with_apm("Reached target area")
 
 Phase 2:
-square_center = RobotDog.process_messages()
-RobotDog.move_to(square_center[0], square_center[1])
-detection_status = RobotDog.detect_with_camera("ball")
-if detection_status == True:
-    RobotDog.move_to(RobotDog.get_position_data()[0] + 1, RobotDog.get_position_data()[1])
-else:
-    RobotDog.move_to(RobotDog.get_position_data()[0] + 2, RobotDog.get_position_data()[1])
+RobotDog.move_to(X-4,Y-4)
+if RobotDog.has_reached(X-4,Y-4):
+    RobotDog.detect_with_camera("ball")
+RobotDog.move_to(X-4,Y)
+if RobotDog.has_reached(X-4,Y):
+    RobotDog.detect_with_camera("ball")
+RobotDog.move_to(X-4,Y+4)
+if RobotDog.has_reached(X-4,Y+4):
+    RobotDog.detect_with_camera("ball")
+RobotDog.move_to(X,Y-4)
+if RobotDog.has_reached(X,Y-4):
+    RobotDog.detect_with_camera("ball")
+RobotDog.move_to(X,Y)
+if RobotDog.has_reached(X,Y):
+    RobotDog.detect_with_camera("ball")
+RobotDog.move_to(X,Y+4)
+if RobotDog.has_reached(X,Y+4):
+    RobotDog.detect_with_camera("ball")
+RobotDog.move_to(X+4,Y-4)
+if RobotDog.has_reached(X+4,Y-4):
+    RobotDog.detect_with_camera("ball")
+RobotDog.move_to(X+4,Y)
+if RobotDog.has_reached(X+4,Y):
+    RobotDog.detect_with_camera("ball")
+RobotDog.move_to(X+4,Y+4)
+if RobotDog.has_reached(X+4,Y+4):
+    RobotDog.detect_with_camera("ball")
 
 Phase 3:
-detection_status = RobotDog.detect_with_camera("ball")
-if detection_status == True:
-    RobotDog.move_to(RobotDog.get_position_data()[0] - 1, RobotDog.get_position_data()[1])
-else:
-    RobotDog.move_to(RobotDog.get_position_data()[0], RobotDog.get_position_data()[1] + 2)
+if RobotDog.detect_with_camera("ball") == "detected":
+    RobotDog.move_to(ball_position_x, ball_position_y)
+if RobotDog.has_reached(ball_position_x, ball_position_y):
+    RobotDog.pick_up("ball")
 
 Phase 4:
-detection_status = RobotDog.detect_with_camera("ball")
-if detection_status == True:
-    RobotDog.move_to(RobotDog.get_position_data()[0], RobotDog.get_position_data()[1] - 1)
-else:
-    RobotDog.move_to(RobotDog.get_position_data()[0] - 2, RobotDog.get_position_data()[1])
-
-Phase 5:
-detection_status = RobotDog.detect_with_camera("ball")
-if detection_status == True:
-    RobotDog.move_to(RobotDog.get_position_data()[0] + 1, RobotDog.get_position_data()[1] + 1)
-else:
-    RobotDog.move_to(RobotDog.get_position_data()[0] + 1, RobotDog.get_position_data()[1] - 1)
-
-Phase 6:
-detection_status = RobotDog.detect_with_camera("ball")
-if detection_status == True:
-    RobotDog.move_to(RobotDog.get_position_data()[0] - 1, RobotDog.get_position_data()[1] + 1)
-else:
-    RobotDog.move_to(RobotDog.get_position_data()[0] - 1, RobotDog.get_position_data()[1] - 1)
-
-Phase 7:
-detection_status = RobotDog.detect_with_camera("ball")
-if detection_status == True:
-    RobotDog.move_to(RobotDog.get_position_data()[0] + 1, RobotDog.get_position_data()[1])
-else:
-    RobotDog.move_to(RobotDog.get_position_data()[0], RobotDog.get_position_data()[1] + 1)
-
-Phase 8:
-detection_status = RobotDog.detect_with_camera("ball")
-if detection_status == True:
-    RobotDog.move_to(25, 25)
-else:
-    RobotDog.send_feedback_for_rethinking()
-
-Phase 9:
 RobotDog.return_to_base()
+if RobotDog.has_reached(25,25):
+    RobotDog.communicate_with_apm("Mission complete")
+```
