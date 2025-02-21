@@ -1,0 +1,34 @@
+**Middle-Level Drone Plan:**
+
+**Phase 1: Initial Scan and Grid Setup**
+
+1. Take off from the initial position (5,5) and ascend to a suitable altitude for scanning the 50x50 meter field.
+2. Divide the 50x50 meter field into 25 squares, each measuring 10x10 meters.
+3. Create a grid pattern to systematically scan each 10x10 meter square, starting from the top-left corner (0,0) and moving right and then down.
+4. Initialize a scanning sequence to ensure that each square is scanned only once.
+
+**Phase 2: Systematic Scanning and Ball Detection**
+
+1. Begin scanning the first 10x10 meter square in the grid pattern.
+2. Use onboard sensors to detect the presence of the ball within the current square.
+3. If the ball is not detected, move to the next 10x10 meter square in the grid pattern and repeat the scanning process.
+4. Continue scanning each square until the ball is detected or the entire field has been scanned.
+5. Record the coordinates of the 10x10 meter square where the ball is detected.
+
+**Phase 3: Communication with Robot Dog**
+
+1. Once the 10x10 meter square with the ball is identified, communicate the coordinates to the robot dog via the adaptive planning module.
+2. Provide additional information, such as the approximate location of the ball within the square, if available.
+3. Confirm receipt of the coordinates by the robot dog and ensure that it understands the next steps.
+
+**Phase 4: Real-Time Guidance and Support**
+
+1. Hover above the identified 10x10 meter square to provide real-time guidance to the robot dog if needed.
+2. Monitor the robot dog's progress and adjust the drone's position as necessary to maintain line-of-sight communication.
+3. Continue to provide guidance and support until the robot dog has successfully retrieved the ball and returned to the starting point (25,25).
+
+**Contingency Planning**
+
+1. Establish a protocol for handling communication disruptions or failures between the drone and the robot dog.
+2. Develop a plan for re-scanning the area if the ball is not found or if the robot dog is unable to retrieve it.
+3. Identify alternative strategies for completing the mission if unforeseen obstacles or challenges arise.

@@ -1,0 +1,25 @@
+Robot Dog Translation Rubric (dog_translation_rubric.txt)
+Correctness of Translation
+
+    Does the low-level plan accurately translate each step from the middle-level plan?
+    Are all function calls correctly used without modification or misinterpretation?
+    Is the sequence of execution preserved exactly as described in the middle-level plan?
+
+Exhaustive Coverage of the Middle-Level Plan
+
+    Does the low-level plan include all steps from the middle-level plan without omission?
+    Is every phase of the middle-level plan represented by a corresponding low-level execution block?
+    Are all required operations from the middle-level plan fully captured in the low-level instructions?
+
+Adherence to Specified Actions
+
+    Are only the predefined robot dog functions used in the low-level plan?
+    Is there any usage of unlisted or assumed functions that are not explicitly provided?
+    Does each action in the low-level plan directly correspond to the functions listed in the specifications?
+
+Format Consistency
+
+    Does the low-level plan contain only executable function calls without explanations or comments?
+    Is the output structured cleanly without unnecessary text or additional formatting?
+    Does the plan maintain a consistent and standardized format throughout?
+    Does the generated plan stick only to instructions without adding any notes or comments?

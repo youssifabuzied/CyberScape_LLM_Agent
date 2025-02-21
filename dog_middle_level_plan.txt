@@ -1,0 +1,40 @@
+**Middle-Level Robot Dog Plan:**
+
+**Phase 1: Move to the 10x10 meter square identified by the drone**
+
+1.1. Receive the coordinates of the 10x10 meter square from the drone.
+1.2. Calculate the shortest path from the starting point (25,25) to the center of the identified square, avoiding obstacles if possible.
+1.3. Move to the calculated location, continuously scanning the surroundings for obstacles within a 2-meter radius.
+1.4. If an obstacle is detected, adjust the path and notify the drone of the route change.
+1.5. Upon arrival, confirm the location with the drone and prepare for Phase 2.
+
+**Phase 2: Scan the 10x10 meter square in a grid pattern**
+
+2.1. Divide the 10x10 meter square into a grid of 5x5 cells, each 2 meters in size.
+2.2. Begin scanning the grid cells in a systematic pattern (e.g., row by row or column by column).
+2.3. At each cell, scan the surroundings within a 2-meter radius to detect the ball.
+2.4. If the ball is not detected, move to the next cell and repeat the scanning process.
+2.5. If the ball is detected, record the location and proceed to Phase 3.
+
+**Phase 3: Locate and pick up the ball**
+
+3.1. Move to the recorded location of the ball, using the scanning data to precisely locate the 1x1 meter cell.
+3.2. Visually confirm the presence of the ball within the cell.
+3.3. Use the robot dog's manipulation capabilities to pick up the ball.
+3.4. Confirm the successful pickup with the drone.
+
+**Phase 4: Return to the starting point with the ball**
+
+4.1. Calculate the shortest path from the current location to the starting point (25,25), avoiding obstacles if possible.
+4.2. Move to the starting point, continuously scanning the surroundings for obstacles within a 2-meter radius.
+4.3. If an obstacle is detected, adjust the path and notify the drone of the route change.
+4.4. Upon arrival, confirm the successful completion of the mission with the drone and the adaptive planning module.
+
+**Drone's Systematic Approach to Cover the Field Area:**
+
+* Divide the 50x50 meter field into 25 10x10 meter squares.
+* Systematically scan each square, using a pattern such as row by row or column by column.
+* Communicate the coordinates of the square containing the ball to the robot dog.
+* Monitor the robot dog's progress and provide updates on the mission status.
+
+This middle-level plan provides a more detailed and structured approach to the mission, breaking down each phase into logical steps that describe the sequence of actions the robot dog will take. The drone's systematic approach ensures that the entire field area is covered, and the ball is located efficiently.

@@ -1,0 +1,24 @@
+Correctness of Translation
+
+    Does every step in the low-level plan accurately reflect the corresponding step in the middle-level plan?
+    Are all function calls correctly used without modification or misinterpretation?
+    Is the sequence of execution maintained as specified in the middle-level plan?
+
+Exhaustive Coverage of the Middle-Level Plan
+
+    Does the low-level plan include all steps from the middle-level plan without skipping any details?
+    Is every phase from the middle-level plan translated into a corresponding low-level execution block?
+    Are all necessary operations accounted for in the low-level instructions?
+
+Adherence to Specified Actions
+
+    Are only the functions listed in the drone specifications used?
+    Is there any use of assumed or additional functions that are not explicitly provided?
+    Does each action in the low-level plan correspond strictly to the predefined functions?
+
+Format Consistency
+
+    Does the plan consist only of executable instructions without comments or explanations?
+    Is the output structured cleanly without unnecessary text or annotations?
+    Does the plan maintain a consistent format without deviations from the expected style?
+    Does the generated plan stick only to instructions without adding any notes or comments?

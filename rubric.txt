@@ -1,14 +1,32 @@
-# Drone Middle-Level Plan Evaluation Rubric
+**Middle-Level Drone Plan:**
 
-## **1. Correctness of Execution**
-- [ ] Does the plan correctly implement all steps required by the high-level plan?
-- [ ] Are all phases logically structured to achieve the mission goals?
+**Phase 1: Initial Scan and Grid Setup**
 
-## **2. Coverage of All Conditions **
-- [ ] Does the plan include handling for different possible outcomes (e.g., if a scan detects an object, if it does not)?
+1. Take off from the initial position (5,5) and ascend to a suitable altitude for scanning the 50x50 meter field.
+2. Divide the 50x50 meter field into 25 squares, each measuring 10x10 meters.
+3. Create a grid pattern to systematically scan each 10x10 meter square, starting from the top-left corner (0,0) and moving right and then down.
+4. Initialize a scanning route to cover all 25 squares, ensuring that each square is scanned only once.
 
+**Phase 2: Systematic Scanning and Ball Detection**
 
-## **3. Proper Phase Structuring (10%)**
-- [ ] Is the plan divided into distinct **phases**, where each phase represents a complete, independent step in the mission?
-- [ ] Does each phase execute **only after confirming the previous one is completed**?
-- [ ] Are any unnecessary dependencies or incorrect sequencing present?
+1. Begin scanning the first 10x10 meter square in the grid pattern.
+2. Use onboard sensors to detect the presence of the ball within the current square.
+3. If the ball is not detected, move to the next square in the grid pattern and repeat the scanning process.
+4. Continue scanning each square until the ball is detected or all 25 squares have been scanned.
+5. If the ball is detected, record the coordinates of the 10x10 meter square containing the ball.
+
+**Phase 3: Communication with Robot Dog**
+
+1. Communicate the coordinates of the 10x10 meter square containing the ball to the robot dog via the adaptive planning module.
+2. Provide any additional relevant information, such as the approximate location of the ball within the square.
+
+**Phase 4: Real-Time Guidance**
+
+1. Hover above the identified 10x10 meter square to provide real-time guidance to the robot dog if needed.
+2. Monitor the robot dog's progress and provide updates on the ball's location as necessary.
+3. Ensure all communication with the robot dog is routed through the adaptive planning module.
+
+**Phase 5: Mission Completion**
+
+1. Once the robot dog has retrieved the ball and returned to the starting point (25,25), confirm mission completion.
+2. Return to the initial position (5,5) and land safely.

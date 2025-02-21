@@ -3,6 +3,8 @@ import os
 import asyncio
 import subprocess
 import argparse
+import warnings
+warnings.filterwarnings("ignore")
 
 
 async def run_python_script(command):
@@ -183,10 +185,10 @@ if __name__ == "__main__":
     # Call the function to parse the drone plan
 
     drone_command = (
-        f"python3 Drone_Planner.py {mission_file} mission_files/drone_specifications.txt {output_drone_file} rubric.txt drone_middle_level_plan.txt"
+        f"python3 Drone_Planner.py {mission_file} mission_files/drone_specifications.txt {output_drone_file} drone_middle_level_plan.txt drone_low_level_plan.txt"
     )
     asyncio.run(run_python_script(drone_command))
     dog_command = (
-        f"python3 Dog_Planner.py {mission_file} mission_files/dog_specifications.txt {output_dog_file}"
+        f"python3 Dog_Planner.py {mission_file} mission_files/dog_specifications.txt {output_dog_file} dog_middle_level_plan.txt dog_low_level_plan.txt"
     )
-   # asyncio.run(run_python_script(dog_command))
+    asyncio.run(run_python_script(dog_command))

@@ -1,0 +1,13 @@
+# Robot Dog Middle-Level Plan Evaluation Rubric
+
+## **1. Correctness of Execution**
+- [ ] Does the plan correctly implement all steps required by the high-level plan?
+- [ ] Are all phases logically structured to achieve the mission goals?
+- [ ] Are all required actions properly sequenced to ensure smooth execution?
+- [ ] Does the plan provide exhaustive scenarious for the phases?
+
+
+## **2. Proper Phase Structuring**
+- [ ] Is the plan divided into distinct **phases**, where each phase represents a complete, independent step in the mission?
+- [ ] Does each phase execute **only after confirming the previous one is completed**?
+- [ ] Are any unnecessary dependencies or incorrect sequencing present?

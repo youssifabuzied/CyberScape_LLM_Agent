@@ -5,6 +5,12 @@ import asyncio
 import argparse
 import subprocess
 from Manager import read_file
+import warnings
+warnings.filterwarnings("ignore")
+
+# Hardcoded rubric files
+MIDDLE_LEVEL_RUBRIC_FILE = "Drone_Middle_Rubric.txt"
+LOW_LEVEL_RUBRIC_FILE = "Drone_Low_Rubric.txt"
 
 async def run_python_script(command):
     """Executes a Python script asynchronously and prints output."""
@@ -106,8 +112,8 @@ def main():
     parser.add_argument("mission_scenario", help="Path to the mission_scenario.txt file")
     parser.add_argument("drone_specifications", help="Path to the drone_specifications.txt file")
     parser.add_argument("drone_high_level_plan", help="Path to the drone's high-level plan")
-    parser.add_argument("rubric_file", help="Path to the rubric file for verification")
-    parser.add_argument("verified_plan_output", help="Path to store the verified middle-level plan")
+    parser.add_argument("verified_middle_level_output", help="Path to store the verified middle-level plan")
+    parser.add_argument("verified_low_level_output", help="Path to store the verified low-level plan")
     args = parser.parse_args()
 
     print("Generating structured drone execution plans...")
@@ -117,9 +123,9 @@ def main():
     drone_high_level_plan = read_file(args.drone_high_level_plan)
 
     llm = ChatOpenAI(
-        api_key="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",
-        base_url="https://openrouter.ai/api/v1",
-        model_name="deepseek/deepseek-chat:free",
+        api_key="c7e68755-3cfd-4f4a-a695-6a41af9ffd23",
+        base_url="https://api.sambanova.ai/v1",
+        model_name="Meta-Llama-3.1-405B-Instruct",
         temperature=0.1
     )
 
@@ -131,15 +137,15 @@ def main():
     with open("drone_middle_level_plan.txt", "w") as file:
         file.write(middle_level_plan)
 
-    # Run the verification process using the external plan_verifier script
-    verification_command = f"python3 plan_verifier.py {args.rubric_file} drone_middle_level_plan.txt {args.mission_scenario} {args.verified_plan_output}"
+    # Verify middle-level plan
+    verification_command = f"python3 Verification_Module.py {MIDDLE_LEVEL_RUBRIC_FILE} drone_middle_level_plan.txt {args.mission_scenario} {args.verified_middle_level_output}"
     print("Verifying the middle-level plan using plan_verifier.py...")
-    asyncio.run(run_python_script(verification_command))
+#    asyncio.run(run_python_script(verification_command))
 
-    print(f"Verified middle-level plan written to {args.verified_plan_output}")
+    print(f"Verified middle-level plan written to {args.verified_middle_level_output}")
 
-    # Read the verified plan before converting to low-level execution steps
-    verified_middle_level_plan = read_file(args.verified_plan_output)
+    # Read the verified middle-level plan
+    verified_middle_level_plan = read_file(args.verified_middle_level_output)
 
     # Generate low-level plan
     low_level_plan = generate_low_level_plan(llm, verified_middle_level_plan, drone_specifications)
@@ -149,9 +155,19 @@ def main():
     with open("drone_low_level_plan.txt", "w") as file:
         file.write(low_level_plan)
 
-    # Run the low-level plan parser
-    command = "python3 plan_parser.py drone_low_level_plan.txt"
-    asyncio.run(run_python_script(command))
+    # Verify low-level plan
+    low_level_verification_command = f"python3 Verification_Module.py {LOW_LEVEL_RUBRIC_FILE} drone_low_level_plan.txt {args.verified_middle_level_output} {args.verified_low_level_output}"
+    print("Verifying the low-level plan using plan_verifier.py...")
+   # asyncio.run(run_python_script(low_level_verification_command))
+
+    print(f"Verified low-level plan written to {args.verified_low_level_output}")
+
+    # Read the verified low-level plan before execution
+    final_low_level_plan = read_file(args.verified_low_level_output)
+
+    # Execute the verified low-level plan
+    #command = "python3 plan_parser.py drone_low_level_plan.txt"
+    #asyncio.run(run_python_script(command))
 
 if __name__ == "__main__":
     main()
