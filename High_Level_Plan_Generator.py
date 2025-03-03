@@ -121,9 +121,9 @@ def main():
 
     # Initialize LangChain LLM
     llm = ChatOpenAI(
-        api_key="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",
-        base_url="https://openrouter.ai/api/v1",
-        model_name="deepseek/deepseek-chat:free",
+        api_key="c7e68755-3cfd-4f4a-a695-6a41af9ffd23",
+        base_url="https://api.sambanova.ai/v1",
+        model_name="Meta-Llama-3.1-405B-Instruct",
         temperature=0.1
     )
 

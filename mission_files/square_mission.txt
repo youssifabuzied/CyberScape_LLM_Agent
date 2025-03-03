@@ -1,0 +1,1 @@
+We have a robot dog only and our mission requires it to move in a square of side length 2 in counterclockwise direction. Note that the drone should not do anything.

@@ -1,18 +1,2 @@
 // move_to(x,y) // move to specific coordinates (latitude, longitude)
 // rotate(angle) // rotate angle degrees
-// detect_with_camera(object) // detect objects with the camera, return position and detection status. Can only detect up to 2 meters in all directions. For example, if you want to detect an onject in the square characterized by points (0,0) , (0,4), (4,0) , (4,4), the dog should be at point (2,2) 
-// jump() // jump over an obstacle
-// get_lidar_info() // retrieve LIDAR data for mapping or obstacle detection
-// check_obstacle_height() // check and return the height of an obstacle
-// check_distance_to_object() // check and return the distance to an object
-// get_position_data() // return the current position as (latitude, longitude)
-// process_messages() // process messages in the queue and clear it
-// wait_for_signal() // wait for a signal to act
-// communicate_with_apm(data) // communicate with the Adaptive Planning Module (APM)
-// monitor_task(task) // monitor the status of a specific task and return the status
-// send_feedback_for_rethinking() // send feedback to reevaluate a task
-// return_to_base() // return the robot dog to its base position
-Remarks:
-If the APM communicates coordinates to go to, it will be given in this format (X,Y). So, you do not need to do any processing for them just use them directly. If you are expecting coordinates of a square, the coordinates you will receive are the center of the square.
-If you got a higher level plan that require scanning an area, you should make sure that the plan you generate will make the robot scan the whole area.
-Do not use excessive indentation.

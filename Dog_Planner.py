@@ -159,7 +159,7 @@ def main():
     # Verify low-level plan
     low_level_verification_command = f"python3 Verification_Module.py {LOW_LEVEL_RUBRIC_FILE} dog_low_level_plan.txt {args.verified_middle_level_output} {args.verified_low_level_output}"
     print("Verifying the low-level plan using Verification_Module.py...")
-   # asyncio.run(run_python_script(low_level_verification_command))
+    asyncio.run(run_python_script(low_level_verification_command))
 
     print(f"Verified low-level plan written to {args.verified_low_level_output}")
 
@@ -168,7 +168,7 @@ def main():
 
     # Execute the verified low-level plan
     command = "python3 plan_parser.py dog_low_level_plan.txt"
-#    asyncio.run(run_python_script(command))
+    asyncio.run(run_python_script(command))
 
 if __name__ == "__main__":
     main()

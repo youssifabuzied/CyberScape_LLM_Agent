@@ -3,6 +3,7 @@
 ## **1. Correctness of Execution**
 - [ ] Does the plan correctly implement all steps required by the high-level plan?
 - [ ] Are all phases logically structured to achieve the mission goals?
+- [ ] If the drone is not required to do anything, output nothing in this translation.
 
 ## **2. Coverage of All Conditions **
 - [ ] Does the plan include handling for different possible outcomes (e.g., if a scan detects an object, if it does not)?

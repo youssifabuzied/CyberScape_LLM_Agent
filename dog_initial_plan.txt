@@ -1,5 +1,7 @@
-Phase 1: Move from the starting point (25,25) to the 10x10 meter square identified by the drone, avoiding obstacles if necessary.
-Phase 2: Begin scanning the 10x10 meter square in a grid pattern, covering 2 meters in all directions at each step.
-Phase 3: Locate the ball within the 1x1 meter cell and pick it up.
-Phase 4: Return to the starting point (25,25) with the ball, avoiding obstacles if necessary, and confirm completion via the adaptive planning module.
-```
+Phase 1: Move forward by 2 units to form the first side of the square.
+Phase 2: Turn left by 90 degrees to prepare for the next side.
+Phase 3: Move forward by 2 units to form the second side of the square.
+Phase 4: Turn left by 90 degrees to prepare for the next side.
+Phase 5: Move forward by 2 units to form the third side of the square.
+Phase 6: Turn left by 90 degrees to prepare for the final side.
+Phase 7: Move forward by 2 units to complete the square and return to the starting point.

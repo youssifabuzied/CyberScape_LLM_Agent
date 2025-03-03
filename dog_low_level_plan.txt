@@ -1,110 +1,63 @@
-Here is the low-level set of executable robot dog instructions:
+To convert the middle-level plan into a low-level set of executable robot dog instructions, we need to break down each phase into specific movements and actions using the provided functions. Here's the converted plan:
 
-**Phase 1: Move to the 10x10 meter square identified by the drone**
+**Phase 1: Move Forward to Form the First Side of the Square**
 
-1. process_messages()
-2. communicate_with_apm("Ready to receive coordinates")
-3. wait_for_signal()
-4. (square_center_x, square_center_y) = get_position_data()  # assuming APM sent coordinates
-5. move_to(square_center_x - 5, square_center_y - 5)  # move to the bottom left corner of the square
-6. if RobotDog.has_reached(square_center_x - 5, square_center_y - 5):
-7.     get_lidar_info()  # scan for obstacles
-8.     if check_obstacle_height() > 0:  # if obstacle detected
-9.         jump()
-10.     move_to(square_center_x, square_center_y)  # move to the center of the square
-11. if RobotDog.has_reached(square_center_x, square_center_y):
-12.     communicate_with_apm("Arrived at square center")
+```
+Phase 1:
+RobotDog.move_to(2,0)  # Move forward by 2 units
+if RobotDog.has_reached(2,0):
+    RobotDog.idle()  # Wait until the movement is complete
+```
 
-**Phase 2: Scan the 10x10 meter square in a grid pattern**
+**Phase 2: Turn Left to Prepare for the Next Side**
 
-13. move_to(square_center_x - 4, square_center_y - 4)  # move to the first grid cell
-14. if RobotDog.has_reached(square_center_x - 4, square_center_y - 4):
-15.     detect_with_camera("ball")  # scan for the ball
-16. move_to(square_center_x - 2, square_center_y - 4)  # move to the next grid cell
-17. if RobotDog.has_reached(square_center_x - 2, square_center_y - 4):
-18.     detect_with_camera("ball")  # scan for the ball
-19. move_to(square_center_x, square_center_y - 4)  # move to the next grid cell
-20. if RobotDog.has_reached(square_center_x, square_center_y - 4):
-21.     detect_with_camera("ball")  # scan for the ball
-22. move_to(square_center_x + 2, square_center_y - 4)  # move to the next grid cell
-23. if RobotDog.has_reached(square_center_x + 2, square_center_y - 4):
-24.     detect_with_camera("ball")  # scan for the ball
-25. move_to(square_center_x + 4, square_center_y - 4)  # move to the next grid cell
-26. if RobotDog.has_reached(square_center_x + 4, square_center_y - 4):
-27.     detect_with_camera("ball")  # scan for the ball
-28. move_to(square_center_x - 4, square_center_y - 2)  # move to the next row
-29. if RobotDog.has_reached(square_center_x - 4, square_center_y - 2):
-30.     detect_with_camera("ball")  # scan for the ball
-31. move_to(square_center_x - 2, square_center_y - 2)  # move to the next grid cell
-32. if RobotDog.has_reached(square_center_x - 2, square_center_y - 2):
-33.     detect_with_camera("ball")  # scan for the ball
-34. move_to(square_center_x, square_center_y - 2)  # move to the next grid cell
-35. if RobotDog.has_reached(square_center_x, square_center_y - 2):
-36.     detect_with_camera("ball")  # scan for the ball
-37. move_to(square_center_x + 2, square_center_y - 2)  # move to the next grid cell
-38. if RobotDog.has_reached(square_center_x + 2, square_center_y - 2):
-39.     detect_with_camera("ball")  # scan for the ball
-40. move_to(square_center_x + 4, square_center_y - 2)  # move to the next grid cell
-41. if RobotDog.has_reached(square_center_x + 4, square_center_y - 2):
-42.     detect_with_camera("ball")  # scan for the ball
-43. move_to(square_center_x - 4, square_center_y)  # move to the next row
-44. if RobotDog.has_reached(square_center_x - 4, square_center_y):
-45.     detect_with_camera("ball")  # scan for the ball
-46. move_to(square_center_x - 2, square_center_y)  # move to the next grid cell
-47. if RobotDog.has_reached(square_center_x - 2, square_center_y):
-48.     detect_with_camera("ball")  # scan for the ball
-49. move_to(square_center_x, square_center_y)  # move to the next grid cell
-50. if RobotDog.has_reached(square_center_x, square_center_y):
-51.     detect_with_camera("ball")  # scan for the ball
-52. move_to(square_center_x + 2, square_center_y)  # move to the next grid cell
-53. if RobotDog.has_reached(square_center_x + 2, square_center_y):
-54.     detect_with_camera("ball")  # scan for the ball
-55. move_to(square_center_x + 4, square_center_y)  # move to the next grid cell
-56. if RobotDog.has_reached(square_center_x + 4, square_center_y):
-57.     detect_with_camera("ball")  # scan for the ball
-58. move_to(square_center_x - 4, square_center_y + 2)  # move to the next row
-59. if RobotDog.has_reached(square_center_x - 4, square_center_y + 2):
-60.     detect_with_camera("ball")  # scan for the ball
-61. move_to(square_center_x - 2, square_center_y + 2)  # move to the next grid cell
-62. if RobotDog.has_reached(square_center_x - 2, square_center_y + 2):
-63.     detect_with_camera("ball")  # scan for the ball
-64. move_to(square_center_x, square_center_y + 2)  # move to the next grid cell
-65. if RobotDog.has_reached(square_center_x, square_center_y + 2):
-66.     detect_with_camera("ball")  # scan for the ball
-67. move_to(square_center_x + 2, square_center_y + 2)  # move to the next grid cell
-68. if RobotDog.has_reached(square_center_x + 2, square_center_y + 2):
-69.     detect_with_camera("ball")  # scan for the ball
-70. move_to(square_center_x + 4, square_center_y + 2)  # move to the next grid cell
-71. if RobotDog.has_reached(square_center_x + 4, square_center_y + 2):
-72.     detect_with_camera("ball")  # scan for the ball
-73. move_to(square_center_x - 4, square_center_y + 4)  # move to the next row
-74. if RobotDog.has_reached(square_center_x - 4, square_center_y + 4):
-75.     detect_with_camera("ball")  # scan for the ball
-76. move_to(square_center_x - 2, square_center_y + 4)  # move to the next grid cell
-77. if RobotDog.has_reached(square_center_x - 2, square_center_y + 4):
-78.     detect_with_camera("ball")  # scan for the ball
-79. move_to(square_center_x, square_center_y + 4)  # move to the next grid cell
-80. if RobotDog.has_reached(square_center_x, square_center_y + 4):
-81.     detect_with_camera("ball")  # scan for the ball
-82. move_to(square_center_x + 2, square_center_y + 4)  # move to the next grid cell
-83. if RobotDog.has_reached(square_center_x + 2, square_center_y + 4):
-84.     detect_with_camera("ball")  # scan for the ball
-85. move_to(square_center_x + 4, square_center_y + 4)  # move to the next grid cell
-86. if RobotDog.has_reached(square_center_x + 4, square_center_y + 4):
-87.     detect_with_camera("ball")  # scan for the ball
+```
+Phase 2:
+RobotDog.rotate(90)  # Turn left by 90 degrees
+RobotDog.idle()  # Wait until the rotation is complete
+```
 
-**Phase 3: Locate and pick up the ball**
+**Phase 3: Move Forward to Form the Second Side of the Square**
 
-88. (ball_x, ball_y) = get_position_data()  # assuming ball position is known
-89. move_to(ball_x, ball_y)  # move to the ball position
-90. if RobotDog.has_reached(ball_x, ball_y):
-91.     communicate_with_apm("Ball found")
-92.     # pick up the ball using the robot dog's manipulation mechanism
-93.     communicate_with_apm("Ball picked up")
+```
+Phase 3:
+RobotDog.move_to(2,2)  # Move forward by 2 units
+if RobotDog.has_reached(2,2):
+    RobotDog.idle()  # Wait until the movement is complete
+```
 
-**Phase 4: Return to the starting point with the ball**
+**Phase 4: Turn Left to Prepare for the Next Side**
 
-94. move_to(25, 25)  # move to the starting point
-95. if RobotDog.has_reached(25, 25):
-96.     communicate_with_apm("Returned to starting point")
-97.     communicate_with_apm("Mission completed")
+```
+Phase 4:
+RobotDog.rotate(90)  # Turn left by 90 degrees
+RobotDog.idle()  # Wait until the rotation is complete
+```
+
+**Phase 5: Move Forward to Form the Third Side of the Square**
+
+```
+Phase 5:
+RobotDog.move_to(0,2)  # Move forward by 2 units
+if RobotDog.has_reached(0,2):
+    RobotDog.idle()  # Wait until the movement is complete
+```
+
+**Phase 6: Turn Left to Prepare for the Final Side**
+
+```
+Phase 6:
+RobotDog.rotate(90)  # Turn left by 90 degrees
+RobotDog.idle()  # Wait until the rotation is complete
+```
+
+**Phase 7: Move Forward to Complete the Square and Return to the Starting Point**
+
+```
+Phase 7:
+RobotDog.move_to(0,0)  # Move forward by 2 units to return to the starting point
+if RobotDog.has_reached(0,0):
+    RobotDog.idle()  # Wait until the movement is complete
+```
+
+Note that the `move_to` function is used to move the robot dog to specific coordinates, and the `rotate` function is used to turn the robot dog by a specified angle. The `idle` function is used to wait until the movement or rotation is complete. The `has_reached` function is used to verify that the robot dog has reached the desired coordinates before proceeding to the next phase.

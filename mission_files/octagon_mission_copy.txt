@@ -1,0 +1,5 @@
+Plan a mission where the robot dog starts at a specified point on the perimeter of a uniform octagon and
+navigates around it,completing a full circuit. The octagon has a side length of 10 units. Provide clear,
+step-by-step instructions for the robot dog to execute this task. The dog will start at point  (20,20)
+which is  a vertex on the octagon. You should use only the move forward and rotate functions for the robot dog.
+The done should monitr the progress of the robot dog and send its coordinates frequently to the adaptive planning module.
