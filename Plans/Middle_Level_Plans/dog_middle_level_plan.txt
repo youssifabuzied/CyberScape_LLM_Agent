@@ -10,35 +10,35 @@
 **Phase 2: Turn Left to Prepare for the Next Side**
 
 1. The robot dog comes to a complete stop at the end of the first side.
-2. It turns left by 90 degrees, adjusting its orientation to face the direction of the second side.
+2. It turns left by 90 degrees, adjusting its orientation for the next side.
 3. The robot dog stabilizes itself after the turn, ensuring balance and control.
 
 **Phase 3: Move Forward to Form the Second Side of the Square**
 
 1. The robot dog begins moving forward by 2 units, maintaining a straight course.
-2. It continues to monitor its surroundings, adjusting its path as needed.
+2. It continues to monitor its surroundings, adjusting its path if necessary.
 3. The robot dog maintains a consistent speed and direction.
 
 **Phase 4: Turn Left to Prepare for the Next Side**
 
 1. The robot dog comes to a complete stop at the end of the second side.
-2. It turns left by 90 degrees, adjusting its orientation to face the direction of the third side.
+2. It turns left by 90 degrees, adjusting its orientation for the next side.
 3. The robot dog stabilizes itself after the turn, ensuring balance and control.
 
 **Phase 5: Move Forward to Form the Third Side of the Square**
 
 1. The robot dog begins moving forward by 2 units, maintaining a straight course.
-2. It continues to monitor its surroundings, adjusting its path as needed.
+2. It continues to monitor its surroundings, adjusting its path if necessary.
 3. The robot dog maintains a consistent speed and direction.
 
 **Phase 6: Turn Left to Prepare for the Final Side**
 
 1. The robot dog comes to a complete stop at the end of the third side.
-2. It turns left by 90 degrees, adjusting its orientation to face the direction of the final side.
+2. It turns left by 90 degrees, adjusting its orientation for the final side.
 3. The robot dog stabilizes itself after the turn, ensuring balance and control.
 
 **Phase 7: Move Forward to Complete the Square and Return to the Starting Point**
 
 1. The robot dog begins moving forward by 2 units, maintaining a straight course.
-2. It continues to monitor its surroundings, adjusting its path as needed.
-3. The robot dog returns to the starting point, completing the square.
+2. It continues to monitor its surroundings, adjusting its path if necessary.
+3. The robot dog comes to a complete stop at the starting point, completing the square.

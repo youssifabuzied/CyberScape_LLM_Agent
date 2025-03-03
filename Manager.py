@@ -97,10 +97,10 @@ def initiate_plan():
         temperature=0.1,
         top_p=0.1
     )
-    with open("plan.txt", "w") as file:
+    with open("Plans/initial_plan.txt", "w") as file:
         file.write(response.choices[0].message.content)
 
-    print("Mission Plan is written to plan.txt")
+    print("Mission Plan is written to Plans/initial_plan.txt")
 def parse_drone_plan(file_path, output_file_path):
     try:
         with open(file_path, 'r') as file:
@@ -175,9 +175,9 @@ if __name__ == "__main__":
     mission_file = args.mission_file
     high_level_plan_command = f"python High_Level_Plan_Generator.py {mission_file}"
     asyncio.run(run_python_script(high_level_plan_command))
-    input_plan_file = 'plan.txt'  # The input file containing both plans
-    output_drone_file = 'drone_initial_plan.txt'
-    output_dog_file = "dog_initial_plan.txt"  # The output file for the drone plan
+    input_plan_file = 'Plans/initial_plan.txt'  # The input file containing both plans
+    output_drone_file = 'Plans/Initial_Robot_Plans/drone_initial_plan.txt'
+    output_dog_file = "Plans/Initial_Robot_Plans/dog_initial_plan.txt"  # The output file for the drone plan
 
     # Call the function to parse the drone plan
     parse_drone_plan(input_plan_file, output_drone_file)
@@ -185,10 +185,10 @@ if __name__ == "__main__":
     # Call the function to parse the drone plan
 
     drone_command = (
-        f"python3 Drone_Planner.py {mission_file} mission_files/drone_specifications.txt {output_drone_file} drone_middle_level_plan.txt drone_low_level_plan.txt"
+        f"python3 Drone_Planner.py {mission_file} mission_files/drone_specifications.txt {output_drone_file} Plans/Middle_Level_Plans/drone_middle_level_plan.txt Plans/Low_Level_Plans/drone_low_level_plan.txt"
     )
     asyncio.run(run_python_script(drone_command))
     dog_command = (
-        f"python3 Dog_Planner.py {mission_file} mission_files/dog_specifications.txt {output_dog_file} dog_middle_level_plan.txt dog_low_level_plan.txt"
+        f"python3 Dog_Planner.py {mission_file} mission_files/dog_specifications.txt {output_dog_file} Plans/Middle_Level_Plans/dog_middle_level_plan.txt Plans/Low_Level_Plans/dog_low_level_plan.txt"
     )
     asyncio.run(run_python_script(dog_command))

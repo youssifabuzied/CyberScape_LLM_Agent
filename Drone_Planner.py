@@ -9,8 +9,8 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # Hardcoded rubric files
-MIDDLE_LEVEL_RUBRIC_FILE = "Drone_Middle_Rubric.txt"
-LOW_LEVEL_RUBRIC_FILE = "Drone_Low_Rubric.txt"
+MIDDLE_LEVEL_RUBRIC_FILE = "Rubrics/Drone_Middle_Rubric.txt"
+LOW_LEVEL_RUBRIC_FILE = "Rubrics/Drone_Low_Rubric.txt"
 
 async def run_python_script(command):
     """Executes a Python script asynchronously and prints output."""
@@ -134,11 +134,11 @@ def main():
     print("Middle-Level Plan:")
     print(middle_level_plan)
     
-    with open("drone_middle_level_plan.txt", "w") as file:
+    with open("Plans/Middle_Level_Plans/drone_middle_level_plan.txt", "w") as file:
         file.write(middle_level_plan)
 
     # Verify middle-level plan
-    verification_command = f"python3 Verification_Module.py {MIDDLE_LEVEL_RUBRIC_FILE} drone_middle_level_plan.txt {args.mission_scenario} {args.verified_middle_level_output}"
+    verification_command = f"python3 Verification_Module.py {MIDDLE_LEVEL_RUBRIC_FILE} Plans/Middle_Level_Plans/drone_middle_level_plan.txt {args.mission_scenario} {args.verified_middle_level_output}"
     print("Verifying the middle-level plan using plan_verifier.py...")
     asyncio.run(run_python_script(verification_command))
 
@@ -152,11 +152,11 @@ def main():
     print("Low-Level Plan:")
     print(low_level_plan)
     
-    with open("drone_low_level_plan.txt", "w") as file:
+    with open("Plans/Low_Level_Plans/drone_low_level_plan.txt", "w") as file:
         file.write(low_level_plan)
 
     # Verify low-level plan
-    low_level_verification_command = f"python3 Verification_Module.py {LOW_LEVEL_RUBRIC_FILE} drone_low_level_plan.txt {args.verified_middle_level_output} {args.verified_low_level_output}"
+    low_level_verification_command = f"python3 Verification_Module.py {LOW_LEVEL_RUBRIC_FILE} Plans/Low_Level_Plans/drone_low_level_plan.txt {args.verified_middle_level_output} {args.verified_low_level_output}"
     print("Verifying the low-level plan using plan_verifier.py...")
     asyncio.run(run_python_script(low_level_verification_command))
 
@@ -166,7 +166,7 @@ def main():
     final_low_level_plan = read_file(args.verified_low_level_output)
 
     # Execute the verified low-level plan
-    command = "python3 plan_parser.py drone_low_level_plan.txt"
+    command = "python3 plan_parser.py Plans/Low_Level_Plans/drone_low_level_plan.txt"
     asyncio.run(run_python_script(command))
 
 if __name__ == "__main__":

@@ -1,0 +1,37 @@
+To convert the middle-level plan into a low-level set of executable robot dog instructions, we will break down each phase into specific function calls. We will assume the starting point is at coordinates (0, 0) and the square has a side length of 2 units.
+
+```
+Phase 1: Move Forward to Form the First Side of the Square
+RobotDog.move_to(2, 0)
+if RobotDog.has_reached(2, 0):
+    RobotDog.idle()
+
+Phase 2: Turn Left to Prepare for the Next Side
+RobotDog.rotate(90)
+RobotDog.idle()
+
+Phase 3: Move Forward to Form the Second Side of the Square
+RobotDog.move_to(2, 2)
+if RobotDog.has_reached(2, 2):
+    RobotDog.idle()
+
+Phase 4: Turn Left to Prepare for the Next Side
+RobotDog.rotate(90)
+RobotDog.idle()
+
+Phase 5: Move Forward to Form the Third Side of the Square
+RobotDog.move_to(0, 2)
+if RobotDog.has_reached(0, 2):
+    RobotDog.idle()
+
+Phase 6: Turn Left to Prepare for the Final Side
+RobotDog.rotate(90)
+RobotDog.idle()
+
+Phase 7: Move Forward to Complete the Square and Return to the Starting Point
+RobotDog.move_to(0, 0)
+if RobotDog.has_reached(0, 0):
+    RobotDog.idle()
+```
+
+Note that we have added `if RobotDog.has_reached(X, Y):` checks to verify that the robot dog has reached the desired coordinates before proceeding to the next phase. We have also included `RobotDog.idle()` calls to ensure the robot dog waits after each movement or rotation.

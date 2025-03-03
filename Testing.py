@@ -54,7 +54,7 @@ response = client.chat.completions.create(
 # message_history.append({"role": "assistant", "content": response.choices[0].message.content})
 
 # Write the final mission plan to a file
-with open("plan.txt", "w") as file:
+with open("Plans/initial_plan.txt", "w") as file:
     file.write(response.choices[0].message.content)
 
-print("Mission Plan is written to plan.txt")
+print("Mission Plan is written to Plans/initial_plan.txt")

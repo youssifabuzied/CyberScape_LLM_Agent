@@ -130,10 +130,10 @@ def main():
     generated_plan = generate_plan(llm, mission_text)
     refined_plan = refine_plan(llm, mission_text, generated_plan)
 
-    with open("plan.txt", 'w') as output_file:
+    with open("Plans/initial_plan.txt", 'w') as output_file:
         output_file.write(refined_plan)
 
-    print("Mission Plan written to plan.txt")
+    print("Mission Plan written to Plans/initial_plan.txt")
 
 if __name__ == "__main__":
     main()
