@@ -1,0 +1,12 @@
+Mission:
+A drone and a robot dog need to work together to locate and deliver a lost key inside a 30x30 meter warehouse.
+
+Details:
+
+    The drone can fly over the warehouse and identify a 5x5 meter section where the key is located. It starts at (3,3) and follows a systematic scanning approach.
+    Once the key’s approximate location is identified, the drone will notify the robot dog.
+    The robot dog starts at (15,15) and can scan 1 meter in all directions. It must search the identified section, find the key, and carry it to the exit at (0,0).
+    The drone and the robot dog must communicate efficiently to minimize search time.
+
+Objective:
+The mission is completed when the robot dog delivers the key to the exit point.

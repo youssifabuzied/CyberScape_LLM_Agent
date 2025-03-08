@@ -187,8 +187,8 @@ if __name__ == "__main__":
     drone_command = (
         f"python3 Drone_Planner.py {mission_file} mission_files/drone_specifications.txt {output_drone_file} Plans/Middle_Level_Plans/drone_middle_level_plan.txt Plans/Low_Level_Plans/drone_low_level_plan.txt"
     )
-    asyncio.run(run_python_script(drone_command))
+ #   asyncio.run(run_python_script(drone_command))
     dog_command = (
         f"python3 Dog_Planner.py {mission_file} mission_files/dog_specifications.txt {output_dog_file} Plans/Middle_Level_Plans/dog_middle_level_plan.txt Plans/Low_Level_Plans/dog_low_level_plan.txt"
     )
-    asyncio.run(run_python_script(dog_command))
+  #  asyncio.run(run_python_script(dog_command))

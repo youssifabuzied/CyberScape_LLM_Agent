@@ -1,30 +1,46 @@
-Since the drone is not required to do anything in this mission, the middle-level plan will focus on the actions of the robot dog. Here's the breakdown:
+**Middle-Level Drone Plan:**
 
-**Middle-Level Plan:**
+**Phase 1: Initialization and Grid Division**
 
-**Phase 1: Initialization**
-The robot dog starts at a designated location, which will be the starting point of the square path.
+1. The drone starts at the initial location (5,5) and orients itself with the field's boundaries.
+2. Divide the 50x50 meters field into 25 non-overlapping 10x10 meters squares, creating a 5x5 grid.
+3. Assign a unique identifier to each square for easy reference and communication with the robot dog.
 
-**Phase 2: Move Forward**
-The robot dog moves forward by a distance of 2 units, which is the side length of the square.
+**Phase 2: Systematic Grid Scanning**
 
-**Phase 3: Turn Left**
-The robot dog turns left by 90 degrees to prepare for the next side of the square.
+1. The drone begins scanning the squares in a systematic pattern, starting from the top-left square (0,0) and moving right, then down to the next row.
+2. For each square, the drone flies to the center and uses its sensors to detect the presence of the ball.
+3. If the ball is detected in a square, the drone records the square's identifier and proceeds to the next phase.
 
-**Phase 4: Move Forward**
-The robot dog moves forward by a distance of 2 units, completing the second side of the square.
+**Phase 3: Communication with the Robot Dog**
 
-**Phase 5: Turn Left**
-The robot dog turns left by 90 degrees to prepare for the next side of the square.
+1. The drone communicates the identifier of the square containing the ball to the robot dog.
+2. The drone provides the robot dog with the approximate location of the ball within the 10x10 meters square.
 
-**Phase 6: Move Forward**
-The robot dog moves forward by a distance of 2 units, completing the third side of the square.
+**Phase 4: Support and Oversight**
 
-**Phase 7: Turn Left**
-The robot dog turns left by 90 degrees to prepare for the final side of the square.
+1. The drone observes the robot dog's movement and provides guidance if necessary.
+2. If the robot dog requires additional assistance or clarification on the ball's location, the drone provides support through communication.
 
-**Phase 8: Move Forward**
-The robot dog moves forward by a distance of 2 units, completing the final side of the square and returning to the starting point.
+**Middle-Level Robot Dog Plan:**
 
-**Phase 9: Mission Completion**
-The robot dog has successfully completed the mission by moving in a counterclockwise square path of side length 2.
+**Phase 1: Initialization and Scanning Preparation**
+
+1. The robot dog starts at the initial location (25,25) and orients itself with the field's boundaries.
+2. Receive communication from the drone regarding the 10x10 meters square containing the ball.
+
+**Phase 2: Scanning and Localization**
+
+1. The robot dog moves to the center of the specified 10x10 meters square.
+2. Begin scanning the area, using its 2-meter range sensors to detect the ball in all directions.
+3. Move in a pattern to cover the entire 10x10 meters square, adjusting its scanning area as needed.
+
+**Phase 3: Ball Retrieval and Return**
+
+1. Once the ball is detected, the robot dog moves to the ball's location and retrieves it.
+2. The robot dog returns to the starting point (25,25) with the ball, completing the mission.
+
+**Phase 4: Mission Completion and Communication**
+
+1. The robot dog communicates its success to the drone.
+2. The robot dog and drone may perform any additional tasks or return to their respective bases.

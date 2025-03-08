@@ -1,0 +1,133 @@
+{
+    "drone_plan": {
+        "target": "DRONE",
+        "phases": [
+            {
+                "target": "DRONE",
+                "phase_number": 1,
+                "state": "The drone is at its starting location (5.0, 5.0), altitude 10.0 meters, ready to begin scanning the field.",
+                "phase_target": "Divide the 50x50 meter field into 25 non-overlapping 10x10 meter squares and systematically scan each square to identify the square containing the ball.",
+                "inputs": [],
+                "outputs": [
+                    "square_x_start (float)",
+                    "square_y_start (float)"
+                ]
+            },
+            {
+                "target": "DRONE",
+                "phase_number": 2,
+                "state": "Given a coordinate (square_x_start (float), square_y_start (float)), the drone is hovering at altitude 10.0 meters over the designated 10x10 meter square.",
+                "phase_target": "Scan the current 10x10 meter square for the ball using onboard camera. Determine a confidence score for the presence of the ball in the square.",
+                "inputs": [
+                    "square_x_start (float)",
+                    "square_y_start (float)"
+                ],
+                "outputs": [
+                    "ball_confidence_score (float)"
+                ]
+            },
+            {
+                "target": "DRONE",
+                "phase_number": 3,
+                "state": "Given a ball_confidence_score (float), the drone has completed scanning one 10x10 meter square.",
+                "phase_target": "Determine if the ball_confidence_score is above a threshold (e.g., 0.5). If yes, transmit the square coordinates to the robot dog. If not, move to the next 10x10 meter square according to a systematic scanning pattern (e.g., row-major order).",
+                "inputs": [
+                    "ball_confidence_score (float)",
+                    "square_x_start (float)",
+                    "square_y_start (float)"
+                ],
+                "outputs": [
+                    "target_square_x_start (float)",
+                    "target_square_y_start (float)"
+                ]
+            },
+            {
+                "target": "DRONE",
+                "phase_number": 4,
+                "state": "The drone has identified the 10x10 meter square containing the ball (ball_confidence_score > 0.5). The drone is hovering at altitude 10.0 meters above the square.",
+                "phase_target": "Refine the location of the ball within the 10x10 square. Divide the 10x10 meter square into 100 1x1 meter cells. Systematically scan each 1x1 meter cell to identify the cell containing the ball.",
+                "inputs": [
+                    "target_square_x_start (float)",
+                    "target_square_y_start (float)"
+                ],
+                "outputs": [
+                    "ball_x (float)",
+                    "ball_y (float)"
+                ]
+            },
+            {
+                "target": "DRONE",
+                "phase_number": 5,
+                "state": "Given the coordinate (ball_x (float), ball_y (float)), the drone has located the ball within a 1x1 meter cell. The drone is hovering at altitude 5.0 meters above the ball.",
+                "phase_target": "Transmit the final ball coordinates to the robot dog.",
+                "inputs": [
+                    "ball_x (float)",
+                    "ball_y (float)"
+                ],
+                "outputs": [
+                    "ball_x (float)",
+                    "ball_y (float)"
+                ]
+            }
+        ]
+    },
+    "robot_dog_plan": {
+        "target": "ROBOT_DOG",
+        "phases": [
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 1,
+                "state": "The robot dog is located at the starting point (25.0, 25.0), ready to receive coordinates.",
+                "phase_target": "Navigate to the center of the 10x10 square identified by the drone as containing the ball.",
+                "inputs": [
+                    "ball_square_center_x (float)",
+                    "ball_square_center_y (float)"
+                ],
+                "outputs": [
+                    "dog_location_x (float)",
+                    "dog_location_y (float)"
+                ]
+            },
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 2,
+                "state": "The robot dog is located at (dog_location_x, dog_location_y), the center of the 10x10 square.",
+                "phase_target": "Scan the surrounding area (2 meters in all directions) to locate the ball.",
+                "inputs": [
+                    "dog_location_x (float)",
+                    "dog_location_y (float)"
+                ],
+                "outputs": [
+                    "ball_location_x (float)",
+                    "ball_location_y (float)",
+                    "ball_confidence_score (float)"
+                ]
+            },
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 3,
+                "state": "The robot dog has located the ball at (ball_location_x, ball_location_y).",
+                "phase_target": "Navigate to the ball and pick it up.",
+                "inputs": [
+                    "ball_location_x (float)",
+                    "ball_location_y (float)"
+                ],
+                "outputs": [
+                    "pickup_success (float)"
+                ]
+            },
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 4,
+                "state": "The robot dog has successfully picked up the ball.",
+                "phase_target": "Return to the starting point (25.0, 25.0).",
+                "inputs": [
+                    "pickup_success (float)"
+                ],
+                "outputs": [
+                    "return_success (float)"
+                ]
+            }
+        ]
+    }
+}
