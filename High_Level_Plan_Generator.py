@@ -10,9 +10,6 @@ from langchain_google_genai import GoogleGenerativeAI
 
 # Load Gemini Pro Model
 
-
-
-
 class PlanPhase:
     """Represents a single phase in a mission plan."""
     def __init__(self, target, phase_number, state, phase_target, inputs=None, outputs=None):
@@ -271,10 +268,10 @@ def main():
         "robot_dog_plan": robot_dog_plan.to_dict()
     }
 
-    with open("mission_plan.json", 'w') as output_file:
+    with open("Plans\mission_plan.json", 'w') as output_file:
         json.dump(mission_output, output_file, indent=4)
 
-    print("Mission Plan written to mission_plan.json")
+    print("Mission Plan written to Plans\mission_plan.json")
 
 
 if __name__ == "__main__":

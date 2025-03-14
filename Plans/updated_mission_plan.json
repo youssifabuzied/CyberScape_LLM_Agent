@@ -1,0 +1,142 @@
+{
+    "drone_plan": {
+        "target": "DRONE",
+        "phases": [
+            {
+                "target": "DRONE",
+                "phase_number": 1,
+                "state": "The drone is at its starting location (5.0, 5.0), altitude 10.0 meters, ready to begin scanning the field.",
+                "phase_target": "Divide the 50x50 meter field into 25 non-overlapping 10x10 meter squares and systematically scan each square to identify the square containing the ball.",
+                "inputs": [],
+                "outputs": [
+                    "square_x_start (float)",
+                    "square_y_start (float)"
+                ],
+                "low_level_plan": "Phase 1:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\nif DRONE.detect_with_camera('ball')[1]:\n    DRONE.communicate_with_apm((10.0, 10.0))\nelse:\n    DRONE.move_to_point((10.0, 30.0, 10.0))\n    DRONE.scan_area()\n    if DRONE.detect_with_camera('ball')[1]:\n        DRONE.communicate_with_apm((10.0, 30.0))\n    else:\n        DRONE.move_to_point((10.0, 50.0, 10.0))\n        DRONE.scan_area()\n        if DRONE.detect_with_camera('ball')[1]:\n            DRONE.communicate_with_apm((10.0, 50.0))\n        else:\n            DRONE.move_to_point((30.0, 10.0, 10.0))\n            DRONE.scan_area()\n            if DRONE.detect_with_camera('ball')[1]:\n                DRONE.communicate_with_apm((30.0, 10.0))\n            else:\n                DRONE.move_to_point((30.0, 30.0, 10.0))\n                DRONE.scan_area()\n                if DRONE.detect_with_camera('ball')[1]:\n                    DRONE.communicate_with_apm((30.0, 30.0))\n                else:\n                    DRONE.move_to_point((30.0, 50.0, 10.0))\n                    DRONE.scan_area()\n                    if DRONE.detect_with_camera('ball')[1]:\n                        DRONE.communicate_with_apm((30.0, 50.0))\n                    else:\n                        DRONE.move_to_point((50.0, 10.0, 10.0))\n                        DRONE.scan_area()\n                        if DRONE.detect_with_camera('ball')[1]:\n                            DRONE.communicate_with_apm((50.0, 10.0))\n                        else:\n                            DRONE.move_to_point((50.0, 30.0, 10.0))\n                            DRONE.scan_area()\n                            if DRONE.detect_with_camera('ball')[1]:\n                                DRONE.communicate_with_apm((50.0, 30.0))\n                            else:\n                                DRONE.move_to_point((50.0, 50.0, 10.0))\n                                DRONE.scan_area()\n                                if DRONE.detect_with_camera('ball')[1]:\n                                    DRONE.communicate_with_apm((50.0, 50.0))"
+            },
+            {
+                "target": "DRONE",
+                "phase_number": 2,
+                "state": "Given a coordinate (square_x_start (float), square_y_start (float)), the drone is hovering at altitude 10.0 meters over the designated 10x10 meter square.",
+                "phase_target": "Scan the current 10x10 meter square for the ball using onboard camera. Determine a confidence score for the presence of the ball in the square.",
+                "inputs": [
+                    "square_x_start (float)",
+                    "square_y_start (float)"
+                ],
+                "outputs": [
+                    "ball_confidence_score (float)"
+                ],
+                "low_level_plan": "Phase 1:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\nPhase 2:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 3:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((10.0, 10.0))\nPhase 4:\nDRONE.move_to_point((20.0, 10.0, 10.0))\nDRONE.scan_area()\nPhase 5:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 6:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((20.0, 10.0))\nPhase 7:\nDRONE.move_to_point((30.0, 10.0, 10.0))\nDRONE.scan_area()\nPhase 8:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 9:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((30.0, 10.0))\nPhase 10:\nDRONE.move_to_point((40.0, 10.0, 10.0))\nDRONE.scan_area()\nPhase 11:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 12:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((40.0, 10.0))\nPhase 13:\nDRONE.move_to_point((10.0, 20.0, 10.0))\nDRONE.scan_area()\nPhase 14:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 15:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((10.0, 20.0))\nPhase 16:\nDRONE.move_to_point((20.0, 20.0, 10.0))\nDRONE.scan_area()\nPhase 17:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 18:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((20.0, 20.0))\nPhase 19:\nDRONE.move_to_point((30.0, 20.0, 10.0))\nDRONE.scan_area()\nPhase 20:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 21:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((30.0, 20.0))\nPhase 22:\nDRONE.move_to_point((40.0, 20.0, 10.0))\nDRONE.scan_area()\nPhase 23:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 24:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((40.0, 20.0))\nPhase 25:\nDRONE.move_to_point((10.0, 30.0, 10.0))\nDRONE.scan_area()\nPhase 26:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 27:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((10.0, 30.0))\nPhase 28:\nDRONE.move_to_point((20.0, 30.0, 10.0))\nDRONE.scan_area()\nPhase 29:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 30:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((20.0, 30.0))\nPhase 31:\nDRONE.move_to_point((30.0, 30.0, 10.0))\nDRONE.scan_area()\nPhase 32:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 33:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((30.0, 30.0))\nPhase 34:\nDRONE.move_to_point((40.0, 30.0, 10.0))\nDRONE.scan_area()\nPhase 35:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 36:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((40.0, 30.0))\nPhase 37:\nDRONE.move_to_point((10.0, 40.0, 10.0))\nDRONE.scan_area()\nPhase 38:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 39:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((10.0, 40.0))\nPhase 40:\nDRONE.move_to_point((20.0, 40.0, 10.0))\nDRONE.scan_area()\nPhase 41:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 42:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((20.0, 40.0))\nPhase 43:\nDRONE.move_to_point((30.0, 40.0, 10.0))\nDRONE.scan_area()\nPhase 44:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 45:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((30.0, 40.0))\nPhase 46:\nDRONE.move_to_point((40.0, 40.0, 10.0))\nDRONE.scan_area()\nPhase 47:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 48:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((40.0, 40.0))\nPhase 49:\nDRONE.move_to_point((10.0, 50.0, 10.0))\nDRONE.scan_area()\nPhase 50:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 51:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((10.0, 50.0))\nPhase 52:\nDRONE.move_to_point((20.0, 50.0, 10.0))\nDRONE.scan_area()\nPhase 53:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 54:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((20.0, 50.0))\nPhase 55:\nDRONE.move_to_point((30.0, 50.0, 10.0))\nDRONE.scan_area()\nPhase 56:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 57:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((30.0, 50.0))\nPhase 58:\nDRONE.move_to_point((40.0, 50.0, 10.0))\nDRONE.scan_area()\nPhase 59:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\nPhase 60:\nif DRONE.detect_with_camera(\"ball\"):\n    DRONE.communicate_with_apm((40.0, 50.0))"
+            },
+            {
+                "target": "DRONE",
+                "phase_number": 3,
+                "state": "Given a ball_confidence_score (float), the drone has completed scanning one 10x10 meter square.",
+                "phase_target": "Determine if the ball_confidence_score is above a threshold (e.g., 0.5). If yes, transmit the square coordinates to the robot dog. If not, move to the next 10x10 meter square according to a systematic scanning pattern (e.g., row-major order).",
+                "inputs": [
+                    "ball_confidence_score (float)",
+                    "square_x_start (float)",
+                    "square_y_start (float)"
+                ],
+                "outputs": [
+                    "target_square_x_start (float)",
+                    "target_square_y_start (float)"
+                ],
+                "low_level_plan": "Phase 1:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 2:\nif DRONE.detect_with_camera(\"ball\")[1]:\n    DRONE.communicate_with_apm((10.0, 10.0, 0.0))\n    \nPhase 3:\nDRONE.move_to_point((10.0, 30.0, 10.0))\nDRONE.scan_area()\n\nPhase 4:\nif DRONE.detect_with_camera(\"ball\")[1]:\n    DRONE.communicate_with_apm((10.0, 30.0, 0.0))\n\nPhase 5:\nDRONE.move_to_point((10.0, 50.0, 10.0))\nDRONE.scan_area()\n\nPhase 6:\nif DRONE.detect_with_camera(\"ball\")[1]:\n    DRONE.communicate_with_apm((10.0, 50.0, 0.0))\n\nPhase 7:\nDRONE.move_to_point((30.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 8:\nif DRONE.detect_with_camera(\"ball\")[1]:\n    DRONE.communicate_with_apm((30.0, 10.0, 0.0))\n\nPhase 9:\nDRONE.move_to_point((30.0, 30.0, 10.0))\nDRONE.scan_area()\n\nPhase 10:\nif DRONE.detect_with_camera(\"ball\")[1]:\n    DRONE.communicate_with_apm((30.0, 30.0, 0.0))\n\nPhase 11:\nDRONE.move_to_point((30.0, 50.0, 10.0))\nDRONE.scan_area()\n\nPhase 12:\nif DRONE.detect_with_camera(\"ball\")[1]:\n    DRONE.communicate_with_apm((30.0, 50.0, 0.0))\n\nPhase 13:\nDRONE.move_to_point((50.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 14:\nif DRONE.detect_with_camera(\"ball\")[1]:\n    DRONE.communicate_with_apm((50.0, 10.0, 0.0))\n\nPhase 15:\nDRONE.move_to_point((50.0, 30.0, 10.0))\nDRONE.scan_area()\n\nPhase 16:\nif DRONE.detect_with_camera(\"ball\")[1]:\n    DRONE.communicate_with_apm((50.0, 30.0, 0.0))\n\nPhase 17:\nDRONE.move_to_point((50.0, 50.0, 10.0))\nDRONE.scan_area()\n\nPhase 18:\nif DRONE.detect_with_camera(\"ball\")[1]:\n    DRONE.communicate_with_apm((50.0, 50.0, 0.0))\n\nPhase 19:\nDRONE.return_to_base()"
+            },
+            {
+                "target": "DRONE",
+                "phase_number": 4,
+                "state": "The drone has identified the 10x10 meter square containing the ball (ball_confidence_score > 0.5). The drone is hovering at altitude 10.0 meters above the square.",
+                "phase_target": "Refine the location of the ball within the 10x10 square. Divide the 10x10 meter square into 100 1x1 meter cells. Systematically scan each 1x1 meter cell to identify the cell containing the ball.",
+                "inputs": [
+                    "target_square_x_start (float)",
+                    "target_square_y_start (float)"
+                ],
+                "outputs": [
+                    "ball_x (float)",
+                    "ball_y (float)"
+                ],
+                "low_level_plan": "Phase 1:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 2:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 3:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 4:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 5:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 6:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 7:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 8:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 9:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 10:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 11:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 12:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 13:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 14:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 15:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 16:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 17:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 18:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 19:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 20:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 21:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 22:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 23:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 24:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 25:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 26:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 27:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 28:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 29:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 30:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 31:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 32:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 33:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 34:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 35:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 36:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 37:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 38:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 39:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 40:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 41:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 42:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 43:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 44:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 45:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 46:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 47:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 48:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 49:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 50:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 51:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 52:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 53:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 54:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 55:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 56:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 57:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 58:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 59:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 60:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 61:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 62:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 63:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 64:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 65:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 66:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 67:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 68:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 69:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 70:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 71:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 72:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 73:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 74:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 75:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 76:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 77:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 78:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 79:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 80:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 81:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 82:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 83:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 84:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 85:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 86:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 87:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 88:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 89:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 90:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 91:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 92:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 93:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 94:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 95:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 96:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)\n\nPhase 97:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.scan_area()\n\nPhase 98:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera('ball')\n\nPhase 99:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((10.0, 10.0))\n\nPhase 100:\nDRONE.move_to_point((10.0, 10.0, 10.0))\nDRONE.fly(10.0)"
+            },
+            {
+                "target": "DRONE",
+                "phase_number": 5,
+                "state": "Given the coordinate (ball_x (float), ball_y (float)), the drone has located the ball within a 1x1 meter cell. The drone is hovering at altitude 5.0 meters above the ball.",
+                "phase_target": "Transmit the final ball coordinates to the robot dog.",
+                "inputs": [
+                    "ball_x (float)",
+                    "ball_y (float)"
+                ],
+                "outputs": [
+                    "ball_x (float)",
+                    "ball_y (float)"
+                ],
+                "low_level_plan": "Phase 1:\nDRONE.move_to_point((5.0, 5.0, 5.0))\nDRONE.scan_area()\n\nPhase 2:\nif DRONE.scan_successful():\n    DRONE.detect_with_camera(\"ball\")\n\nPhase 3:\nif DRONE.detect_successful():\n    DRONE.communicate_with_apm((DRONE.ball_x, DRONE.ball_y))"
+            }
+        ]
+    },
+    "robot_dog_plan": {
+        "target": "ROBOT_DOG",
+        "phases": [
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 1,
+                "state": "The robot dog is located at the starting point (25.0, 25.0), ready to receive coordinates.",
+                "phase_target": "Navigate to the center of the 10x10 square identified by the drone as containing the ball.",
+                "inputs": [
+                    "ball_square_center_x (float)",
+                    "ball_square_center_y (float)"
+                ],
+                "outputs": [
+                    "dog_location_x (float)",
+                    "dog_location_y (float)"
+                ],
+                "low_level_plan": "Phase 1:\nROBOT_DOG.move_to(25.0, 25.0)\nif ROBOT_DOG.has_reached(25.0, 25.0):\n    ROBOT_DOG.idle()\n\nPhase 2:\nROBOT_DOG.move_to(ball_square_center_x, ball_square_center_y)\nif ROBOT_DOG.has_reached(ball_square_center_x, ball_square_center_y):\n    ROBOT_DOG.idle()"
+            },
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 2,
+                "state": "The robot dog is located at (dog_location_x, dog_location_y), the center of the 10x10 square.",
+                "phase_target": "Scan the surrounding area (2 meters in all directions) to locate the ball.",
+                "inputs": [
+                    "dog_location_x (float)",
+                    "dog_location_y (float)"
+                ],
+                "outputs": [
+                    "ball_location_x (float)",
+                    "ball_location_y (float)",
+                    "ball_confidence_score (float)"
+                ],
+                "low_level_plan": "Phase 1:\nROBOT_DOG.move_to(25.0, 25.0)\nif ROBOT_DOG.has_reached(25.0, 25.0):\n    ROBOT_DOG.rotate(0.0)\n\nPhase 2:\nROBOT_DOG.move_to(25.0, 27.0)\nif ROBOT_DOG.has_reached(25.0, 27.0):\n    ROBOT_DOG.rotate(90.0)\n\nPhase 3:\nROBOT_DOG.move_to(27.0, 27.0)\nif ROBOT_DOG.has_reached(27.0, 27.0):\n    ROBOT_DOG.rotate(180.0)\n\nPhase 4:\nROBOT_DOG.move_to(27.0, 25.0)\nif ROBOT_DOG.has_reached(27.0, 25.0):\n    ROBOT_DOG.rotate(270.0)\n\nPhase 5:\nROBOT_DOG.move_to(25.0, 25.0)\nif ROBOT_DOG.has_reached(25.0, 25.0):\n    ROBOT_DOG.rotate(0.0)\n\nPhase 6:\nROBOT_DOG.move_to(23.0, 25.0)\nif ROBOT_DOG.has_reached(23.0, 25.0):\n    ROBOT_DOG.rotate(90.0)\n\nPhase 7:\nROBOT_DOG.move_to(23.0, 27.0)\nif ROBOT_DOG.has_reached(23.0, 27.0):\n    ROBOT_DOG.rotate(180.0)\n\nPhase 8:\nROBOT_DOG.move_to(25.0, 27.0)\nif ROBOT_DOG.has_reached(25.0, 27.0):\n    ROBOT_DOG.rotate(270.0)\n\nPhase 9:\nROBOT_DOG.move_to(25.0, 25.0)\nif ROBOT_DOG.has_reached(25.0, 25.0):\n    ROBOT_DOG.rotate(0.0)\n\nPhase 10:\nROBOT_DOG.move_to(25.0, 23.0)\nif ROBOT_DOG.has_reached(25.0, 23.0):\n    ROBOT_DOG.rotate(90.0)\n\nPhase 11:\nROBOT_DOG.move_to(27.0, 23.0)\nif ROBOT_DOG.has_reached(27.0, 23.0):\n    ROBOT_DOG.rotate(180.0)\n\nPhase 12:\nROBOT_DOG.move_to(27.0, 25.0)\nif ROBOT_DOG.has_reached(27.0, 25.0):\n    ROBOT_DOG.rotate(270.0)\n\nPhase 13:\nROBOT_DOG.move_to(25.0, 25.0)\nif ROBOT_DOG.has_reached(25.0, 25.0):\n    ROBOT_DOG.rotate(0.0)\n\nPhase 14:\nROBOT_DOG.move_to(25.0, 25.0)\nif ROBOT_DOG.has_reached(25.0, 25.0):\n    ROBOT_DOG.scan_area()"
+            },
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 3,
+                "state": "The robot dog has located the ball at (ball_location_x, ball_location_y).",
+                "phase_target": "Navigate to the ball and pick it up.",
+                "inputs": [
+                    "ball_location_x (float)",
+                    "ball_location_y (float)"
+                ],
+                "outputs": [
+                    "pickup_success (float)"
+                ],
+                "low_level_plan": "Phase 1:\nROBOT_DOG.move_to(25.0, 25.0)\nROBOT_DOG.idle()\nROBOT_DOG.scan_area()\n\nPhase 2:\nif ROBOT_DOG.scan_successful():\n    ROBOT_DOG.move_to(ball_location_x, ball_location_y)\n    ROBOT_DOG.idle()\n    if ROBOT_DOG.has_reached(ball_location_x, ball_location_y):\n        ROBOT_DOG.pickup_success = ROBOT_DOG.pick_up_ball()"
+            },
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 4,
+                "state": "The robot dog has successfully picked up the ball.",
+                "phase_target": "Return to the starting point (25.0, 25.0).",
+                "inputs": [
+                    "pickup_success (float)"
+                ],
+                "outputs": [
+                    "return_success (float)"
+                ],
+                "low_level_plan": "Phase 1:\nROBOT_DOG.move_to(25.0, 25.0)\nROBOT_DOG.idle()\nROBOT_DOG.scan_area()\n\nPhase 2:\nif ROBOT_DOG.scan_successful():\n    ROBOT_DOG.move_to(25.0, 25.0)"
+            }
+        ]
+    }
+}
