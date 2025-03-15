@@ -14,13 +14,7 @@
                 "dog_location_x (float)",
                 "dog_location_y (float)"
             ],
-            "low_level_plan": {
-                "instructions": [
-                    "move_to(5, 5)",
-                    "rotate(0)",
-                    "scan_field()"
-                ]
-            }
+            "low_level_plan": "RobotDog.process_messages()\nRobotDog.get_position_data('ball_square_center')\nRobotDog.move_to(ball_square_center_x, ball_square_center_y)\nRobotDog.has_reached(ball_square_center_x, ball_square_center_y)\nRobotDog.get_position_data()\nRobotDog.send_data_to_apm()"
         },
         {
             "target": "ROBOT_DOG",
@@ -36,13 +30,7 @@
                 "ball_location_y (float)",
                 "ball_confidence_score (float)"
             ],
-            "low_level_plan": {
-                "instructions": [
-                    "move_to(ball_square_center_x, ball_square_center_y)",
-                    "rotate(0)",
-                    "scan_area(dog_location_x, dog_location_y)"
-                ]
-            }
+            "low_level_plan": "RobotDog.get_position_data()\nRobotDog.detect_with_camera('ball')\nRobotDog.get_position_data('ball')\nRobotDog.send_data_to_apm()"
         },
         {
             "target": "ROBOT_DOG",
@@ -56,13 +44,7 @@
             "outputs": [
                 "pickup_success (float)"
             ],
-            "low_level_plan": {
-                "instructions": [
-                    "move_to(ball_location_x, ball_location_y)",
-                    "rotate(0)",
-                    "pickup_ball()"
-                ]
-            }
+            "low_level_plan": "RobotDog.get_position_data('ball')\nRobotDog.move_to(ball_location_x, ball_location_y)\nRobotDog.has_reached(ball_location_x, ball_location_y)\nRobotDog.jump()\nRobotDog.send_data_to_apm()"
         },
         {
             "target": "ROBOT_DOG",
@@ -75,13 +57,7 @@
             "outputs": [
                 "return_success (float)"
             ],
-            "low_level_plan": {
-                "instructions": [
-                    "move_to(25, 25)",
-                    "rotate(0)",
-                    "return_to_start()"
-                ]
-            }
+            "low_level_plan": "RobotDog.get_position_data('pickup_success')\nRobotDog.move_to(25.0, 25.0)\nRobotDog.has_reached(25.0, 25.0)\nRobotDog.send_data_to_apm()"
         }
     ]
 }

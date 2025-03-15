@@ -44,20 +44,22 @@ def get_target_rules(target):
     if target.upper() == "DRONE":
         return (
             """
-            - ONLY use the functions provided. Do not invent or assume additional functions.
+            - ONLY use the functions provided in the specification for the drone. Do not invent or assume additional functions.
             - NO loops (for, while) and NO recursive calls.
             - Each phase must be independent, executing only after the previous phase completes.
             - If the drone needs to wait, explicitly include an idle state.
+            - You are responsible for the translation of the high-level plan of the drone into a low-level set of executable drone instructions using ONLY the provded instructions. You won't be doing anything for the robot dog.  
             """
         )
     elif target.upper() == "ROBOT_DOG":
         return (
             """
-            - ONLY use the functions provided. Do not invent or assume additional functions.
+            - ONLY use the functions provided in the specification for the robot dog. Do not invent or assume additional functions.
             - NO loops (for, while) and NO recursive calls.
             - Each phase must be independent, executing only after the previous phase completes.
             - If the robot dog needs to wait, explicitly include an idle state.
             - Every movement must be verified using `if RobotDog.has_reached(X, Y):` before proceeding.
+            - You are responsible for the translation of the high-level plan of the robot dog into a low-level set of executable robot dog instructions using ONLY the provded instructions. You won't be doing anything for the drone.  
             """
         )
     else:
@@ -191,5 +193,5 @@ def main():
 if __name__ == "__main__":
     main()
 
-# python Low_Level_Planner.py Plans\mission_plan.json mission_files\mission_scenario.txt  mission_files/drone_specifications.txt DRONE Plans\updated_drone_mission_plan.json
-# python Low_Level_Planner.py Plans\mission_plan.json mission_files\mission_scenario.txt  mission_files/dog_specifications.txt DOG Plans\updated_dog_mission_plan.json
+# python Low_Level_Planner.py Plans/mission_plan.json mission_files/mission_scenario.txt  mission_files/drone_specifications.txt DRONE Plans/updated_drone_mission_plan_with_low.json
+# python Low_Level_Planner.py Plans/mission_plan.json mission_files/mission_scenario.txt  mission_files/dog_specifications.txt ROBOT_DOG Plans/dog_mission_plan_with_low.json
