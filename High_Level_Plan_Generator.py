@@ -107,18 +107,24 @@ def parse_generated_plan(llm, generated_text, target):
     )
 
     plan = Plan(extracted_target)
+    def parse_variables(variable_text):
+        """Extracts variable names and types from text like 'X <float>, Y <int>' into a dictionary."""
+        variable_dict = {}
+        variable_matches = re.findall(r'(\w+)\s*<(\w+)>', variable_text)
+        for var_name, var_type in variable_matches:
+            variable_dict[var_name.strip()] = {"type": var_type.strip()}
+        return variable_dict
 
     for phase_num, state, phase_target, inputs, outputs in phase_pattern:
-        inputs_list = [i.strip() for i in inputs.split(",") if i.strip()]
-        outputs_list = [o.strip() for o in outputs.split(",") if o.strip()]
-        
+        inputs_dict = parse_variables(inputs)
+        outputs_dict = parse_variables(outputs)
         plan.add_phase(PlanPhase(
             extracted_target, 
             int(phase_num.strip()), 
             state.strip(), 
             phase_target.strip(), 
-            inputs_list, 
-            outputs_list
+            inputs_dict, 
+            outputs_dict
         ))
 
     return plan
@@ -144,6 +150,8 @@ def generate_plan(llm, mission_text, target):
        - Clearly describe the **robot's current state** before each phase.  
        - Provide relevant **sensor data, positional information, or active tasks** in the state.  
        - Avoid vague descriptions like "waiting" or "processing"; be specific.  
+       - Summarize the main mission we have in the state and also summarize the progress we had so far in the mission.
+       - Make state descrption around 70 words for each phase. 
 
     2. **Phase Independence**  
        - Each phase must be fully independent and self-contained.  
@@ -152,31 +160,31 @@ def generate_plan(llm, mission_text, target):
        - This ensures clarity in execution.  
 
     3. **Strict Data Type Constraints**  
-       - **All variables must be numerical and of type float.**  
-       - There are **no complex types, arrays, or non-numerical values** in the inputs or outputs.  
+       - **All variables can be either strings or floats**  
+       - There are **no complex types or arrays** in the inputs or outputs.  
        - Example: If the output of one phase is a location, it should be defined as:  
-         - `Outputs: [X (float), Y (float)]`  
-       - Similarly, if an object is detected, the output should be numerical:  
-         - `Outputs: [object_confidence_score (float)]`  
+         - `Outputs: [X <float>, Y  <float>]`  
+       - Similarly, if an object is detected, the output should be string:  
+         - `Outputs: [detection_status <string>]`  
 
     **Example Format:**  
 
     **Drone Plan:**  
     ```
     Phase 1:  
-    - State: The drone is hovering at altitude 10.0 meters, scanning for objects with its onboard camera.  
+    - State: We had a mission to locate an object and it requires a drone. The drone is hovering at altitude 10.0 meters, scanning for objects with its onboard camera.  
     - Target: Identify the object's coordinates.  
     - Inputs: []  
-    - Outputs: [X , Y]  
+    - Outputs: [X <float> , Y <float>]  
     ```
 
     **Robot Dog Plan:**  
     ```
     Phase 1:  
-    - State: The robot dog is standing at the base station, ready to navigate.  
+    - State: We have a mission to locate and grap an object. We had a drone that locates the object and the dog should grap it. The robot dog is standing at the base station, ready to navigate.  
     - Target: Given a coordinate (X, Y), move to the object's location and retrieve it.  
-    - Inputs: [X , Y ]  
-    - Outputs: [retrieval_status]  
+    - Inputs: [X <float>, Y <float>]  
+    - Outputs: [retrieval_status <string>]  
     ```
 
     **Final Constraints:**  
@@ -250,7 +258,7 @@ def main():
         return
 
     llm = ChatOpenAI(
-        model_name="gpt-4o",
+        model_name="gpt-4o-mini",
         openai_api_key=os.getenv("OPENAI_API_KEY"),
         temperature=0.1
     )
