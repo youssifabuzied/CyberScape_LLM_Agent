@@ -90,7 +90,7 @@ def parse_generated_plan(llm, generated_text, target):
     if not response:
         raise ValueError("Error: LLM returned an empty response.")
 
-    structured_text = response.strip()
+    structured_text = response.content.strip()
 
     # Extract the target
     target_match = re.search(r'Target:\s*(\w+)', structured_text)
@@ -167,7 +167,7 @@ def generate_plan(llm, mission_text, target):
     - State: The drone is hovering at altitude 10.0 meters, scanning for objects with its onboard camera.  
     - Target: Identify the object's coordinates.  
     - Inputs: []  
-    - Outputs: [X (float), Y (float)]  
+    - Outputs: [X , Y]  
     ```
 
     **Robot Dog Plan:**  
@@ -175,15 +175,17 @@ def generate_plan(llm, mission_text, target):
     Phase 1:  
     - State: The robot dog is standing at the base station, ready to navigate.  
     - Target: Given a coordinate (X, Y), move to the object's location and retrieve it.  
-    - Inputs: [X (float), Y (float)]  
-    - Outputs: [retrieval_status (float)]  
+    - Inputs: [X , Y ]  
+    - Outputs: [retrieval_status]  
     ```
 
     **Final Constraints:**  
     - **Strictly follow the given format.**  
     - **No explanations—return only structured text.**  
-    - **Ensure logical input-output flow between phases.**  
+    - **Ensure logical input-output flow between phases.**
+    - **If the plan is only targetting a single robot. Do it provide any plan for the other robot just return nothing under the name of the other robot.  
     - **The drone and robot dog should communicate through outputs and inputs only.**  
+    - **The input and output variables are variables related to the environment and the progress of the mission not processing.** 
     """
     
 
@@ -247,14 +249,12 @@ def main():
         print("Error: Mission scenario file is empty or missing.")
         return
 
-    # Initialize LangChain LLM
-    # llm = ChatOpenAI(
-    #     api_key="AIzaSyAfx9T8FOqRbkaYWF8QafsbEER6Rtcnb0Y",
-    #     base_url="https://api.sambanova.ai/v1",
-    #     model_name="Meta-Llama-3.1-405B-Instruct",
-    #     temperature=0.1
-    # )
-    llm = GoogleGenerativeAI(model="gemini-2.0-flash", google_api_key = "AIzaSyAfx9T8FOqRbkaYWF8QafsbEER6Rtcnb0Y")
+    llm = ChatOpenAI(
+        model_name="gpt-4o",
+        openai_api_key=os.getenv("OPENAI_API_KEY"),
+        temperature=0.1
+    )
+
 
 
     drone_plan = generate_plan(llm, mission_text, "DRONE")
@@ -268,7 +268,7 @@ def main():
         "robot_dog_plan": robot_dog_plan.to_dict()
     }
 
-    with open("Plans\mission_plan.json", 'w') as output_file:
+    with open("Plans/mission_plan.json", 'w') as output_file:
         json.dump(mission_output, output_file, indent=4)
 
     print("Mission Plan written to Plans\mission_plan.json")
