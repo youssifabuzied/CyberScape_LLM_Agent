@@ -1,0 +1,12 @@
+Phase 1:
+RobotDog.move_to(25.0, 25.0)
+
+Phase 2:
+if RobotDog.has_reached(25.0, 25.0): RobotDog.scan_area()
+
+Phase 3:
+if ball_detected: RobotDog.move_to(ball_coordinates_X, ball_coordinates_Y)
+
+Phase 4:
+if RobotDog.has_reached(ball_coordinates_X, ball_coordinates_Y): RobotDog.pick_up_ball()
+

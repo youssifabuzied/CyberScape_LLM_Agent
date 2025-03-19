@@ -1,0 +1,16 @@
+{
+  "mission_plan_file": "Plans/mission_plan.json",
+  "mission_text_file": "mission_files/mission_scenario.txt",
+  "drone_spec_file": "mission_files/drone_specifications.txt",
+  "dog_spec_file": "mission_files/dog_specifications.txt",
+  "dog_low_verification_rubric": "Rubrics/Dog_Low_Rubric.txt",
+  "drone_low_verification_rubric": "Rubrics/Drone_Low_Rubric.txt",
+  "dog_output_file": "Plans/final_dog_low_level_plan.json",
+  "drone_output_file": "Plans/final_drone_low_level_plan.json",
+  "dog_temp_low_level_plan": "Plans/intermediate/temp_dog_low_level_plan.txt",
+  "drone_temp_low_level_plan": "Plans/intermediate/temp_drone_low_level_plan.txt",
+  "dog_verified_plan_file": "Plans/intermediate/verified_dog_plan.txt",
+  "drone_verified_plan_file": "Plans/intermediate/verified_drone_plan.txt",
+  "dog_parsed_plan_file": "Plans/intermediate/parsed_dog_verified_plan.txt",
+  "drone_parsed_plan_file": "Plans/intermediate/parsed_drone_verified_plan.txt"
+}

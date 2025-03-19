@@ -1,0 +1,57 @@
+{
+    "target": "ROBOT_DOG",
+    "phases": [
+        {
+            "target": "ROBOT_DOG",
+            "phase_number": 1,
+            "state": "The robot dog is at the starting point (25.0, 25.0), ready to receive coordinates from the drone.",
+            "phase_target": "Given a coordinate (X, Y), move to the location and prepare to scan for the ball.",
+            "inputs": [
+                "X",
+                "Y"
+            ],
+            "outputs": [
+                "movement_status"
+            ],
+            "low_level_plan": "RobotDog.move_to(25.0, 25.0)"
+        },
+        {
+            "target": "ROBOT_DOG",
+            "phase_number": 2,
+            "state": "The robot dog has arrived at the coordinate (X, Y) and is now scanning the area within a 2-meter radius.",
+            "phase_target": "Detect if the ball is within the scanning range.",
+            "inputs": [],
+            "outputs": [
+                "ball_detected",
+                "ball_coordinates_X",
+                "ball_coordinates_Y"
+            ],
+            "low_level_plan": "RobotDog.scan_area()"
+        },
+        {
+            "target": "ROBOT_DOG",
+            "phase_number": 3,
+            "state": "The robot dog has received the ball detection status and coordinates. If the ball is detected, it is preparing to retrieve it.",
+            "phase_target": "Move to the ball's coordinates and pick it up.",
+            "inputs": [
+                "ball_coordinates_X",
+                "ball_coordinates_Y"
+            ],
+            "outputs": [
+                "retrieval_status"
+            ],
+            "low_level_plan": "RobotDog.move_to(ball_coordinates_X, ball_coordinates_Y)"
+        },
+        {
+            "target": "ROBOT_DOG",
+            "phase_number": 4,
+            "state": "The robot dog has successfully retrieved the ball and is now returning to the starting point (25.0, 25.0).",
+            "phase_target": "Move back to the starting point with the ball.",
+            "inputs": [],
+            "outputs": [
+                "return_status"
+            ],
+            "low_level_plan": "RobotDog.pick_up_ball()"
+        }
+    ]
+}

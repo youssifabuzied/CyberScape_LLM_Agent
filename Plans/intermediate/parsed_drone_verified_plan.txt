@@ -1,0 +1,17 @@
+Phase 1:
+Drone.move_to_point((5.0, 5.0, 10.0))
+Drone.scan_area()
+Drone.communicate_with_apm({'ball_area_x': ball_area_x, 'ball_area_y': ball_area_y})
+
+Phase 2:
+Drone.move_to_point((ball_area_x, ball_area_y, 10.0))
+Drone.communicate_with_apm({'target_x': target_x, 'target_y': target_y})
+
+Phase 3:
+Drone.wait_for_signal()
+Drone.scan_area()
+
+Phase 4:
+Drone.wait_for_signal()
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'ball_x': ball_x, 'ball_y': ball_y})

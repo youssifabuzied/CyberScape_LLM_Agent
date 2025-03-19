@@ -1,0 +1,142 @@
+{
+    "target": "DRONE",
+    "phases": [
+        {
+            "target": "DRONE",
+            "phase_number": 1,
+            "state": "The drone is hovering at altitude 10.0 meters, located at coordinates (5.0, 5.0), scanning for the ball within the 10x10 meters area.",
+            "phase_target": "Identify the coordinates of the 10x10 meters square containing the ball.",
+            "inputs": [],
+            "outputs": [
+                "ball_area_x",
+                "ball_area_y"
+            ],
+            "low_level_plan": "Drone.move_to_point((5.0, 5.0, 10.0))\nDrone.scan_area()\nDrone.communicate_with_apm({'ball_area_x': ball_area_x, 'ball_area_y': ball_area_y})"
+        },
+        {
+            "target": "DRONE",
+            "phase_number": 2,
+            "state": "The drone is hovering at altitude 10.0 meters, having identified the ball's area at coordinates (ball_area_x, ball_area_y).",
+            "phase_target": "Calculate the center of the identified area to provide the robot dog with a target location.",
+            "inputs": [
+                "ball_area_x",
+                "ball_area_y"
+            ],
+            "outputs": [
+                "target_x",
+                "target_y"
+            ],
+            "low_level_plan": "Drone.move_to_point((ball_area_x, ball_area_y, 10.0))\nDrone.communicate_with_apm({'target_x': target_x, 'target_y': target_y})"
+        },
+        {
+            "target": "DRONE",
+            "phase_number": 3,
+            "state": "The drone is hovering at altitude 10.0 meters, having provided the robot dog with the target coordinates (target_x, target_y).",
+            "phase_target": "Confirm if the robot dog has successfully reached the target location.",
+            "inputs": [
+                "target_x",
+                "target_y"
+            ],
+            "outputs": [
+                "dog_reached_target"
+            ],
+            "low_level_plan": "Drone.wait_for_signal()\nDrone.scan_area()"
+        },
+        {
+            "target": "DRONE",
+            "phase_number": 4,
+            "state": "The drone is hovering at altitude 10.0 meters, waiting for confirmation that the robot dog has reached the target location.",
+            "phase_target": "If the robot dog has reached the target, scan the 1x1 meter cell for the ball.",
+            "inputs": [
+                "dog_reached_target"
+            ],
+            "outputs": [
+                "ball_detected",
+                "ball_x",
+                "ball_y"
+            ],
+            "low_level_plan": "Drone.wait_for_signal()\nDrone.detect_with_camera('ball')\nDrone.communicate_with_apm({'ball_x': ball_x, 'ball_y': ball_y})"
+        },
+        {
+            "target": "DRONE",
+            "phase_number": 5,
+            "state": "The drone is hovering at altitude 10.0 meters, having detected the ball's coordinates (ball_x, ball_y).",
+            "phase_target": "Provide the robot dog with the exact coordinates of the ball for retrieval.",
+            "inputs": [
+                "ball_x",
+                "ball_y"
+            ],
+            "outputs": [
+                "retrieve_ball_x",
+                "retrieve_ball_y"
+            ],
+            "low_level_plan": ""
+        },
+        {
+            "target": "DRONE",
+            "phase_number": 6,
+            "state": "The drone is hovering at altitude 10.0 meters, having provided the robot dog with the ball's coordinates (retrieve_ball_x, retrieve_ball_y).",
+            "phase_target": "Confirm that the robot dog has retrieved the ball and is returning to the starting point.",
+            "inputs": [
+                "retrieve_ball_x",
+                "retrieve_ball_y"
+            ],
+            "outputs": [
+                "ball_retrieved"
+            ],
+            "low_level_plan": ""
+        },
+        {
+            "target": "DRONE",
+            "phase_number": 1,
+            "state": "The robot dog is standing at the base station, ready to navigate.",
+            "phase_target": "Given a coordinate (target_x, target_y), move to the target location to scan for the ball.",
+            "inputs": [
+                "target_x",
+                "target_y"
+            ],
+            "outputs": [
+                "dog_reached_target"
+            ],
+            "low_level_plan": "Drone.move_to_point((5.0, 5.0, 10.0))\nDrone.scan_area()\nDrone.communicate_with_apm({'ball_area_x': ball_area_x, 'ball_area_y': ball_area_y})"
+        },
+        {
+            "target": "DRONE",
+            "phase_number": 2,
+            "state": "The robot dog is at the target location (target_x, target_y), scanning the area for the ball.",
+            "phase_target": "Scan the 1x1 meter cell for the ball.",
+            "inputs": [],
+            "outputs": [
+                "ball_detected",
+                "ball_x",
+                "ball_y"
+            ],
+            "low_level_plan": "Drone.move_to_point((ball_area_x, ball_area_y, 10.0))\nDrone.communicate_with_apm({'target_x': target_x, 'target_y': target_y})"
+        },
+        {
+            "target": "DRONE",
+            "phase_number": 3,
+            "state": "The robot dog has detected the ball at coordinates (ball_x, ball_y).",
+            "phase_target": "Move to the ball's location to retrieve it.",
+            "inputs": [
+                "ball_x",
+                "ball_y"
+            ],
+            "outputs": [
+                "ball_retrieved"
+            ],
+            "low_level_plan": "Drone.wait_for_signal()\nDrone.scan_area()"
+        },
+        {
+            "target": "DRONE",
+            "phase_number": 4,
+            "state": "The robot dog has retrieved the ball and is returning to the starting point.",
+            "phase_target": "Navigate back to the base station at coordinates (25.0, 25.0).",
+            "inputs": [],
+            "outputs": [
+                "return_status"
+            ],
+            "low_level_plan": "Drone.wait_for_signal()\nDrone.detect_with_camera('ball')\nDrone.communicate_with_apm({'ball_x': ball_x, 'ball_y': ball_y})"
+        }
+    ]
+}
