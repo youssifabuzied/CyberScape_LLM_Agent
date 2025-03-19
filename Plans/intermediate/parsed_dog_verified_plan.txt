@@ -1,5 +1,5 @@
 Phase 1:
-RobotDog.move_to(25.0, 25.0)
+RobotDog.move_to(X, Y)
 
 Phase 2:
 RobotDog.scan_area()
@@ -8,4 +8,4 @@ Phase 3:
 RobotDog.move_to(ball_coordinates_X, ball_coordinates_Y)
 
 Phase 4:
-RobotDog.pick_up_ball()
+RobotDog.move_to(25.0, 25.0)

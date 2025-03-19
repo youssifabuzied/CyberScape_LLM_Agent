@@ -64,6 +64,7 @@ def get_target_rules(target):
             - Each phase must be independent, executing only after the previous phase completes.
             - If the drone needs to wait, explicitly include an idle state.
             - You are responsible for the translation of the high-level plan of the drone into a low-level set of executable drone instructions using ONLY the provided instructions. You won't be doing anything for the robot dog.  
+            - You can use the set of Input variables for a given phase for the functions if needed. 
             """
         )
     elif target.upper() == "ROBOT_DOG":
@@ -75,6 +76,7 @@ def get_target_rules(target):
             - If the robot dog needs to wait, explicitly include an idle state.
             - Every movement must be verified using `if RobotDog.has_reached(X, Y):` before proceeding.
             - You are responsible for the translation of the high-level plan of the robot dog into a low-level set of executable robot dog instructions using ONLY the provided instructions. You won't be doing anything for the drone.  
+            - You can use the set of Input variables for a given phase for the functions if needed. 
             """
         )
     else:
@@ -123,7 +125,7 @@ Please follow these format instructions:
 
 Output a JSON object where each key is the phase number (as a string) and each value is the low-level instruction block for that phase. Don't output any other text. Make sure that the instructions follow the format provided in the example (instructions start with "RobotDog." for the robot dog, and "Drone." for the drone). 
     """
-    # print("LLM Prompt:\n", prompt)  # For debugging
+    print("LLM Prompt:\n", prompt)  # For debugging
 
     response = llm.invoke([
         SystemMessage(content="You are a helpful assistant."),

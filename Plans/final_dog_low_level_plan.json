@@ -13,7 +13,7 @@
             "outputs": [
                 "movement_status"
             ],
-            "low_level_plan": "RobotDog.move_to(25.0, 25.0)"
+            "low_level_plan": "RobotDog.move_to(X, Y)"
         },
         {
             "target": "ROBOT_DOG",
@@ -51,7 +51,7 @@
             "outputs": [
                 "return_status"
             ],
-            "low_level_plan": "RobotDog.pick_up_ball()"
+            "low_level_plan": "RobotDog.move_to(25.0, 25.0)"
         }
     ]
 }
