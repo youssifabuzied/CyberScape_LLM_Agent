@@ -1,12 +1,13 @@
 import openai
 import os
 import argparse
+import json
 from Manager import read_file
 from dotenv import load_dotenv
 
 load_dotenv()
 
-def Pparser(plan_file: str) -> str:
+def Pparser(plan_file: str, target:str) -> str:
     """
     Processes a plan file:
     - Deletes lines starting with 'Phase'.
@@ -18,11 +19,11 @@ def Pparser(plan_file: str) -> str:
     :return: A string containing the filtered plan with proper formatting.
     """
     prompt = f'''
-    We had the following instructions sent to a robot to execute
+    We have the following instructions to be sent to a {target} to execute
     {plan_file}
     Your task is to extract the instructions that the robot will execute. Instructions are in this format:
-    Drone.instruction()
-    RobotDog.instruction() // depends on the type of the robot
+    Drone.instruction() // for the drone
+    RobotDog.instruction() // for the robot dog
     You will find the instructions mixed with if statments or assign statments. You need to only to extract the instructions and the paramters passed to them. 
     Each instruction belongs to a specific phase in the original plan. You **must** include "Phase X:" before listing the instructions for that phase.
     Output instructions such that each instruction is on a line. You need to extract the instructions yourself. Do nor output a code that does so. Do it yourself and output the parsed instructions to me.
@@ -51,19 +52,26 @@ def Pparser(plan_file: str) -> str:
 def main():
     parser = argparse.ArgumentParser(description="Parsing instructions")
 
-    # Add arguments for the file paths
-    parser.add_argument("plan_file_path", help="Path to the plan file")
-
-    # Parse the arguments
+    parser.add_argument("target", help="Target robot for the plan")
     args = parser.parse_args()
+
+    with open("config.json", "r") as f:
+        config = json.load(f)
+
+    if args.target == "ROBOT_DOG":
+        plan_file_path = config["dog_verified_plan_file"]
+        parsed_file = config["dog_parsed_plan_file"]
+    else:
+        plan_file_path = config["drone_verified_plan_file"]
+        parsed_file = config["drone_parsed_plan_file"]
+
     print("Instructions are being parsed.............")
 
-    plan_file_path = args.plan_file_path
     plan_file = read_file(plan_file_path)
     # print(plan_file)
-    filtered_plan = Pparser(plan_file)
+    filtered_plan = Pparser(plan_file, args.target)
     # with open(f"parsed_{plan_file_path}", "w") as file:
-    with open(f"Plans/verified_and_parsed/parsed_temp_verified_plan.txt", "w") as file:
+    with open(f"{parsed_file}", "w") as file:
         file.write(filtered_plan)
 if __name__ == "__main__":
     main()

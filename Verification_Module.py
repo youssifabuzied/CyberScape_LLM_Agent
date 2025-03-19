@@ -4,6 +4,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage
 from Manager import read_file
 import warnings
+import json
 warnings.filterwarnings("ignore")
 
 def generate_verification_prompt(mission, plan, rubric):
@@ -43,7 +44,7 @@ def generate_improvement_prompt(mission, plan, rubric, evaluation):
     Evaluation Feedback:
     {evaluation}
 
-    Using the evaluation feedback above, generate an improved version of the plan that corrects the weaknesses while preserving the strengths. 
+    Using the evaluation feedback above, generate an improved version of the plan (in the same format) that corrects the weaknesses while preserving the strengths. 
     Make sure the new plan strictly follows the rubric and addresses all identified issues.
 
     **Output only the revised plan.** Do NOT include explanations or commentary.
@@ -76,15 +77,30 @@ def verify_plan(llm, mission, plan, rubric):
 
 def main():
     parser = argparse.ArgumentParser(description="Verifies and improves a generated plan based on a rubric.")
-    parser.add_argument("rubric_file", help="Path to the rubric file")
-    parser.add_argument("plan_file", help="Path to the initial plan file")
-    parser.add_argument("mission_file", help="Path to the mission description file")
-    parser.add_argument("output_file", help="Path to save the verified plan")
+    # parser.add_argument("rubric_file", help="Path to the rubric file")
+    # parser.add_argument("plan_file", help="Path to the initial plan file")
+    # parser.add_argument("mission_file", help="Path to the mission description file")
+    # parser.add_argument("output_file", help="Path to save the verified plan")
+    parser.add_argument("target", help="Target robot for the plan")
     args = parser.parse_args()
+
+    with open("config.json", "r") as f:
+        config = json.load(f)
+
     
-    rubric = read_file(args.rubric_file)
-    plan = read_file(args.plan_file)
-    mission = read_file(args.mission_file)
+    mission_file = config["mission_text_file"]
+    if args.target == "ROBOT_DOG":
+        rubric_file = config["dog_low_verification_rubric"]
+        output_file = config["dog_verified_plan_file"]
+        plan_file = config["dog_temp_low_level_plan"]
+    else:
+        rubric_file = config["drone_low_verification_rubric"]
+        output_file = config["drone_verified_plan_file"]
+        plan_file = config["drone_temp_low_level_plan"]
+    
+    rubric = read_file(rubric_file)
+    plan = read_file(plan_file)
+    mission = read_file(mission_file)
     
     llm = ChatOpenAI(
         api_key="c7e68755-3cfd-4f4a-a695-6a41af9ffd23",
@@ -95,10 +111,10 @@ def main():
     
     verified_plan = verify_plan(llm, mission, plan, rubric)
     
-    with open(args.output_file, "w") as file:
+    with open(output_file, "w") as file:
         file.write(verified_plan)
     
-    print("Verification complete. Finalized plan saved to", args.output_file)
+    print("Verification complete. Finalized plan saved to", output_file)
 
 if __name__ == "__main__":
     main()
