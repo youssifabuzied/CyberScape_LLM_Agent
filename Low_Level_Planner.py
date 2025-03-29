@@ -7,7 +7,7 @@ import json
 from dotenv import load_dotenv
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage
-from Manager import read_file
+from Utils import read_file
 
 # NEW: Import the Pydantic output parser and related classes
 from langchain.output_parsers import PydanticOutputParser
@@ -76,7 +76,7 @@ def get_target_rules(target):
             - If the robot dog needs to wait, explicitly include an idle state.
             - Every movement must be verified using `if RobotDog.has_reached(X, Y):` before proceeding.
             - You are responsible for the translation of the high-level plan of the robot dog into a low-level set of executable robot dog instructions using ONLY the provided instructions. You won't be doing anything for the drone.  
-            - You can use the set of Input variables for a given phase for the functions if needed. 
+            - You can use the set of Input variables for a given phase and pass them when calling the functions you use in the low-level plan if needed. 
             """
         )
     else:
@@ -111,7 +111,7 @@ Original Mission:
 Robot specifications for {target}:
 {robot_spec}
 
-Below is the initial plan that has the high-level instructions for the {target} plan. In each phase, "State" represents the current status of the mission, "Phase Target" represents the high-level objective for that phase (which you will be translating into a set of low-level instructions), and there can be "Inputs" (variables that might be needed) as well as "Outputs" that might be used by subsequent phases:
+Below is the initial plan that has the high-level instructions for the {target} plan. In each phase, "State" represents the current status of the mission, "Phase Target" represents the high-level objective for that phase (which you will be translating into a set of low-level instructions), and there can be "Inputs" (variables that might be needed, along with their types) as well as "Outputs" that might be used by subsequent phases:
 {phases_text}
 
 Rules for the plan generation:
@@ -278,7 +278,7 @@ def main():
 
     # --------- Step 3: Parsing Step ---------
     # Call the plan_parser on the verified plan text to clean/parse it
-    parsing_command = f"python3 plan_parser.py {args.target}"
+    parsing_command = f"python3 Plan_Parser.py {args.target}"
     run_subprocess_command(parsing_command, shell=True, cwd=r"\\wsl.localhost\Ubuntu\home\zein\Uni\Thesis\CyberScape_LLM_Agent")
     # Get the output of plan_parser
     if args.target == "ROBOT_DOG":

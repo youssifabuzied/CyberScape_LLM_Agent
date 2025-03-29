@@ -2,7 +2,7 @@ import openai
 import os
 import argparse
 import json
-from Manager import read_file
+from Utils import read_file
 from dotenv import load_dotenv
 
 load_dotenv()

@@ -1,12 +1,13 @@
 Phase 1:
-RobotDog.move_to(X, Y)
+RobotDog.idle()
 
 Phase 2:
-RobotDog.scan_area()
+RobotDog.move_to(X, Y)
+if RobotDog.has_reached(X, Y):
+    RobotDog.retrieve_ball()
 
 Phase 3:
-RobotDog.move_to(ball_coordinates_X, ball_coordinates_Y)
-
-Phase 4:
-RobotDog.move_to(25.0, 25.0)
+RobotDog.move_to(25, 25)
+if RobotDog.has_reached(25, 25):
+    RobotDog.release_ball()
 

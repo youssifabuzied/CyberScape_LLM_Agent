@@ -4,54 +4,51 @@
         {
             "target": "ROBOT_DOG",
             "phase_number": 1,
-            "state": "The robot dog is at the starting point (25.0, 25.0), ready to receive coordinates from the drone.",
-            "phase_target": "Given a coordinate (X, Y), move to the location and prepare to scan for the ball.",
-            "inputs": [
-                "X",
-                "Y"
-            ],
-            "outputs": [
-                "movement_status"
-            ],
-            "low_level_plan": "RobotDog.move_to(X, Y)"
+            "state": "We have a mission to locate and retrieve a ball from a field. The robot dog is stationed at the starting point (25, 25) and is ready to receive coordinates from the drone. The drone has been tasked with scanning the area to find the ball's location.",
+            "phase_target": "Wait for the drone to provide the coordinates of the ball's location.",
+            "inputs": [],
+            "outputs": {
+                "X": {
+                    "type": "float"
+                },
+                "Y": {
+                    "type": "float"
+                }
+            },
+            "low_level_plan": "RobotDog.idle()"
         },
         {
             "target": "ROBOT_DOG",
             "phase_number": 2,
-            "state": "The robot dog has arrived at the coordinate (X, Y) and is now scanning the area within a 2-meter radius.",
-            "phase_target": "Detect if the ball is within the scanning range.",
-            "inputs": [],
-            "outputs": [
-                "ball_detected",
-                "ball_coordinates_X",
-                "ball_coordinates_Y"
-            ],
-            "low_level_plan": "RobotDog.scan_area()"
+            "state": "The robot dog has received the coordinates (X, Y) from the drone indicating the ball's location. The dog is currently at (25, 25) and is preparing to navigate to the ball's position.",
+            "phase_target": "Move to the ball's location (X, Y) to retrieve it.",
+            "inputs": {
+                "X": {
+                    "type": "float"
+                },
+                "Y": {
+                    "type": "float"
+                }
+            },
+            "outputs": {
+                "retrieval_status": {
+                    "type": "string"
+                }
+            },
+            "low_level_plan": "RobotDog.move_to(X, Y)\nRobotDog.retrieve_ball()"
         },
         {
             "target": "ROBOT_DOG",
             "phase_number": 3,
-            "state": "The robot dog has received the ball detection status and coordinates. If the ball is detected, it is preparing to retrieve it.",
-            "phase_target": "Move to the ball's coordinates and pick it up.",
-            "inputs": [
-                "ball_coordinates_X",
-                "ball_coordinates_Y"
-            ],
-            "outputs": [
-                "retrieval_status"
-            ],
-            "low_level_plan": "RobotDog.move_to(ball_coordinates_X, ball_coordinates_Y)"
-        },
-        {
-            "target": "ROBOT_DOG",
-            "phase_number": 4,
-            "state": "The robot dog has successfully retrieved the ball and is now returning to the starting point (25.0, 25.0).",
-            "phase_target": "Move back to the starting point with the ball.",
+            "state": "The robot dog has successfully retrieved the ball and is now carrying it. The dog is currently at the ball's location (X, Y) and is ready to return to the starting point (25, 25).",
+            "phase_target": "Navigate back to the starting point (25, 25) with the ball.",
             "inputs": [],
-            "outputs": [
-                "return_status"
-            ],
-            "low_level_plan": "RobotDog.move_to(25.0, 25.0)"
+            "outputs": {
+                "return_status": {
+                    "type": "string"
+                }
+            },
+            "low_level_plan": "RobotDog.move_to(25, 25)\nRobotDog.release_ball()"
         }
     ]
 }

@@ -15,13 +15,13 @@ def initialize_vector_store():
     if not os.path.exists("db"):
         os.makedirs("db")
     
-    loader = TextLoader("scanning_and_motion_planning.txt")  # Store past missions here
+    loader = TextLoader("Scanning_and_Motion_Planning.txt")  # Store past missions here
     documents = loader.load()
 
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
     texts = text_splitter.split_documents(documents)
 
-    vector_store = Chroma.from_documents(texts, OpenAIEmbedd    ings(model="text-embedding-ada-002"), persist_directory="db")
+    vector_store = Chroma.from_documents(texts, OpenAIEmbeddings(model="text-embedding-ada-002"), persist_directory="db")
     vector_store.persist()
     
     return vector_store

@@ -2,7 +2,7 @@ import argparse
 import asyncio
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage
-from Manager import read_file
+from Utils import read_file
 import warnings
 import json
 warnings.filterwarnings("ignore")

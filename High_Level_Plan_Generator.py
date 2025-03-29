@@ -5,7 +5,7 @@ import json
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage
 from langchain.prompts import PromptTemplate
-from Manager import read_file
+from Utils import read_file
 from langchain_google_genai import GoogleGenerativeAI
 
 # Load Gemini Pro Model
@@ -246,24 +246,24 @@ def refine_plan(llm, mission_text, plan):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate and refine a structured mission plan")
-    parser.add_argument("mission_scenario", help="Path to the mission_scenario.txt file")
-    args = parser.parse_args()
+    with open("config.json", "r") as f:
+        config = json.load(f)
+    
+    # Load the mission text file from the config, default to "mission_files/mission_scenario.txt" if not provided
+    mission_text_file = config.get("mission_text_file", "mission_files/mission_scenario.txt")
 
     print("Generating structured mission plan...")
 
-    mission_text = read_file(args.mission_scenario)
+    mission_text = read_file(mission_text_file)
     if not mission_text:
         print("Error: Mission scenario file is empty or missing.")
         return
-
+    
     llm = ChatOpenAI(
         model_name="gpt-4o-mini",
         openai_api_key=os.getenv("OPENAI_API_KEY"),
         temperature=0.1
     )
-
-
 
     drone_plan = generate_plan(llm, mission_text, "DRONE")
     robot_dog_plan = generate_plan(llm, mission_text, "ROBOT_DOG")
@@ -276,11 +276,11 @@ def main():
         "robot_dog_plan": robot_dog_plan.to_dict()
     }
 
-    with open("Plans/mission_plan.json", 'w') as output_file:
+    mission_plan_file = config.get("mission_plan_file", "Plans/mission_plan.json")
+    with open(mission_plan_file, 'w') as output_file:
         json.dump(mission_output, output_file, indent=4)
 
-    print("Mission Plan written to Plans\mission_plan.json")
-
+    print("Mission Plan written to", mission_plan_file)
 
 if __name__ == "__main__":
     main()
