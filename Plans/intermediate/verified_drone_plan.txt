@@ -1,54 +1,131 @@
 Phase 1:
+Drone.fly(10.0)
 Drone.move_to_point((5.0, 5.0, 10.0))
 Drone.scan_area()
-if Drone.scan_successful():
-    Drone.communicate_with_apm({'ball_area_x': ball_area_x, 'ball_area_y': ball_area_y})
+if Drone.detect_with_camera('ball'):
+    X, Y = Drone.get_position_data()[:2]
+else:
+    Drone.move_to_point((15.0, 5.0, 10.0))
+    Drone.scan_area()
+    if Drone.detect_with_camera('ball'):
+        X, Y = Drone.get_position_data()[:2]
+    else:
+        Drone.move_to_point((25.0, 5.0, 10.0))
+        Drone.scan_area()
+        if Drone.detect_with_camera('ball'):
+            X, Y = Drone.get_position_data()[:2]
+        else:
+            Drone.move_to_point((35.0, 5.0, 10.0))
+            Drone.scan_area()
+            if Drone.detect_with_camera('ball'):
+                X, Y = Drone.get_position_data()[:2]
+            else:
+                Drone.move_to_point((45.0, 5.0, 10.0))
+                Drone.scan_area()
+                if Drone.detect_with_camera('ball'):
+                    X, Y = Drone.get_position_data()[:2]
+                else:
+                    Drone.move_to_point((5.0, 15.0, 10.0))
+                    Drone.scan_area()
+                    if Drone.detect_with_camera('ball'):
+                        X, Y = Drone.get_position_data()[:2]
+                    else:
+                        Drone.move_to_point((15.0, 15.0, 10.0))
+                        Drone.scan_area()
+                        if Drone.detect_with_camera('ball'):
+                            X, Y = Drone.get_position_data()[:2]
+                        else:
+                            Drone.move_to_point((25.0, 15.0, 10.0))
+                            Drone.scan_area()
+                            if Drone.detect_with_camera('ball'):
+                                X, Y = Drone.get_position_data()[:2]
+                            else:
+                                Drone.move_to_point((35.0, 15.0, 10.0))
+                                Drone.scan_area()
+                                if Drone.detect_with_camera('ball'):
+                                    X, Y = Drone.get_position_data()[:2]
+                                else:
+                                    Drone.move_to_point((45.0, 15.0, 10.0))
+                                    Drone.scan_area()
+                                    if Drone.detect_with_camera('ball'):
+                                        X, Y = Drone.get_position_data()[:2]
+                                    else:
+                                        Drone.move_to_point((5.0, 25.0, 10.0))
+                                        Drone.scan_area()
+                                        if Drone.detect_with_camera('ball'):
+                                            X, Y = Drone.get_position_data()[:2]
+                                        else:
+                                            Drone.move_to_point((15.0, 25.0, 10.0))
+                                            Drone.scan_area()
+                                            if Drone.detect_with_camera('ball'):
+                                                X, Y = Drone.get_position_data()[:2]
+                                            else:
+                                                Drone.move_to_point((25.0, 25.0, 10.0))
+                                                Drone.scan_area()
+                                                if Drone.detect_with_camera('ball'):
+                                                    X, Y = Drone.get_position_data()[:2]
+                                                else:
+                                                    Drone.move_to_point((35.0, 25.0, 10.0))
+                                                    Drone.scan_area()
+                                                    if Drone.detect_with_camera('ball'):
+                                                        X, Y = Drone.get_position_data()[:2]
+                                                    else:
+                                                        Drone.move_to_point((45.0, 25.0, 10.0))
+                                                        Drone.scan_area()
+                                                        if Drone.detect_with_camera('ball'):
+                                                            X, Y = Drone.get_position_data()[:2]
+                                                        else:
+                                                            Drone.move_to_point((5.0, 35.0, 10.0))
+                                                            Drone.scan_area()
+                                                            if Drone.detect_with_camera('ball'):
+                                                                X, Y = Drone.get_position_data()[:2]
+                                                            else:
+                                                                Drone.move_to_point((15.0, 35.0, 10.0))
+                                                                Drone.scan_area()
+                                                                if Drone.detect_with_camera('ball'):
+                                                                    X, Y = Drone.get_position_data()[:2]
+                                                                else:
+                                                                    Drone.move_to_point((25.0, 35.0, 10.0))
+                                                                    Drone.scan_area()
+                                                                    if Drone.detect_with_camera('ball'):
+                                                                        X, Y = Drone.get_position_data()[:2]
+                                                                    else:
+                                                                        Drone.move_to_point((35.0, 35.0, 10.0))
+                                                                        Drone.scan_area()
+                                                                        if Drone.detect_with_camera('ball'):
+                                                                            X, Y = Drone.get_position_data()[:2]
+                                                                        else:
+                                                                            Drone.move_to_point((45.0, 35.0, 10.0))
+                                                                            Drone.scan_area()
+                                                                            if Drone.detect_with_camera('ball'):
+                                                                                X, Y = Drone.get_position_data()[:2]
+                                                                            else:
+                                                                                Drone.move_to_point((5.0, 45.0, 10.0))
+                                                                                Drone.scan_area()
+                                                                                if Drone.detect_with_camera('ball'):
+                                                                                    X, Y = Drone.get_position_data()[:2]
+                                                                                else:
+                                                                                    Drone.move_to_point((15.0, 45.0, 10.0))
+                                                                                    Drone.scan_area()
+                                                                                    if Drone.detect_with_camera('ball'):
+                                                                                        X, Y = Drone.get_position_data()[:2]
+                                                                                    else:
+                                                                                        Drone.move_to_point((25.0, 45.0, 10.0))
+                                                                                        Drone.scan_area()
+                                                                                        if Drone.detect_with_camera('ball'):
+                                                                                            X, Y = Drone.get_position_data()[:2]
+                                                                                        else:
+                                                                                            Drone.move_to_point((35.0, 45.0, 10.0))
+                                                                                            Drone.scan_area()
+                                                                                            if Drone.detect_with_camera('ball'):
+                                                                                                X, Y = Drone.get_position_data()[:2]
+                                                                                            else:
+                                                                                                Drone.move_to_point((45.0, 45.0, 10.0))
+                                                                                                Drone.scan_area()
+                                                                                                if Drone.detect_with_camera('ball'):
+                                                                                                    X, Y = Drone.get_position_data()[:2]
 
 Phase 2:
-Drone.move_to_point((ball_area_x, ball_area_y, 10.0))
-Drone.communicate_with_apm({'target_x': target_x, 'target_y': target_y})
-
-Phase 3:
-Drone.wait_for_signal()
-if dog_reached_target:
-    Drone.scan_area()
-
-Phase 4:
-Drone.wait_for_signal()
-if dog_reached_target:
-    Drone.detect_with_camera('ball')
-if ball_detected:
-    Drone.communicate_with_apm({'ball_x': ball_x, 'ball_y': ball_y})
-
-Phase 5:
-Drone.wait_for_signal()
-if ball_detected:
-    Drone.communicate_with_apm({'retrieve_ball_x': ball_x, 'retrieve_ball_y': ball_y})
-
-Phase 6:
-Drone.wait_for_signal()
-if ball_retrieved:
-    Drone.return_to_base()
-
-Phase 1:
-Drone.move_to_point((5.0, 5.0, 10.0))
-Drone.scan_area()
-if Drone.scan_successful():
-    Drone.communicate_with_apm({'ball_area_x': ball_area_x, 'ball_area_y': ball_area_y})
-
-Phase 2:
-Drone.move_to_point((ball_area_x, ball_area_y, 10.0))
-Drone.communicate_with_apm({'target_x': target_x, 'target_y': target_y})
-
-Phase 3:
-Drone.wait_for_signal()
-if dog_reached_target:
-    Drone.scan_area()
-
-Phase 4:
-Drone.wait_for_signal()
-if dog_reached_target:
-    Drone.detect_with_camera('ball')
-if ball_detected:
-    Drone.communicate_with_apm({'ball_x': ball_x, 'ball_y': ball_y})
+Drone.communicate_with_apm({'X': X, 'Y': Y})
+Drone.return_to_base()
 

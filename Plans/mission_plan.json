@@ -5,8 +5,8 @@
             {
                 "target": "DRONE",
                 "phase_number": 1,
-                "state": "The drone is currently at position (5,5) and is hovering at an altitude of 10.0 meters. The mission is to locate a ball within a 50x50 meter field. The drone is equipped with a camera to scan the area.",
-                "phase_target": "Identify the 10x10 meter square containing the ball.",
+                "state": "The mission is to locate a ball in a 50x50 meter field. The drone is at (5.0, 5.0) meters, flying at an altitude of 10.0 meters, ready to begin systematic scanning. The drone's task is to identify the 10x10 meter square containing the ball.",
+                "phase_target": "Systematically scan the field to identify the 10x10 meter square containing the ball.",
                 "inputs": [],
                 "outputs": {
                     "X": {
@@ -20,8 +20,8 @@
             {
                 "target": "DRONE",
                 "phase_number": 2,
-                "state": "The drone has identified the 10x10 meter square containing the ball, located at coordinates (X, Y). The drone is still at altitude 10.0 meters and is ready to relay this information to the robot dog.",
-                "phase_target": "Communicate the coordinates of the detected square to the robot dog.",
+                "state": "The drone has identified a 10x10 meter square containing the ball. It is hovering above the identified square, ready to communicate the location to the robot dog.",
+                "phase_target": "Communicate the coordinates of the identified 10x10 meter square to the robot dog.",
                 "inputs": {
                     "X": {
                         "type": "float"
@@ -31,122 +31,11 @@
                     }
                 },
                 "outputs": {
-                    "detection_status": {
-                        "type": "string"
-                    }
-                }
-            },
-            {
-                "target": "DRONE",
-                "phase_number": 3,
-                "state": "The robot dog has received the coordinates of the 10x10 meter square containing the ball. The drone is now positioned at (5,5) and is ready to assist the dog if needed. The dog is at its starting point (25,25) and is preparing to move.",
-                "phase_target": "Provide the robot dog with the exact coordinates of the ball within the identified square.",
-                "inputs": {
-                    "detection_status": {
-                        "type": "string"
-                    }
-                },
-                "outputs": {
-                    "ball_coordinate_X": {
+                    "X": {
                         "type": "float"
                     },
-                    "ball_coordinate_Y": {
+                    "Y": {
                         "type": "float"
-                    }
-                }
-            },
-            {
-                "target": "DRONE",
-                "phase_number": 4,
-                "state": "The drone has successfully provided the exact coordinates of the ball to the robot dog. The dog is now moving towards the ball's location. The drone remains at (5,5) and is monitoring the dog's progress.",
-                "phase_target": "Assist the robot dog by providing real-time updates on its position relative to the ball.",
-                "inputs": {
-                    "ball_coordinate_X": {
-                        "type": "float"
-                    },
-                    "ball_coordinate_Y": {
-                        "type": "float"
-                    }
-                },
-                "outputs": {
-                    "dog_position_X": {
-                        "type": "float"
-                    },
-                    "dog_position_Y": {
-                        "type": "float"
-                    }
-                }
-            },
-            {
-                "target": "DRONE",
-                "phase_number": 5,
-                "state": "The drone is tracking the robot dog's position as it approaches the ball. The dog is currently navigating towards the ball's coordinates. The drone is ready to provide further assistance if required.",
-                "phase_target": "Confirm when the robot dog has reached the ball's location.",
-                "inputs": {
-                    "dog_position_X": {
-                        "type": "float"
-                    },
-                    "dog_position_Y": {
-                        "type": "float"
-                    }
-                },
-                "outputs": {
-                    "arrival_status": {
-                        "type": "string"
-                    }
-                }
-            },
-            {
-                "target": "DRONE",
-                "phase_number": 6,
-                "state": "The drone has confirmed that the robot dog has arrived at the ball's location. The dog is preparing to retrieve the ball. The drone is still at (5,5) and is ready to assist with the return journey.",
-                "phase_target": "Monitor the robot dog's retrieval process and prepare for the return trip.",
-                "inputs": {
-                    "arrival_status": {
-                        "type": "string"
-                    }
-                },
-                "outputs": {
-                    "retrieval_status": {
-                        "type": "string"
-                    }
-                }
-            },
-            {
-                "target": "DRONE",
-                "phase_number": 7,
-                "state": "The drone has received confirmation that the robot dog has successfully retrieved the ball. The dog is now preparing to return to the starting point (25,25). The drone is still at (5,5) and is ready to guide the dog back.",
-                "phase_target": "Provide navigation assistance to the robot dog on its return journey.",
-                "inputs": {
-                    "retrieval_status": {
-                        "type": "string"
-                    }
-                },
-                "outputs": {
-                    "return_path_X": {
-                        "type": "float"
-                    },
-                    "return_path_Y": {
-                        "type": "float"
-                    }
-                }
-            },
-            {
-                "target": "DRONE",
-                "phase_number": 8,
-                "state": "The drone is guiding the robot dog back to the starting point. The dog is currently en route to (25,25) with the ball. The drone is monitoring the dog's progress from its position at (5,5).",
-                "phase_target": "Confirm when the robot dog has returned to the starting point.",
-                "inputs": {
-                    "return_path_X": {
-                        "type": "float"
-                    },
-                    "return_path_Y": {
-                        "type": "float"
-                    }
-                },
-                "outputs": {
-                    "completion_status": {
-                        "type": "string"
                     }
                 }
             }
@@ -158,34 +47,81 @@
             {
                 "target": "ROBOT_DOG",
                 "phase_number": 1,
-                "state": "We have a mission to locate and retrieve a ball. The drone has scanned the area and identified a 10x10 meter square where the ball is located. The robot dog is at the base station (25,25), ready to receive coordinates from the drone.",
-                "phase_target": "Given a coordinate (X, Y) from the drone, move to the center of the identified square.",
-                "inputs": [],
-                "outputs": []
+                "state": "We have a mission to locate and retrieve a ball. The drone has identified the 10x10 meter area containing the ball. The robot dog is at the starting point (25,25), ready to begin scanning.",
+                "phase_target": "Move to the center of the identified 10x10 meter area to begin scanning for the ball.",
+                "inputs": {
+                    "X": {
+                        "type": "float"
+                    },
+                    "Y": {
+                        "type": "float"
+                    }
+                },
+                "outputs": {
+                    "current_position_X": {
+                        "type": "float"
+                    },
+                    "current_position_Y": {
+                        "type": "float"
+                    }
+                }
             },
             {
                 "target": "ROBOT_DOG",
                 "phase_number": 2,
-                "state": "The robot dog has moved to the center of the identified square (X, Y) and is now positioned to scan the area. The dog can scan a 2-meter radius around its current position. The mission is to locate the ball within this area.",
-                "phase_target": "Scan the area for the ball and determine if it is present.",
-                "inputs": [],
-                "outputs": []
+                "state": "The robot dog is positioned at the center of the identified 10x10 meter area, ready to scan for the ball. It can scan 2 meters in all directions.",
+                "phase_target": "Scan the area to locate the exact position of the ball within the 10x10 meter area.",
+                "inputs": {
+                    "current_position_X": {
+                        "type": "float"
+                    },
+                    "current_position_Y": {
+                        "type": "float"
+                    }
+                },
+                "outputs": {
+                    "ball_position_X": {
+                        "type": "float"
+                    },
+                    "ball_position_Y": {
+                        "type": "float"
+                    }
+                }
             },
             {
                 "target": "ROBOT_DOG",
                 "phase_number": 3,
-                "state": "The robot dog has completed the scan and received the detection status. If the ball is detected, the dog is prepared to retrieve it. If not, it will need to return to the base station. The dog is currently at (X, Y) with the detection status indicating the presence of the ball.",
-                "phase_target": "If the ball is detected, retrieve it; otherwise, return to the base station.",
-                "inputs": [],
-                "outputs": []
+                "state": "The robot dog has located the ball at the precise coordinates within the 10x10 meter area. It is ready to retrieve the ball.",
+                "phase_target": "Move to the ball's location and pick it up.",
+                "inputs": {
+                    "ball_position_X": {
+                        "type": "float"
+                    },
+                    "ball_position_Y": {
+                        "type": "float"
+                    }
+                },
+                "outputs": {
+                    "retrieval_status": {
+                        "type": "string"
+                    }
+                }
             },
             {
                 "target": "ROBOT_DOG",
                 "phase_number": 4,
-                "state": "The robot dog has either retrieved the ball or is returning to the base station. If the ball was retrieved, it is now carrying it back. The dog is currently en route to the base station (25,25).",
-                "phase_target": "Move back to the base station with the ball.",
-                "inputs": [],
-                "outputs": []
+                "state": "The robot dog has retrieved the ball and is ready to return to the starting point.",
+                "phase_target": "Return to the starting point at (25,25) with the ball.",
+                "inputs": {
+                    "retrieval_status": {
+                        "type": "string"
+                    }
+                },
+                "outputs": {
+                    "mission_complete_status": {
+                        "type": "string"
+                    }
+                }
             }
         ]
     }
