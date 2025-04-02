@@ -4,7 +4,7 @@
         {
             "target": "DRONE",
             "phase_number": 1,
-            "state": "The drone is currently positioned at (5, 5) and is hovering at an altitude of 10.0 meters. The mission is to locate a ball within a 50x50 meter field. The drone is equipped with a camera to scan the area.",
+            "state": "The mission is to locate a ball in a 50x50 meter field. The drone is at (5,5), flying at an altitude of 10.0 meters, and is ready to begin systematic scanning of the field.",
             "phase_target": "Identify the 10x10 meter square containing the ball.",
             "inputs": [],
             "outputs": {
@@ -15,13 +15,13 @@
                     "type": "float"
                 }
             },
-            "low_level_plan": "Drone.move_to_point((5.0, 5.0, 10.0))\nDrone.scan_area()\nDrone.detect_with_camera('ball')\nDrone.communicate_with_apm({'X': X, 'Y': Y})"
+            "low_level_plan": "Drone.move_to_point((5.0, 5.0, 10.0))\nDrone.scan_area()\nDrone.communicate_with_apm({'X': <X>, 'Y': <Y>})"
         },
         {
             "target": "DRONE",
             "phase_number": 2,
-            "state": "The drone has identified the 10x10 meter square containing the ball, located at coordinates (X, Y). The drone is still at altitude 10.0 meters and ready to relay information to the robot dog.",
-            "phase_target": "Communicate the coordinates of the detected square to the robot dog.",
+            "state": "The drone has identified a 10x10 meter square containing the ball. It is now hovering over this area to confirm the ball's presence and provide precise coordinates.",
+            "phase_target": "Confirm the ball's presence and provide exact coordinates within the identified square.",
             "inputs": {
                 "X": {
                     "type": "float"
@@ -31,18 +31,6 @@
                 }
             },
             "outputs": {
-                "detection_status": {
-                    "type": "string"
-                }
-            },
-            "low_level_plan": "Drone.wait_for_signal()\nDrone.communicate_with_apm({'X': X, 'Y': Y})"
-        },
-        {
-            "target": "DRONE",
-            "phase_number": 3,
-            "state": "The drone has completed its scanning and communicated the detection status to the robot dog. The drone is now repositioning to a vantage point to monitor the robot dog's progress. The robot dog is expected to start scanning from its base at (25, 25).",
-            "phase_target": "Provide the robot dog with the specific coordinates of the ball within the detected square.",
-            "inputs": {
                 "X": {
                     "type": "float"
                 },
@@ -50,15 +38,7 @@
                     "type": "float"
                 }
             },
-            "outputs": {
-                "ball_coordinate_X": {
-                    "type": "float"
-                },
-                "ball_coordinate_Y": {
-                    "type": "float"
-                }
-            },
-            "low_level_plan": "Drone.wait_for_signal()\nDrone.move_to_point((25.0, 25.0, 10.0))\nDrone.scan_area()\nDrone.detect_with_camera('ball')\nDrone.communicate_with_apm({'ball_coordinate_X': ball_coordinate_X, 'ball_coordinate_Y': ball_coordinate_Y})"
+            "low_level_plan": "Drone.move_to_point((<X>, <Y>, 10.0))\nDrone.detect_with_camera('ball')\nDrone.communicate_with_apm({'X': <X>, 'Y': <Y>})"
         }
     ]
 }

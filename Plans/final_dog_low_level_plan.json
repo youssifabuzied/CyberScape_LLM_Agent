@@ -4,51 +4,47 @@
         {
             "target": "ROBOT_DOG",
             "phase_number": 1,
-            "state": "We have a mission to locate and retrieve a ball from a field. The robot dog is stationed at the starting point (25, 25) and is ready to receive coordinates from the drone. The drone has been tasked with scanning the area to find the ball's location.",
-            "phase_target": "Wait for the drone to provide the coordinates of the ball's location.",
+            "state": "We have a mission to locate and retrieve a ball. The robot dog is at the starting point (25.0, 25.0), awaiting coordinates from the drone. The drone is scanning the field to identify the 10x10 meter area containing the ball.",
+            "phase_target": "Receive the coordinates of the 10x10 meter area from the drone.",
             "inputs": [],
-            "outputs": {
-                "X": {
-                    "type": "float"
-                },
-                "Y": {
-                    "type": "float"
-                }
-            },
+            "outputs": [],
             "low_level_plan": "RobotDog.idle()"
         },
         {
             "target": "ROBOT_DOG",
             "phase_number": 2,
-            "state": "The robot dog has received the coordinates (X, Y) from the drone indicating the ball's location. The dog is currently at (25, 25) and is preparing to navigate to the ball's position.",
-            "phase_target": "Move to the ball's location (X, Y) to retrieve it.",
-            "inputs": {
-                "X": {
-                    "type": "float"
-                },
-                "Y": {
-                    "type": "float"
-                }
-            },
-            "outputs": {
-                "retrieval_status": {
-                    "type": "string"
-                }
-            },
-            "low_level_plan": "RobotDog.move_to(X, Y)\nRobotDog.retrieve_ball()"
+            "state": "We have a mission to locate and retrieve a ball. The robot dog has received the coordinates of the 10x10 meter area (area_X, area_Y) from the drone. It is ready to navigate to this area to begin scanning for the ball.",
+            "phase_target": "Given the area coordinates (area_X, area_Y), move to the center of the 10x10 meter area.",
+            "inputs": [],
+            "outputs": [],
+            "low_level_plan": "RobotDog.move_to(<area_X + 5, area_Y + 5>)"
         },
         {
             "target": "ROBOT_DOG",
             "phase_number": 3,
-            "state": "The robot dog has successfully retrieved the ball and is now carrying it. The dog is currently at the ball's location (X, Y) and is ready to return to the starting point (25, 25).",
-            "phase_target": "Navigate back to the starting point (25, 25) with the ball.",
+            "state": "We have a mission to locate and retrieve a ball. The robot dog is at the center of the 10x10 meter area (center_X, center_Y), ready to scan for the ball. It can scan up to 2 meters in all directions.",
+            "phase_target": "Scan the area to locate the ball within the 10x10 meter area.",
             "inputs": [],
-            "outputs": {
-                "return_status": {
-                    "type": "string"
-                }
-            },
-            "low_level_plan": "RobotDog.move_to(25, 25)\nRobotDog.release_ball()"
+            "outputs": [],
+            "low_level_plan": "RobotDog.scan_area()"
+        },
+        {
+            "target": "ROBOT_DOG",
+            "phase_number": 4,
+            "state": "We have a mission to locate and retrieve a ball. The robot dog has identified the ball's exact location (ball_X, ball_Y) within the 10x10 meter area. It is prepared to move to the ball's location.",
+            "phase_target": "Move to the ball's location and retrieve it.",
+            "inputs": [],
+            "outputs": [],
+            "low_level_plan": "RobotDog.move_to(<ball_X, ball_Y>)\nRobotDog.retrieve_ball()"
+        },
+        {
+            "target": "ROBOT_DOG",
+            "phase_number": 5,
+            "state": "We have a mission to locate and retrieve a ball. The robot dog has retrieved the ball and is ready to return to the starting point (25.0, 25.0).",
+            "phase_target": "Return to the starting point with the ball.",
+            "inputs": [],
+            "outputs": [],
+            "low_level_plan": "RobotDog.move_to(25.0, 25.0)"
         }
     ]
 }
