@@ -64,7 +64,7 @@ def get_target_rules(target):
             - Each phase must be independent, executing only after the previous phase completes.
             - If the drone needs to wait, explicitly include an idle state.
             - You are responsible for the translation of the high-level plan of the drone into a low-level set of executable drone instructions using ONLY the provided instructions. You won't be doing anything for the robot dog.  
-            - You can use the set of Input variables for a given phase for the functions if needed. 
+            - You can use the set of Input variables for a given phase for the functions if needed. However, you should place the variables between those symboles <>. For example, Drone.move_to(<x>, <y>)
             """
         )
     elif target.upper() == "ROBOT_DOG":
@@ -76,7 +76,7 @@ def get_target_rules(target):
             - If the robot dog needs to wait, explicitly include an idle state.
             - Every movement must be verified using `if RobotDog.has_reached(X, Y):` before proceeding.
             - You are responsible for the translation of the high-level plan of the robot dog into a low-level set of executable robot dog instructions using ONLY the provided instructions. You won't be doing anything for the drone.  
-            - You can use the set of Input variables for a given phase and pass them when calling the functions you use in the low-level plan if needed. 
+            - You can use the set of Input variables for a given phase and pass them when calling the functions you use in the low-level plan if needed. However, you should place the variables between those symboles <>. For example, Drone.move_to(<x>, <y>)
             """
         )
     else:
@@ -251,7 +251,7 @@ def main():
         temperature=0.1
 
         # Option 3: Gemini-2.0-Flash
-        # model_name="gemini-2.0-flash",
+        # model_name="geminconfigi-2.0-flash",
         # google_api_key=os.getenv("GOOGLE_API_KEY"),
         # temperature=0.1
     )
@@ -282,9 +282,9 @@ def main():
     run_subprocess_command(parsing_command, shell=True, cwd=r"\\wsl.localhost\Ubuntu\home\zein\Uni\Thesis\CyberScape_LLM_Agent")
     # Get the output of plan_parser
     if args.target == "ROBOT_DOG":
-        parsed_file = f"{config["dog_parsed_plan_file"]}"
+        parsed_file = config["dog_parsed_plan_file"]
     else: 
-        parsed_file = f"{config["drone_parsed_plan_file"]}"
+        parsed_file = config["drone_parsed_plan_file"]
 
     with open(parsed_file, "r") as f:
         parsed_text = f.read()
