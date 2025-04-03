@@ -4,7 +4,7 @@
         {
             "target": "DRONE",
             "phase_number": 1,
-            "state": "The mission is to locate a ball in a 50x50 meter field. The drone is at (5,5), flying at an altitude of 10.0 meters, and is ready to begin systematic scanning of the field.",
+            "state": "The mission is to locate a ball in a 50x50 meter field. The drone is at (5,5), flying at an altitude of 10.0 meters, ready to begin systematic scanning of the field.",
             "phase_target": "Identify the 10x10 meter square containing the ball.",
             "inputs": [],
             "outputs": {
@@ -15,19 +15,36 @@
                     "type": "float"
                 }
             },
-            "low_level_plan": "Drone.move_to_point((5.0, 5.0, 10.0))\nDrone.scan_area()\nDrone.communicate_with_apm({'X': <X>, 'Y': <Y>})"
+            "low_level_plan": "```python\ndef move_to_point_with_dynamic_obstacle_avoidance(target_x, target_y, altitude):\n    while not at_target(target_x, target_y):\n        current_x, current_y, _ = Drone.get_position_data()\n        \n        if detect_obstacle():\n            Drone.communicate_with_apm({'current_x': current_x, 'current_y': current_y, 'obstacle_detected': True})\n            new_x, new_y = calculate_dynamic_path(current_x, current_y, target_x, target_y)\n            Drone.move_to_point((new_x, new_y, altitude))\n        else:\n            incremental_x, incremental_y = calculate_incremental_step(current_x, current_y, target_x, target_y)\n            Drone.move_to_point((incremental_x, incremental_y, altitude))\n        \n        Drone.communicate_with_apm({'current_x': current_x, 'current_y': current_y, 'obstacle_detected': detect_obstacle()})\n\nDrone.fly(10.0)\nDrone.move_to_point((5.0, 5.0, 10.0))\n\nmove_to_point_with_dynamic_obstacle_avoidance(x, y, 10.0)\nDrone.scan_area()\nDrone.communicate_with_apm({'X': X, 'Y': Y})\n```"
         },
         {
             "target": "DRONE",
             "phase_number": 2,
-            "state": "The drone has identified a 10x10 meter square containing the ball. It is now hovering over this area to confirm the ball's presence and provide precise coordinates.",
-            "phase_target": "Confirm the ball's presence and provide exact coordinates within the identified square.",
+            "state": "The drone has identified a 10x10 meter square containing the ball. It is now hovering over this area to confirm the ball's presence.",
+            "phase_target": "Confirm the presence of the ball within the identified square.",
             "inputs": {
                 "X": {
                     "type": "float"
                 },
                 "Y": {
                     "type": "float"
+                }
+            },
+            "outputs": {
+                "detection_status": {
+                    "type": "string"
+                }
+            },
+            "low_level_plan": "Drone.move_to_point((X, Y, 10.0))\nDrone.communicate_with_apm({'detection_status': detection_status})"
+        },
+        {
+            "target": "DRONE",
+            "phase_number": 3,
+            "state": "The drone has confirmed the presence of the ball in the 10x10 meter square. It is ready to communicate the precise location to the robot dog.",
+            "phase_target": "Provide the exact coordinates of the ball to the robot dog.",
+            "inputs": {
+                "detection_status": {
+                    "type": "string"
                 }
             },
             "outputs": {
@@ -38,7 +55,7 @@
                     "type": "float"
                 }
             },
-            "low_level_plan": "Drone.move_to_point((<X>, <Y>, 10.0))\nDrone.detect_with_camera('ball')\nDrone.communicate_with_apm({'X': <X>, 'Y': <Y>})"
+            "low_level_plan": "Drone.communicate_with_apm({'X': X, 'Y': Y})\nDrone.return_to_base()"
         }
     ]
 }

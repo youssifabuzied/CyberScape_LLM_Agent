@@ -15,8 +15,8 @@ logging.basicConfig(level=logging.INFO)
 # OpenAI API Key
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-# Initialize LangChain Chat Model
-llm = ChatOpenAI(model_name="gpt-4o-mini", openai_api_key=OPENAI_API_KEY)
+# Initialize LangChain Chat Modelllm
+llm = ChatOpenAI(model_name="gpt-4o", openai_api_key=OPENAI_API_KEY)
 
 # Load instructions from files
 plans = {}
@@ -24,9 +24,66 @@ progress = {}
 import subprocess
 import json
 
+@app.route("/report_error", methods=["POST"])
+def report_error():
+    data = request.get_json()
+    
+    if not data or "robot" not in data or "phase" not in data or "instruction_number" not in data or "description" not in data:
+        return jsonify({"error": "Request must include 'robot', 'phase', 'instruction_number', and 'description'."}), 400
+    
+    robot = data["robot"]
+    phase = data["phase"]
+    instruction_number = data["instruction_number"]
+    description = data["description"]
+    
+    try:
+        phase = int(phase)
+    except ValueError:
+        return jsonify({"error": "Phase must be an integer."}), 400
+    
+    if robot not in plans:
+        return jsonify({"error": f"No plan found for robot '{robot}'."}), 404
+    
+    phases = plans[robot]["phases"]
+    matching_phase = next((p for p in phases if p["phase_number"] == phase), None)
+    
+    if not matching_phase:
+        return jsonify({"error": f"Phase {phase} not found for robot {robot}."}), 404
+    
+    for p in range(1, phase):
+        if p not in progress[robot]["completed_phases"]:
+            return jsonify({"error": f"Phase {p} must be completed before reporting an error in phase {phase}."}), 400
+    
+    error_file_path = os.path.join("Execution_Errors_Files", f"error_{robot}_phase_{phase}.json")
+    print(error_file_path)
+    error_data = {
+        "description": description,
+        "failed_instructionnumber": instruction_number
+    }
+    
+    with open(error_file_path, "w") as f:
+        json.dump(error_data, f, indent=4)
+    
+    # Run APM.py to handle the error
+    try:
+        subprocess.run(["python", "APM.py", robot, str(phase), error_file_path], check=True)
+    except subprocess.CalledProcessError as e:
+        logging.error(f"APM execution failed: {e}")
+        return jsonify({"error": "APM execution failed. Check server logs for details."}), 500
+    
+    # Reload the corrected plan
+    with open("config.json", "r") as f:
+        config = json.load(f)
+        load_plan(robot, f"final_{robot.lower()}_low_level_plan.json")
+    
+    return jsonify({
+        "message": f"Error in phase {phase} for {robot} processed successfully.",
+        "updated_plan": plans[robot]
+    }), 200
+
 @app.route("/generate_plan", methods=["POST"])
 def generate_plan():
-    data = request.get_json()
+    data = request.get_json()llm
 
     if not data or "mission_title" not in data or "mission_text" not in data:
         return jsonify({"error": "Request must include 'mission_title' and 'mission_text'."}), 400

@@ -1,0 +1,4 @@
+{
+    "description": "The drone encountered an unexpected obstacle while moving to the target coordinates. It needs to adjust its path to avoid the obstruction.",
+    "failed_instructionnumber": 2
+}

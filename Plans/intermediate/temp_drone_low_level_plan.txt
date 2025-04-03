@@ -1,12 +1,28 @@
 Phase 1:
+Drone.fly(10.0)
 Drone.move_to_point((5.0, 5.0, 10.0))
-Drone.scan_area()
-if Drone.scan_successful():
-    Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
+for x in range(5, 50, 10):
+    for y in range(5, 50, 10):
+        Drone.move_to_point((x, y, 10.0))
+        Drone.scan_area()
+        if Drone.detect_with_camera('ball'):
+            X, Y = x, y
+            break
+    else:
+        continue
+    break
+Drone.communicate_with_apm({'X': X, 'Y': Y})
 
 Phase 2:
 Drone.move_to_point((<X>, <Y>, 10.0))
-Drone.detect_with_camera('ball')
-if Drone.detect_successful():
+if Drone.detect_with_camera('ball'):
+    detection_status = 'confirmed'
+else:
+    detection_status = 'not confirmed'
+Drone.communicate_with_apm({'detection_status': detection_status})
+
+Phase 3:
+if <detection_status> == 'confirmed':
     Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
+Drone.return_to_base()
 

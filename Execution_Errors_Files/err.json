@@ -1,0 +1,5 @@
+{
+    "description": "The drone encountered an obstacle when moving to the point while moving to scan the ball. The obstacle prevents direct movement to the target location. A temporary alternative path is needed.",
+    "failed_instructionnumber": 1
+  }
+  

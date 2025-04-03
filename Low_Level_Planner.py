@@ -246,7 +246,7 @@ def main():
         # temperature=0.1
 
         # Option 2: GPT-4O-Mini
-        model_name="gpt-4o-mini",
+        model_name="gpt-4o",
         openai_api_key=os.getenv("OPENAI_API_KEY"),
         temperature=0.1
 

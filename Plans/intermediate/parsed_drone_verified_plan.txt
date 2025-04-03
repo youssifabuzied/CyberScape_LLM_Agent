@@ -1,9 +1,14 @@
 Phase 1:
+Drone.fly(10.0)
 Drone.move_to_point((5.0, 5.0, 10.0))
+Drone.move_to_point((x, y, 10.0))
 Drone.scan_area()
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
+Drone.communicate_with_apm({'X': X, 'Y': Y})
 
 Phase 2:
-Drone.move_to_point((<X>, <Y>, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
+Drone.move_to_point((X, Y, 10.0))
+Drone.communicate_with_apm({'detection_status': detection_status})
+
+Phase 3:
+Drone.communicate_with_apm({'X': X, 'Y': Y})
+Drone.return_to_base()

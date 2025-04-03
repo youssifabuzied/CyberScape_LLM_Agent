@@ -4,8 +4,8 @@
         {
             "target": "ROBOT_DOG",
             "phase_number": 1,
-            "state": "We have a mission to locate and retrieve a ball. The robot dog is at the starting point (25.0, 25.0), awaiting coordinates from the drone. The drone is scanning the field to identify the 10x10 meter area containing the ball.",
-            "phase_target": "Receive the coordinates of the 10x10 meter area from the drone.",
+            "state": "We have a mission to locate and retrieve a ball. The robot dog is at the starting point (25.0, 25.0), awaiting coordinates from the drone. The dog is equipped with sensors to scan a 2-meter radius.",
+            "phase_target": "Receive the 10x10 meter area coordinates from the drone where the ball is located.",
             "inputs": [],
             "outputs": [],
             "low_level_plan": "RobotDog.idle()"
@@ -13,38 +13,38 @@
         {
             "target": "ROBOT_DOG",
             "phase_number": 2,
-            "state": "We have a mission to locate and retrieve a ball. The robot dog has received the coordinates of the 10x10 meter area (area_X, area_Y) from the drone. It is ready to navigate to this area to begin scanning for the ball.",
-            "phase_target": "Given the area coordinates (area_X, area_Y), move to the center of the 10x10 meter area.",
+            "state": "We have a mission to locate and retrieve a ball. The robot dog has received the area coordinates (area_X, area_Y) from the drone. The dog is ready to navigate to the specified area.",
+            "phase_target": "Given the area coordinates (area_X, area_Y), move to the center of the 10x10 meter area to begin scanning.",
             "inputs": [],
             "outputs": [],
-            "low_level_plan": "RobotDog.move_to(<area_X + 5, area_Y + 5>)"
+            "low_level_plan": "RobotDog.move_to(<area_X> + 5.0, <area_Y> + 5.0)\nRobotDog.idle()"
         },
         {
             "target": "ROBOT_DOG",
             "phase_number": 3,
-            "state": "We have a mission to locate and retrieve a ball. The robot dog is at the center of the 10x10 meter area (center_X, center_Y), ready to scan for the ball. It can scan up to 2 meters in all directions.",
-            "phase_target": "Scan the area to locate the ball within the 10x10 meter area.",
+            "state": "We have a mission to locate and retrieve a ball. The robot dog is at the center of the specified area (current_X, current_Y), using its sensors to scan for the ball within a 2-meter radius.",
+            "phase_target": "Locate the ball within the scanning range and confirm its position.",
             "inputs": [],
             "outputs": [],
-            "low_level_plan": "RobotDog.scan_area()"
+            "low_level_plan": "RobotDog.scan_area()\nRobotDog.idle()"
         },
         {
             "target": "ROBOT_DOG",
             "phase_number": 4,
-            "state": "We have a mission to locate and retrieve a ball. The robot dog has identified the ball's exact location (ball_X, ball_Y) within the 10x10 meter area. It is prepared to move to the ball's location.",
+            "state": "We have a mission to locate and retrieve a ball. The robot dog has detected the ball at coordinates (ball_X, ball_Y) within the scanning area. The dog is ready to retrieve the ball.",
             "phase_target": "Move to the ball's location and retrieve it.",
             "inputs": [],
             "outputs": [],
-            "low_level_plan": "RobotDog.move_to(<ball_X, ball_Y>)\nRobotDog.retrieve_ball()"
+            "low_level_plan": "RobotDog.move_to(<ball_X>, <ball_Y>)\nRobotDog.retrieve_ball()"
         },
         {
             "target": "ROBOT_DOG",
             "phase_number": 5,
-            "state": "We have a mission to locate and retrieve a ball. The robot dog has retrieved the ball and is ready to return to the starting point (25.0, 25.0).",
+            "state": "We have a mission to locate and retrieve a ball. The robot dog has retrieved the ball and is ready to return to the starting point at (25.0, 25.0).",
             "phase_target": "Return to the starting point with the ball.",
             "inputs": [],
             "outputs": [],
-            "low_level_plan": "RobotDog.move_to(25.0, 25.0)"
+            "low_level_plan": "RobotDog.move_to(25.0, 25.0)\nRobotDog.idle()"
         }
     ]
 }
