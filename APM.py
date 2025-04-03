@@ -1,108 +1,117 @@
-from langchain_community.chat_models import ChatOpenAI
+import json
+import os
+import sys
+from langchain.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage
-import langgraph
-from langgraph.graph import StateGraph, END
-import asyncio
 
-# Define the state of our system
-class RobotState:
-    def __init__(self, plan=None, feedback=None):
-        self.plan = plan
-        self.feedback = feedback
+# Load config.json
+CONFIG_FILE = "config.json"
+with open(CONFIG_FILE, "r") as f:
+    config = json.load(f)
 
-    def __repr__(self):
-        return f"RobotState(plan={self.plan}, feedback={self.feedback})"
+def load_file(file_path):
+    """Helper function to read a file's content."""
+    if os.path.exists(file_path):
+        with open(file_path, "r") as f:
+            return f.read().strip()
+    return ""
 
-# Define the nodes in our adaptive planning system
-def llm_generate_plan(state):
-    """LLM generates an initial plan for the robot dog."""
-    llm = ChatOpenAI(
-        api_key="c7e68755-3cfd-4f4a-a695-6a41af9ffd23",
-        base_url="https://api.sambanova.ai/v1",
-        model_name="Meta-Llama-3.1-405B-Instruct",
-        temperature=0.1
-    )
-    prompt = """
-    You control a robot dog with the following capabilities:
-    - move_forward(distance: float)
-    - rotate(angle: float)
+def analyze_error(robot, phase, error_description):
+    """Analyze the error and provide a textual suggestion for a fix."""
+    spec_file = config[f"{robot.lower()}_spec_file"]
+    mission_text_file = config["mission_text_file"]
+    low_level_plan_file = config[f"{robot.lower()}_output_file"]
 
-    The mission: The robot must move forward 15 meters.
-
-    Generate a step-by-step plan using only the available functions. Do not include any explanations or thought. Just output a plan using the given instructions. 
-    """
-
-    response = llm.invoke([
-        SystemMessage(content="You are an expert in robot path planning."),
-        HumanMessage(content=prompt)
-    ])
+    # Load necessary files
+    mission_text = load_file(mission_text_file)
+    robot_specifications = load_file(spec_file)
+    low_level_plan = json.loads(load_file(low_level_plan_file))
+    failed_phase = next((p for p in low_level_plan["phases"] if p["phase_number"] == phase), None)
     
-    state.plan = response.content.strip()
-    print("\n[LLM INITIAL PLAN GENERATED]:\n", state.plan)
-    return state
+    if not failed_phase:
+        return "Error: Phase not found in the low-level plan."
+    
+    prompt = f"""
+    You are an expert in robotics and mission planning. A robot ({robot}) has encountered an error in Phase {phase} of its mission. 
+    
+    **Mission Scenario:**
+    {mission_text}
+    
+    **Robot Specifications:**
+    {robot_specifications}
+    
+    **Failed Phase Details:**
+    - State: {failed_phase["state"]}
+    - Goal: {failed_phase["phase_target"]}
+    - Instructions:
+    {failed_phase["low_level_plan"]}
+    
+    **Error Description:**
+    {error_description}
+    
+    Provide a brief suggestion on how to modify the low-level plan to fix the issue.
+    """
+    
+    llm = ChatOpenAI(model_name="gpt-4o", temperature=0)
+    response = llm([SystemMessage(content="You are an expert in robotic planning."), HumanMessage(content=prompt)])
+    
+    return response.content.strip()
 
-def dog_execute_plan(state):
-    """Simulates the robot dog executing the plan and encountering an obstacle."""
-    print("\n[ROBOT DOG EXECUTING PLAN]")
+def fix_low_level_plan(robot, phase, fix_suggestion):
+    """Modify the low-level plan based on OpenAI's suggested fix."""
+    low_level_plan_file = config[f"{robot.lower()}_output_file"]
+    low_level_plan = json.loads(load_file(low_level_plan_file))
+    failed_phase = next((p for p in low_level_plan["phases"] if p["phase_number"] == phase), None)
+    
+    if not failed_phase:
+        return "Error: Phase not found in the low-level plan."
+    
+    prompt = f"""
+    You are a programming assistant. Update the low-level plan instructions for Phase {phase} of the {robot} mission.
+    
+    **Current Instructions:**
+    {failed_phase["low_level_plan"]}
+    
+    **Fix Suggestion:**
+    {fix_suggestion}
+    
+    Provide only the updated list of instructions, with no explanations or comments.
+    """
+    
+    llm = ChatOpenAI(model_name="gpt-4o", temperature=0)
+    response = llm([SystemMessage(content="You are an AI that edits robotic mission plans."), HumanMessage(content=prompt)])
+    
+    # Update the plan with the fixed instructions
+    failed_phase["low_level_plan"] = response.content.strip()
+    
+    # Save back the modified plan
+    with open(low_level_plan_file, "w") as f:
+        json.dump(low_level_plan, f, indent=4)
+    
+    return "Low-level plan updated successfully."
 
-    # Simulating the obstacle after 4 meters
-    executed_distance = 4
-    if executed_distance < 15:
-        state.feedback = f"Obstacle detected at {executed_distance} meters. Cannot proceed further."
-        print(f"[ROBOT DOG FEEDBACK]: {state.feedback}")
-    else:
-        state.feedback = "Mission completed successfully."
-
-    return state
-
-def llm_generate_alternative_plan(state):
-    """LLM generates an alternative plan based on feedback from the robot dog."""
-    if "Obstacle detected" in state.feedback:
-        llm = ChatOpenAI(
-            api_key="c7e68755-3cfd-4f4a-a695-6a41af9ffd23",
-            base_url="https://api.sambanova.ai/v1",
-            model_name="Meta-Llama-3.1-405B-Instruct",
-            temperature=0.1
-        )
-        prompt = f"""
-        The initial plan to move forward 15 meters  but the mission failed because after moving 4 meters, the robot hit an obstacle. We are now at 4 meters from the start and we still need to reach the end point.
-        Suggest an alternative plan using only:
-        - move_forward(distance: float)
-        - rotate(angle: float)
-        
-        Do not include any explanations or thought. Just output a plan using the given instructions. 
-        """
-
-        response = llm.invoke([
-            SystemMessage(content="You are an expert in robot path planning."),
-            HumanMessage(content=prompt)
-        ])
-        
-        state.plan = response.content.strip()
-        print("\n[LLM ALTERNATIVE PLAN GENERATED]:\n", state.plan)
-
-    return state
-
-# Define the graph
-graph = StateGraph(RobotState)
-graph.add_node("GenerateInitialPlan", llm_generate_plan)
-graph.add_node("ExecutePlan", dog_execute_plan)
-graph.add_node("GenerateAlternativePlan", llm_generate_alternative_plan)
-
-# Define transitions
-graph.set_entry_point("GenerateInitialPlan")
-graph.add_edge("GenerateInitialPlan", "ExecutePlan")
-graph.add_edge("ExecutePlan", "GenerateAlternativePlan")  # If plan fails, try again
-graph.add_edge("GenerateAlternativePlan", END)  # End after alternative plan
-
-# Compile the graph
-robot_planner = graph.compile()
-
-# Run the adaptive planning process
-async def run_simulation():
-    state = RobotState()
-    async for output in robot_planner.astream(state):
-        pass  # Just iterating through states
-
-# Run the async function
-asyncio.run(run_simulation())
+if __name__ == "__main__":
+    if len(sys.argv) != 4:
+        print("Usage: python APM.py <robot_name> <failed_phase_number> <error_description_file>")
+        sys.exit(1)
+    
+    robot_name = sys.argv[1]
+    failed_phase_number = int(sys.argv[2])
+    error_file = sys.argv[3]
+    
+    if not os.path.exists(error_file):
+        print("Error: The specified error description file does not exist.")
+        sys.exit(1)
+    
+    with open(error_file, "r") as f:
+        error_data = json.load(f)
+    
+    error_description = error_data.get("description", "No description provided.")
+    
+    # Analyze error
+    fix_suggestion = analyze_error(robot_name, failed_phase_number, error_description)
+    print("Suggested Fix:", fix_suggestion)
+    
+    # Apply fix
+    result = fix_low_level_plan(robot_name, failed_phase_number, fix_suggestion)
+    print(result)
