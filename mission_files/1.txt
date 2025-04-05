@@ -1,0 +1,18 @@
+Mission Scenario: A drone and robot dog are to collaborate in locating and retrieving a ball from a 50x50 meter field. The ball is located in a specific 1x1 meter cell somewhere in the field.
+
+Drone Capabilities:
+- Initially positioned at (5,5)
+- Can scan 10x10 meter squares only (not smaller areas)
+- Can identify which 10x10 meter area contains the ball but not its exact position
+
+Robot Dog Capabilities:
+- Can scan 2x2 meter squares
+- Must locate the exact 1x1 meter cell containing the ball by scanning the larger block containing the ball. For example, if the ball is in 10x10 meters block, the dog should scan the whole 10x10 meters until the exact position of the ball is detected. 
+- Must retrieve the ball and return it to the starting point at (25,25)
+
+Collaboration Requirements:
+- Both robots automatically share detection information with each other
+- Either robot may need to wait for information or perform other tasks while waiting
+- The drone should follow a systematic search pattern to efficiently cover the entire field
+- The dog should follow a systematic search pattern to efficiently cover the entire block
+- Both robots must work together optimally to complete the mission

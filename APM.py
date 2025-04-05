@@ -9,6 +9,9 @@ CONFIG_FILE = "config.json"
 with open(CONFIG_FILE, "r") as f:
     config = json.load(f)
 
+# OpenAI API Key
+OPENAI_API_KEY = config.get("openai_api_key", "")
+
 def load_file(file_path):
     """Helper function to read a file's content."""
     if os.path.exists(file_path):
@@ -49,10 +52,10 @@ def analyze_error(robot, phase, error_description):
     **Error Description:**
     {error_description}
     
-    Provide a brief suggestion on how to modify the low-level plan to fix the issue.
-    """
+    Provide a brief suggestion on how to modify the low-level plan to fix the issue, with no explanations or 
+    comments. Don't add any commentary."""
     
-    llm = ChatOpenAI(model_name="gpt-4o", temperature=0)
+    llm = ChatOpenAI(model_name="gpt-4o", temperature=0, openai_api_key=OPENAI_API_KEY)
     response = llm([SystemMessage(content="You are an expert in robotic planning."), HumanMessage(content=prompt)])
     
     return response.content.strip()
@@ -78,7 +81,7 @@ def fix_low_level_plan(robot, phase, fix_suggestion):
     Provide only the updated list of instructions, with no explanations or comments.
     """
     
-    llm = ChatOpenAI(model_name="gpt-4o", temperature=0)
+    llm = ChatOpenAI(model_name="gpt-4o", temperature=0, openai_api_key=OPENAI_API_KEY)
     response = llm([SystemMessage(content="You are an AI that edits robotic mission plans."), HumanMessage(content=prompt)])
     
     # Update the plan with the fixed instructions

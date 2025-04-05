@@ -1,2 +1,16 @@
-// move_to(x,y) // move to specific coordinates (latitude, longitude)
-// rotate(angle) // rotate angle degrees
+move_to_point((x,y)) // move to specific coordinates (latitude, longitude)
+rotate(angle) // rotate angle degrees
+detect_with_camera(object) // detect objects with the camera, return position and detection status which is boolean
+wait_for_signal() // wait for a signal to continue
+communicate_with_apm(data) // communicate with the Adaptive Planning Module (APM) to send any type of data
+jump() // jump 1m forward
+retrieve_the_object(object) // Get the object
+return_to_base() // return the drone to its base position
+Remarks:
+To retrieve an object after detecting it, retrieve_the_object should be used.
+When waiting for information from the drone, wait_for_signal should be used.
+When scanning an area, detect_with_camera should be called after each movement until detection.
+Use detect_with_camera when you are scanning with the intention of detecting something.
+If you want to communicate a given square to the apm, you should send the coordinates of the center of the sqaure, this is the identifier of the square.
+Do not use excessive indentation in the generated plan.
+Any scanning should be done in one phase and not distributed on separate phases.

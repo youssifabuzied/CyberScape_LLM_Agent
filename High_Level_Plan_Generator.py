@@ -8,6 +8,11 @@ from langchain.prompts import PromptTemplate
 from Utils import read_file
 from langchain_google_genai import GoogleGenerativeAI
 
+import sys
+import codecs
+sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
+
+
 # Load Gemini Pro Model
 
 class PlanPhase:
@@ -258,10 +263,12 @@ def main():
     if not mission_text:
         print("Error: Mission scenario file is empty or missing.")
         return
+
+    OPENAI_API_KEY = config.get("openai_api_key", "")
     
     llm = ChatOpenAI(
         model_name="gpt-4o",
-        openai_api_key=os.getenv("OPENAI_API_KEY"),
+        openai_api_key=OPENAI_API_KEY,
         temperature=0.1
     )
 

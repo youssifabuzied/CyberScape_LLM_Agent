@@ -33,12 +33,12 @@ def main():
 
     print("=== Starting Low-Level Planning for DRONE ===")
     # Run unified Low-Level Planner for DRONE
-    drone_ll_command = "python3 Low_Level_Planner.py DRONE"
+    drone_ll_command = "python Low_Level_Planner.py DRONE"
     asyncio.run(run_python_script(drone_ll_command))
 
     print("=== Starting Low-Level Planning for ROBOT_DOG ===")
     # Run unified Low-Level Planner for ROBOT_DOG
-    dog_ll_command = "python3 Low_Level_Planner.py ROBOT_DOG"
+    dog_ll_command = "python Low_Level_Planner.py ROBOT_DOG"
     asyncio.run(run_python_script(dog_ll_command))
 
     print("=== All Planning Stages Completed ===")

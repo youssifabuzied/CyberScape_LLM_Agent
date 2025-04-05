@@ -1,0 +1,89 @@
+{
+    "drone_plan": {
+        "target": "DRONE",
+        "phases": [
+            {
+                "target": "DRONE",
+                "phase_number": 1,
+                "state": "The mission is to locate a ball in a 50x50 meter field. The drone is positioned at (5.0, 5.0) and is ready to begin scanning. It will systematically scan 10x10 meter areas to identify the block containing the ball. No progress has been made yet.",
+                "phase_target": "Identify the 10x10 meter area containing the ball.",
+                "inputs": [],
+                "outputs": {
+                    "block_X": {
+                        "type": "float"
+                    },
+                    "block_Y": {
+                        "type": "float"
+                    }
+                }
+            },
+            {
+                "target": "DRONE",
+                "phase_number": 2,
+                "state": "The mission is to locate a ball in a 50x50 meter field. The drone has identified a 10x10 meter block containing the ball. The drone is positioned at the center of the identified block, ready to communicate the location to the robot dog.",
+                "phase_target": "Communicate the identified block coordinates to the robot dog.",
+                "inputs": {
+                    "block_X": {
+                        "type": "float"
+                    },
+                    "block_Y": {
+                        "type": "float"
+                    }
+                },
+                "outputs": {
+                    "block_X": {
+                        "type": "float"
+                    },
+                    "block_Y": {
+                        "type": "float"
+                    }
+                }
+            }
+        ]
+    },
+    "robot_dog_plan": {
+        "target": "ROBOT_DOG",
+        "phases": [
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 1,
+                "state": "The robot dog is stationed at the starting point (25.0, 25.0), awaiting the drone's scan results. The mission is to locate and retrieve the ball. The drone is scanning the field to identify the 10x10 meter area containing the ball.",
+                "phase_target": "Receive the coordinates of the 10x10 meter area containing the ball from the drone.",
+                "inputs": [],
+                "outputs": []
+            },
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 2,
+                "state": "The robot dog has received the target area coordinates (target_area_X, target_area_Y) from the drone. It is now preparing to navigate to the specified 10x10 meter area to begin a detailed search.",
+                "phase_target": "Move to the center of the identified 10x10 meter area to begin scanning.",
+                "inputs": [],
+                "outputs": []
+            },
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 3,
+                "state": "The robot dog has arrived at the center of the 10x10 meter area (arrival_status: \"arrived\"). It is ready to perform a detailed scan to locate the exact 1x1 meter cell containing the ball.",
+                "phase_target": "Conduct a 2x2 meter scan within the 10x10 meter area to pinpoint the ball's exact location.",
+                "inputs": [],
+                "outputs": []
+            },
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 4,
+                "state": "The robot dog has identified the exact location of the ball at coordinates (ball_X, ball_Y). It is now ready to retrieve the ball.",
+                "phase_target": "Move to the exact 1x1 meter cell and retrieve the ball.",
+                "inputs": [],
+                "outputs": []
+            },
+            {
+                "target": "ROBOT_DOG",
+                "phase_number": 5,
+                "state": "The robot dog has successfully retrieved the ball (retrieval_status: \"retrieved\"). It is now tasked with returning to the starting point at (25.0, 25.0).",
+                "phase_target": "Navigate back to the starting point with the ball.",
+                "inputs": [],
+                "outputs": []
+            }
+        ]
+    }
+}

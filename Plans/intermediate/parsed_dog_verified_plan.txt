@@ -1,18 +1,11 @@
 Phase 1:
-RobotDog.idle()
+RobotDog.wait_for_signal()
 
 Phase 2:
-RobotDog.move_to(<area_X> + 5.0, <area_Y> + 5.0)
-RobotDog.idle()
+RobotDog.move_to_point(<X>, <Y>)
+RobotDog.detect_with_camera('ball')
+RobotDog.communicate_with_apm({'X': <X>, 'Y': <Y>})
 
 Phase 3:
-RobotDog.scan_area()
-RobotDog.idle()
-
-Phase 4:
-RobotDog.move_to(<ball_X>, <ball_Y>)
-RobotDog.retrieve_ball()
-
-Phase 5:
-RobotDog.move_to(25.0, 25.0)
-RobotDog.idle()
+RobotDog.retrieve_the_object('ball')
+RobotDog.return_to_base()

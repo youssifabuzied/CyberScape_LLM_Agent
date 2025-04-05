@@ -33,10 +33,6 @@ class Drone:
         # Returns the position of the object and whether the detection was successful
         print("Detecting with camera")
 
-    def scan_area(self, start: (float, float, float), end: (float, float, float)):  # type: ignore
-        # Scans the area between two given coordinates, area smaller than or equal to 10 m^2
-        print("Scanning surrounding space")
-
     def process_messages(self):
         # Processes messages in the drone's queue
         for message in self.messages_to_process:

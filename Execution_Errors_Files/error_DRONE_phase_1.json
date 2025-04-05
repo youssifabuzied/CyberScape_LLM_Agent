@@ -1,4 +1,4 @@
 {
-    "description": "The drone encountered an unexpected obstacle while moving to the target coordinates. It needs to adjust its path to avoid the obstruction.",
-    "failed_instructionnumber": 2
+    "description": "The robot encountered an error during its navigation routine and could not move to point (15.0, 5.0, 10.0).",
+    "failed_instructionnumber": 4
 }

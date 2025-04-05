@@ -1,19 +1,14 @@
-move_forward(distance) // move forward distance meters
 move_to_point((x,y,z)) // move to specific coordinates (latitude, longitude, altitude)
 rotate(angle) // rotate angle degrees
-get_position_data() // return the current position as (latitude, longitude, altitude)
-get_camera_data() // capture and return camera data
 detect_with_camera(object) // detect objects with the camera, return position and detection status which is boolean
-scan_area() // scan the area around the drone, area ≤ 10 m². For example, if you want the drone to scan the square charcterized by points (0,0) , (0,10), (10,0), (10,10) on the ground, The drone should be at point(5,5,10).
-process_messages() // process messages in the queue and clear it
 wait_for_signal() // wait for a signal to continue
 communicate_with_apm(data) // communicate with the Adaptive Planning Module (APM) to send any type of data
-monitor_task(task) // monitor the status of a specific task and return the status
-send_feedback_for_rethinking() // send feedback to reevaluate a task
 fly(height) // fly to a specified altitude
 return_to_base() // return the drone to its base position
 Remarks:
-Use scan_area when you are scanning without the intention of locating something.
+When waiting for information from the dog, wait_for_signal should be used.
+When scanning an area, detect_with_camera should be called after each movement until detection.
 Use detect_with_camera when you are scanning with the intention of detecting something.
 If you want to communicate a given square to the apm, you should send the coordinates of the center of the sqaure, this is the identifier of the square.
 Do not use excessive indentation in the generated plan.
+Any scanning should be done in one phase and not distributed on separate phases.

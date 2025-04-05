@@ -1,6 +1,7 @@
 {
+    "openai_api_key": "",
     "mission_plan_file": "Plans/mission_plan.json",
-    "mission_text_file": "mission_files/Search and rescue.txt",
+    "mission_text_file": "mission_files\\Collaborative Drone and Robot Dog Ball Retrieval Mission.txt",
     "drone_spec_file": "mission_files/drone_specifications.txt",
     "dog_spec_file": "mission_files/dog_specifications.txt",
     "dog_low_verification_rubric": "Rubrics/Dog_Low_Rubric.txt",

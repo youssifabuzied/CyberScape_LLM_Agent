@@ -7,6 +7,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# OpenAI API Key
+CONFIG_FILE = "config.json"
+with open(CONFIG_FILE, "r") as f:
+    config = json.load(f)
+
+OPENAI_API_KEY = config.get("openai_api_key", "")
+
 def Pparser(plan_file: str, target:str) -> str:
     """
     Processes a plan file:
@@ -30,7 +37,7 @@ def Pparser(plan_file: str, target:str) -> str:
     Output the instructions directly without saying here are the instructions.
     '''
     client = openai.OpenAI(
-        api_key=os.getenv("OPENAI_API_KEY"),
+        api_key=OPENAI_API_KEY,
         # base_url="https://openrouter.ai/api/v1",
         base_url="https://api.openai.com/v1", # for openai?
         # base_url="https://api.sambanova.ai/v1", # for llama

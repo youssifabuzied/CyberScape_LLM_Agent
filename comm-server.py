@@ -13,7 +13,11 @@ CORS(app)  # Enable CORS if frontend or robots are communicating from different 
 logging.basicConfig(level=logging.INFO)
 
 # OpenAI API Key
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+CONFIG_FILE = "config.json"
+with open(CONFIG_FILE, "r") as f:
+    config = json.load(f)
+
+OPENAI_API_KEY = config.get("openai_api_key", "")
 
 # Initialize LangChain Chat Modelllm
 llm = ChatOpenAI(model_name="gpt-4o", openai_api_key=OPENAI_API_KEY)
@@ -24,77 +28,80 @@ progress = {}
 import subprocess
 import json
 
+
 @app.route("/report_error", methods=["POST"])
 def report_error():
     data = request.get_json()
-    
+
     if not data or "robot" not in data or "phase" not in data or "instruction_number" not in data or "description" not in data:
-        return jsonify({"error": "Request must include 'robot', 'phase', 'instruction_number', and 'description'."}), 400
-    
+        return jsonify(
+            {"error": "Request must include 'robot', 'phase', 'instruction_number', and 'description'."}), 400
+
     robot = data["robot"]
     phase = data["phase"]
     instruction_number = data["instruction_number"]
     description = data["description"]
-    
+
     try:
         phase = int(phase)
     except ValueError:
         return jsonify({"error": "Phase must be an integer."}), 400
-    
+
     if robot not in plans:
         return jsonify({"error": f"No plan found for robot '{robot}'."}), 404
-    
+
     phases = plans[robot]["phases"]
     matching_phase = next((p for p in phases if p["phase_number"] == phase), None)
-    
+
     if not matching_phase:
         return jsonify({"error": f"Phase {phase} not found for robot {robot}."}), 404
-    
+
     for p in range(1, phase):
         if p not in progress[robot]["completed_phases"]:
             return jsonify({"error": f"Phase {p} must be completed before reporting an error in phase {phase}."}), 400
-    
+
     error_file_path = os.path.join("Execution_Errors_Files", f"error_{robot}_phase_{phase}.json")
     print(error_file_path)
     error_data = {
         "description": description,
         "failed_instructionnumber": instruction_number
     }
-    
+
     with open(error_file_path, "w") as f:
         json.dump(error_data, f, indent=4)
-    
+
     # Run APM.py to handle the error
     try:
         subprocess.run(["python", "APM.py", robot, str(phase), error_file_path], check=True)
     except subprocess.CalledProcessError as e:
         logging.error(f"APM execution failed: {e}")
         return jsonify({"error": "APM execution failed. Check server logs for details."}), 500
-    
+
     # Reload the corrected plan
     with open("config.json", "r") as f:
         config = json.load(f)
         load_plan(robot, f"final_{robot.lower()}_low_level_plan.json")
-    
+
     return jsonify({
         "message": f"Error in phase {phase} for {robot} processed successfully.",
         "updated_plan": plans[robot]
     }), 200
 
+
 @app.route("/generate_plan", methods=["POST"])
 def generate_plan():
-    data = request.get_json()llm
+    data = request.get_json()
 
     if not data or "mission_title" not in data or "mission_text" not in data:
         return jsonify({"error": "Request must include 'mission_title' and 'mission_text'."}), 400
 
     mission_title = data["mission_title"]
     mission_text = data["mission_text"]
-    
+
     # Define paths
     mission_files_dir = "mission_files"
     new_mission_file = os.path.join(mission_files_dir, f"{mission_title}.txt")
-    
+
     # Ensure the directory exists
     os.makedirs(mission_files_dir, exist_ok=True)
 
@@ -122,6 +129,7 @@ def generate_plan():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 def load_plan(robot_name, filename):
     with open(os.path.join("Plans", filename)) as f:
         plans[robot_name] = json.load(f)
@@ -130,8 +138,10 @@ def load_plan(robot_name, filename):
             "outputs": {}  # Stores outputs of completed phases
         }
 
+
 load_plan("ROBOT_DOG", "final_dog_low_level_plan.json")
 load_plan("DRONE", "final_drone_low_level_plan.json")
+
 
 # Function to fill in variables in the low-level plan using LangChain
 def fill_in_variables(plan_text, robot):
@@ -140,7 +150,7 @@ def fill_in_variables(plan_text, robot):
         return plan_text  # No progress to apply
 
     stored_outputs = progress[robot]["outputs"]
-    
+
     prompt = f"""
     You are a programming assistant. Replace placeholders in the following text with actual values from past phases.
     
@@ -154,10 +164,11 @@ def fill_in_variables(plan_text, robot):
     ONLY MODIFY THE INSTRUCTIONS THAT INCLUDE VARIABLES AS PARAMETERS. DO NOT MODIFY INSTRUCTIONS WITH READY VALUES.
     DO NOT OUPUT ANY COMMENTS OR HEADERS IN THE MESSAGE. JUST LIST THE MODIFIED INTSTRUCTIONS.
     """
-    
+
     response = llm.invoke([HumanMessage(content=prompt)])
-    
+
     return response.content.strip()
+
 
 @app.route("/complete_phase", methods=["POST"])
 def complete_phase():
@@ -203,7 +214,7 @@ def complete_phase():
     if next_phase:
         input_variables = next_phase.get("inputs", [])
         if input_variables:  # Only call fill_in_variables if the next phase has input variables
-            logging.info(f"Updating low-level plan for phase {phase+1} of {robot}")
+            logging.info(f"Updating low-level plan for phase {phase + 1} of {robot}")
             updated_plan = fill_in_variables(next_phase["low_level_plan"], robot)
             next_phase["low_level_plan"] = updated_plan
 
@@ -245,9 +256,11 @@ def get_instruction():
         "expected_outputs": matching_phase.get("outputs", {})
     }), 200
 
+
 @app.route('/')
 def index():
     return jsonify({"message": "Multi-Robot System Server is running"}), 200
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

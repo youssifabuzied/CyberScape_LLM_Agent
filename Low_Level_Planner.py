@@ -4,7 +4,6 @@ import argparse
 import os
 import subprocess
 import json
-from dotenv import load_dotenv
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage, HumanMessage
 from Utils import read_file
@@ -14,11 +13,15 @@ from langchain.output_parsers import PydanticOutputParser
 from pydantic import RootModel
 from typing import Dict
 
+import sys
+import codecs
+
+sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
+
+
 class LowLevelPlan(RootModel[Dict[str, str]]):
     """Mapping of phase numbers (as strings) to low-level instruction blocks."""
 
-# Load environment variables from .env file
-load_dotenv()
 
 # ---------- Helper Functions for LLM Prompting ----------
 
@@ -40,6 +43,7 @@ def get_example_output(target):
     else:
         return ""
 
+
 def build_phases_text(phases):
     """
     Builds a text representation of all phases.
@@ -53,6 +57,7 @@ def build_phases_text(phases):
         phases_text += f"  Inputs: {phase['inputs']}\n"
         phases_text += f"  Outputs: {phase['outputs']}\n\n"
     return phases_text
+
 
 def get_target_rules(target):
     """Return the rules for the target as a string."""
@@ -82,6 +87,7 @@ def get_target_rules(target):
     else:
         return ""
 
+
 def generate_low_level_for_plan(llm, mission_text, phases, robot_spec, target):
     """
     Makes a single LLM call for all phases for the given target.
@@ -96,7 +102,7 @@ def generate_low_level_for_plan(llm, mission_text, phases, robot_spec, target):
     example_output = get_example_output(target)
     phases_text = build_phases_text(phases)
     rules = get_target_rules(target)
-    
+
     # NEW: Initialize the output parser with our Pydantic model.
     parser = PydanticOutputParser(pydantic_object=LowLevelPlan)
     format_instructions = parser.get_format_instructions()
@@ -131,7 +137,7 @@ Output a JSON object where each key is the phase number (as a string) and each v
         SystemMessage(content="You are a helpful assistant."),
         HumanMessage(content=prompt)
     ])
-    
+
     # Print raw LLM response before processing
     print("\n⚡ LLM Raw Response:\n", response.content)
 
@@ -145,6 +151,7 @@ Output a JSON object where each key is the phase number (as a string) and each v
     print("\n✅ Parsed Instructions JSON:\n", json.dumps(instructions_json, indent=2))  # Debugging
 
     return instructions_json
+
 
 def update_plan_with_low_level(mission_plan, instructions_json, target):
     """
@@ -165,6 +172,7 @@ def update_plan_with_low_level(mission_plan, instructions_json, target):
             phase["low_level_plan"] = []
     return mission_plan[target_key]
 
+
 # ---------- Helper Functions for Verification and Parsing Steps ----------
 
 def low_level_plan_to_text(phases):
@@ -183,6 +191,7 @@ def low_level_plan_to_text(phases):
         text += f"Phase {phase['phase_number']}:\n{instructions}\n\n"
     return text
 
+
 def parse_parsed_plan_text(text):
     """
     Parse the verified and parsed plan text (which should include lines like "Phase {number}:")
@@ -196,12 +205,15 @@ def parse_parsed_plan_text(text):
         result[phase_num] = instructions
     return result
 
-def run_subprocess_command(command, shell=True, cwd=r"\\wsl.localhost\Ubuntu\home\zein\Uni\Thesis\CyberScape_LLM_Agent"):
+
+def run_subprocess_command(command, shell=True,
+                           cwd=r"\\wsl.localhost\Ubuntu\home\zein\Uni\Thesis\CyberScape_LLM_Agent"):
     """Runs a command using subprocess and waits for it to complete."""
     print(f"Running command: {command}")
     result = subprocess.run(command, shell=True)
     if result.returncode != 0:
         raise RuntimeError(f"Command failed with return code {result.returncode}")
+
 
 # ---------- Main Function ----------
 
@@ -223,7 +235,6 @@ def main():
     else:
         spec_file = config["drone_spec_file"]
         output_file = config["drone_output_file"]
-    
 
     # Read the high-level mission plan JSON
     with open(mission_plan_file, "r") as f:
@@ -237,6 +248,9 @@ def main():
     target_key = "drone_plan" if args.target.upper() == "DRONE" else "robot_dog_plan"
     phases = mission_plan[target_key]["phases"]
 
+    # OpenAI API Key
+    OPENAI_API_KEY = config.get("openai_api_key", "")
+
     # Initialize the LLM with configurable options
     llm = ChatOpenAI(
         # Option 1: Meta-Llama-3.1-405B-Instruct
@@ -247,7 +261,7 @@ def main():
 
         # Option 2: GPT-4O-Mini
         model_name="gpt-4o",
-        openai_api_key=os.getenv("OPENAI_API_KEY"),
+        openai_api_key=OPENAI_API_KEY,
         temperature=0.1
 
         # Option 3: Gemini-2.0-Flash
@@ -267,23 +281,25 @@ def main():
         temp_plan_file = config["dog_temp_low_level_plan"]
     else:
         temp_plan_file = config["drone_temp_low_level_plan"]
-    
+
     with open(temp_plan_file, "w") as f:
         f.write(low_level_text)
 
     # Call the Verification_Module on the low-level plan text
     # This assumes your Verification_Module.py has been adapted to work with low-level plan text
-    verification_command = f"python3 Verification_Module.py {args.target}"
-    run_subprocess_command(verification_command, shell=True, cwd=r"\\wsl.localhost\Ubuntu\home\zein\Uni\Thesis\CyberScape_LLM_Agent")
+    verification_command = f"python Verification_Module.py {args.target}"
+    run_subprocess_command(verification_command, shell=True,
+                           cwd=r"\\wsl.localhost\Ubuntu\home\zein\Uni\Thesis\CyberScape_LLM_Agent")
 
     # --------- Step 3: Parsing Step ---------
     # Call the plan_parser on the verified plan text to clean/parse it
-    parsing_command = f"python3 Plan_Parser.py {args.target}"
-    run_subprocess_command(parsing_command, shell=True, cwd=r"\\wsl.localhost\Ubuntu\home\zein\Uni\Thesis\CyberScape_LLM_Agent")
+    parsing_command = f"python Plan_Parser.py {args.target}"
+    run_subprocess_command(parsing_command, shell=True,
+                           cwd=r"\\wsl.localhost\Ubuntu\home\zein\Uni\Thesis\CyberScape_LLM_Agent")
     # Get the output of plan_parser
     if args.target == "ROBOT_DOG":
         parsed_file = config["dog_parsed_plan_file"]
-    else: 
+    else:
         parsed_file = config["drone_parsed_plan_file"]
 
     with open(parsed_file, "r") as f:
@@ -306,6 +322,7 @@ def main():
         json.dump(updated_target_plan, f, indent=4)
 
     print(f"Final verified and parsed low-level plan for {args.target.upper()} written to {output_file}")
+
 
 if __name__ == "__main__":
     main()
