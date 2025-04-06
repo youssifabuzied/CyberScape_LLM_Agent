@@ -1,0 +1,816 @@
+[
+    {
+        "task": "fetch the ball",
+        "robot list": [
+            29,
+            30
+        ],
+        "object_states": [
+            {
+                "name": "ball_location",
+                "contains": [],
+                "state": "(x, y)"
+            },
+            {
+                "name": "ball_detected",
+                "contains": [],
+                "state": "true"
+            },
+            {
+                "name": "ball_retrieved",
+                "contains": [],
+                "state": "true"
+            }
+        ],
+        "additional_info": {
+            "field_size": "None"
+        }
+    },   
+    {
+        "task": "Make the kitchen dark",
+        "robot list": [
+            1
+        ],
+        "object_states": [
+            {
+                "name": "LightSwitch",
+                "contains": [],
+                "state": "OFF"
+            }
+        ],
+        "additional_info": {
+                "trans": 0,
+                "max_trans": 0
+        }
+    },
+    {
+        "task": "Put apple in fridge and switch off the light",
+        "robot list": [
+            1,
+            2,
+            3
+        ],
+        "object_states": [
+            {
+                "name": "Fridge",
+                "contains": [
+                    "Apple"
+                ],
+                "state": null
+            },
+            {
+                "name": "LightSwitch",
+                "contains": [],
+                "state": "OFF"
+            }
+        ],
+        "additional_info": {
+            "trans": 1,
+            "max_trans": 1        
+        }
+    },
+    {
+        "task": "Slice the lettuce, trash the mug and switch off the light",
+        "robot list": [
+            8,
+            6,
+            5
+        ],
+        "object_states": [
+            {
+                "name": "Lettuce",
+                "contains": [],
+                "state": "SLICED"
+            },
+            {
+                "name": "GarbageCan",
+                "contains": [
+                    "Mug"
+                ],
+                "state": null
+            },
+            {
+                "name": "LightSwitch",
+                "contains": [],
+                "state": "OFF"
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 2     
+        }
+    },
+    {
+        "task": "Cook the potato and put it in the Fridge",
+        "robot list": [
+            9,
+            10
+        ],
+        "object_states": [
+            {
+                "name": "Fridge",
+                "contains": [
+                    "Potato"
+                ],
+                "state": null
+            },
+            {
+                "name": "Potato",
+                "contains": [],
+                "state": "COOKED"
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 1  
+        }
+    },
+    {
+        "task": "Microwave a plate containg a egg and a tomato",
+        "robot list": [
+            23,
+            24,
+            25,
+            26
+        ],
+        "object_states": [
+            {
+                "name": "Plate",
+                "contains": [
+                    "Egg",
+                    "Tomato"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 1,
+            "max_trans": 2
+        }
+    },
+    {
+        "task": "put mug in the coffee machine and switch on the coffee machine",
+        "robot list": [
+            25,
+            27,
+            24
+        ],
+        "object_states": [
+            {
+                "name": "CoffeeMachine",
+                "contains": [
+                    "Mug"
+                ],
+                "state": null
+            },
+            {
+                "name": "Mug",
+                "contains": [],
+                "state": "HOT"
+            }
+        ],
+        "additional_info": {
+            "trans": 1,
+            "max_trans": 1
+        }
+    },
+    {
+        "task": "Put the watch and Keychain inside the drawer",
+        "robot list": [
+            2,
+            3,
+            5
+        ],
+        "object_states": [
+            {
+                "name": "Drawer",
+                "contains": [
+                    "Watch",
+                    "KeyChain"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Pick up the Pillow",
+        "robot list": [
+            8,
+            7,
+            5,
+            10
+        ],
+        "object_states": [
+            {
+                "name": "Pillow",
+                "contains": [],
+                "state": "PICKED"
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Put the Box on the sofa and the bowl in the box",
+        "robot list": [
+            8,
+            5
+        ],
+        "object_states": [
+            {
+                "name": "Box",
+                "contains": [
+                    "Bowl"
+                ],
+                "state": null
+            },
+            {
+                "name": "Sofa",
+                "contains": [
+                    "Box"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 1,
+            "max_trans": 1
+        }
+    },
+    {
+        "task": "Put the vase on the dining table and open the book",
+        "robot list": [
+            25,
+            23
+        ],
+        "object_states": [
+            {
+                "name": "DiningTable",
+                "contains": [
+                    "Vase"
+                ],
+                "state": null
+            },
+            {
+                "name": "Book",
+                "contains": [],
+                "state": "OPENED"
+            }
+        ],
+        "additional_info": {
+                "trans": 0,
+                "max_trans": 0
+        }
+    },
+    {
+        "task": "Open the Laptop and Turn it ON. ",
+        "robot list": [
+            24,
+            25,
+            23
+        ],
+        "object_states": [
+            {
+                "name": "Laptop",
+                "contains": [],
+                "state": "OPENED"
+            },
+            {
+                "name": "Laptop",
+                "contains": [],
+                "state": "ON"
+            }
+        ],
+        "additional_info": {
+                "trans": 0,
+                "max_trans": 0
+        }
+    },
+    {
+        "task": "Turn off floor lamp",
+        "robot list": [
+            1,
+            2
+        ]
+    },
+    {
+        "task": "Break a vase and Turn on TV",
+        "robot list": [
+            2,
+            3,
+            4
+        ],
+        "object_states": [
+            {
+                "name": "Vase",
+                "contains": [],
+                "state": "BROKEN"
+            },
+            {
+                "name": "Television",
+                "contains": [],
+                "state": "ON"
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 1
+        }
+    },
+    {
+        "task": "Put the watch in the box and watering can on the coffeetable",
+        "robot list": [
+            6,
+            7
+        ],
+        "object_states": [
+            {
+                "name": "Box",
+                "contains": [
+                    "Watch"
+                ],
+                "state": null
+            },
+            {
+                "name": "CoffeeTable",
+                "contains": [
+                    "WateringCan"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 1
+        }
+    },
+    {
+        "task": "Trash the book and newspaper",
+        "robot list": [
+            8,
+            9,
+            10,
+            28
+        ],
+        "object_states": [
+            {
+                "name": "GarbageCan",
+                "contains": [
+                    "Book",
+                    "Newspaper"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 1
+        }
+    },
+    {
+        "task": "Put the vase on the sofa",
+        "robot list": [
+            8,
+            28
+        ],
+        "object_states": [
+            {
+                "name": "Sofa",
+                "contains": [
+                    "Vase"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 1
+        }
+    },
+    {
+        "task": "Put mug in coffee machine",
+        "robot list": [
+            1
+        ],
+        "object_states": [
+            {
+                "name": "CoffeeMachine",
+                "contains": [
+                    "Mug"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Chill the apple and wash the knife",
+        "robot list": [
+            1,
+            2
+        ],
+        "object_states": [
+            {
+                "name": "Fridge",
+                "contains": [
+                    "Apple"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Put two vegetables in the fridge parallely",
+        "robot list": [
+            19,
+            24,
+            17,
+            27
+        ],
+        "object_states": [
+            {
+                "name": "Fridge",
+                "contains": [
+                    "Potato",
+                    "Lettuce"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Wash the fork and put it in the bowl",
+        "robot list": [
+            27,
+            24,
+            25
+        ],
+        "object_states": [
+            {
+                "name": "Bowl",
+                "contains": [
+                    "Fork"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 1,
+            "max_trans": 1
+        }
+    },
+    {
+        "task": "Toast a slice of the breadloaf",
+        "robot list": [
+            24,
+            25,
+            26
+        ],
+        "object_states": [
+            {
+                "name": "Bread",
+                "contains": [],
+                "state": "COOKED"
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 1
+        }
+    },
+    {
+        "task": "Slice apple and throw it in the trash",
+        "robot list": [
+            26,
+            25,
+            27
+        ],
+        "object_states": [
+            {
+                "name": "Apple",
+                "contains": [],
+                "state": "SLICED"
+            },
+            {
+                "name": "GarbageCan",
+                "contains": [
+                    "Apple"
+                ],
+                "state": null
+            }
+        ]
+    },
+    {
+        "task": "Turn on the laptop",
+        "robot list": [
+            3
+        ],
+        "object_states": [
+            {
+                "name": "Laptop",
+                "contains": [],
+                "state": "ON"
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Put the baseballbat and tennis racket on the bed",
+        "robot list": [
+            1,
+            2
+        ],
+        "object_states": [
+            {
+                "name": "Bed",
+                "contains": [
+                    "BaseballBat",
+                    "TennisRacket"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Put the book in the box and Turn on the mobile phone",
+        "robot list": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "object_states": [
+            {
+                "name": "Box",
+                "contains": [
+                    "Book"
+                ],
+                "state": null
+            },
+            {
+                "name": "CellPhone ",
+                "contains": [],
+                "state": "ON"
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Open a book in a well lit room",
+        "robot list": [
+            27,
+            23,
+            24
+        ],
+        "object_states": [
+            {
+                "name": "Book",
+                "contains": [],
+                "state": "OPENED"
+            },
+            {
+                "name": "LightSwitch",
+                "contains": [],
+                "state": "ON"
+            }
+        ],
+        "additional_info": {
+            "trans": 1,
+            "max_trans": 1
+        }
+    },
+    {
+        "task": "Break the Cellphone and Close the blinds",
+        "robot list": [
+            23,
+            15,
+            26
+        ],
+        "object_states": [
+            {
+                "name": "CellPhone",
+                "contains": [],
+                "state": "BROKEN"
+            },
+            {
+                "name": "Blinds",
+                "contains": [],
+                "state": "CLOSED"
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Place the laptop on the bed",
+        "robot list": [
+            9,
+            8,
+            7
+        ],
+        "object_states": [
+            {
+                "name": "Bed",
+                "contains": [
+                    "Laptop"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Fill water in the BathTub",
+        "robot list": [
+            1
+        ],
+        "object_states": [],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Throw the cloth in trash and Fill water in the BathTub",
+        "robot list": [
+            1
+        ],
+        "object_states": [
+            {
+                "name": "trash",
+                "contains": [
+                    "cloth"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 1,
+            "max_trans": 1
+        }
+    },
+    {
+        "task": "Place the Bar of soap in the sink first and then place dishsponge in the sink",
+        "robot list": [
+            1,
+            2,
+            3
+        ],
+        "object_states": [
+            {
+                "name": "Sink",
+                "contains": [
+                    "SoapBar",
+                    "ScrubBrush"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Put plunger in cabinet and Turn off the light",
+        "robot list": [
+            24,
+            25
+        ],
+        "object_states": [
+            {
+                "name": "cabinet",
+                "contains": [],
+                "state": null
+            },
+            {
+                "name": "LightSwitch",
+                "contains": [],
+                "state": "OFF"
+            }
+        ],
+        "additional_info": {
+            "trans": 1,
+            "max_trans": 1
+        }
+    },
+    {
+        "task": "Turn on Sink faucet and put toilet paper in the trash",
+        "robot list": [
+            23,
+            24,
+            25,
+            26
+        ],
+        "object_states": [
+            {
+                "name": "Faucet",
+                "contains": [],
+                "state": "ON"
+            },
+            {
+                "name": "GarbageCan ",
+                "contains": [
+                    "ToiletPaper"
+                ],
+                "state": null
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Slice the tomato",
+        "robot list": [
+            2,
+            3,
+            4
+        ],
+        "object_states": [
+            {
+                "name": "Tomato",
+                "contains": [],
+                "state": "SLICED"
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Wash the lettuce and place lettuce on the Countertop",
+        "robot list": [
+            13,
+            25,
+            15
+        ],
+        "object_states": [
+            {
+                "name": "CounterTop",
+                "contains": [
+                    "Lettuce"
+                ],
+                "state": "null"
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    },
+    {
+        "task": "Throw the Spatula in the trash",
+        "robot list": [
+            27,
+            25
+        ],
+        "object_states": [
+            {
+                "name": "GarbageCan",
+                "contains": [
+                    "Spatula"
+                ],
+                "state": "null"
+            }
+        ],
+        "additional_info": {
+            "trans": 0,
+            "max_trans": 0
+        }
+    }
+]

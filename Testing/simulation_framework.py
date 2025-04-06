@@ -6,20 +6,27 @@ from robot import Robot
 
 
 class SimulationFramework:
-    def __init__(self, mission_config_path: str, robot_configs: List[str]):
+    def __init__(self, mission_config_path: str, robot_configs_path: str, configs_path: str,):
         """
         Initialize the simulation framework with mission and robot configurations.
 
         Args:
             mission_config_path: Path to the mission configuration file
-            robot_configs: List of paths to robot configuration files
+            robot_configs_path: Path to the robots configuration file
+            config_path: Path to the robots configuration file
         """
         with open(mission_config_path, 'r') as file:
             self.mission_config = json.load(file)
+        
+        with open(mission_config_path, 'r') as file:
+            self.robots_config = json.load(file)
 
-        self.robots: List[Robot] = [Robot(config_path) for config_path in robot_configs]
+        with open(configs_path, 'r') as file:
+            self.configs_path = json.load(file)
+
+        self.robots: List[Robot] = [Robot(config) for config in self.robots_config]
         self.steps: int = 0
-        self.max_steps: int = self.mission_config.get('max_steps', 10)
+        self.max_steps: int = self.configs_path.get('max_steps', 10)
 
         # Initialize state tracking
         self.state: Dict[str, Any] = {

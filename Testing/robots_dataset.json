@@ -1,0 +1,258 @@
+[
+    {
+        "name": "robot1",
+        "skills": [
+            "GoToObject",
+            "OpenObject",
+            "CloseObject",
+            "BreakObject",
+            "SliceObject",
+            "SwitchOn",
+            "SwitchOff",
+            "PickupObject",
+            "PutObject",
+            "DropHandObject",
+            "ThrowObject",
+            "PushObject",
+            "PullObject"
+        ],
+        "additional_info": {
+            "mass": 100
+        }
+    },
+    {
+        "name": "robot2",
+        "skills": [
+            "GoToObject",
+            "OpenObject",
+            "CloseObject",
+            "BreakObject",
+            "SliceObject",
+            "SwitchOn",
+            "SwitchOff",
+            "PickupObject",
+            "PutObject",
+            "DropHandObject",
+            "ThrowObject",
+            "PushObject",
+            "PullObject"
+        ],
+        "additional_info": {
+            "mass": 100
+        }
+    },
+    {
+        "name": "robot3",
+        "skills": [
+            "GoToObject",
+            "OpenObject",
+            "CloseObject",
+            "BreakObject",
+            "SliceObject",
+            "SwitchOn",
+            "SwitchOff",
+            "PickupObject",
+            "PutObject",
+            "DropHandObject",
+            "ThrowObject",
+            "PushObject",
+            "PullObject"
+        ],
+        "additional_info": {
+            "mass": 100
+        }
+    },
+    {
+        "name": "robot4",
+        "skills": [
+            "GoToObject",
+            "OpenObject",
+            "CloseObject",
+            "BreakObject",
+            "SliceObject",
+            "SwitchOn",
+            "SwitchOff",
+            "PickupObject",
+            "PutObject",
+            "DropHandObject",
+            "ThrowObject",
+            "PushObject",
+            "PullObject"
+        ],
+        "additional_info": {
+            "mass": 100
+        }
+    },
+    {
+        "name": "robot5",
+        "skills": [
+            "GoToObject",
+            "OpenObject",
+            "CloseObject",
+            "BreakObject",
+            "SliceObject",
+            "SwitchOn",
+            "SwitchOff",
+            "PickupObject",
+            "PutObject",
+            "DropHandObject",
+            "ThrowObject",
+            "PushObject",
+            "PullObject"
+        ],
+        "additional_info": {
+            "mass_capacity": 1.0
+        }
+    },
+    {
+        "name": "robot6",
+        "skills": [
+            "GoToObject",
+            "OpenObject",
+            "CloseObject",
+            "BreakObject",
+            "SliceObject",
+            "SwitchOn",
+            "SwitchOff",
+            "PickupObject",
+            "PutObject",
+            "DropHandObject",
+            "ThrowObject",
+            "PushObject",
+            "PullObject"
+        ],
+        "additional_info": {
+            "mass_capacity": 2.1
+        }
+    },
+    {
+        "name": "robot7",
+        "skills": [
+            "GoToObject",
+            "OpenObject",
+            "CloseObject",
+            "BreakObject",
+            "SliceObject",
+            "SwitchOn",
+            "SwitchOff",
+            "PickupObject",
+            "PutObject",
+            "DropHandObject",
+            "ThrowObject",
+            "PushObject",
+            "PullObject"
+        ],
+        "additional_info": {
+            "mass_capacity": 0.08
+        }
+    },
+    {
+        "name": "robot8",
+        "skills": [
+            "GoToObject",
+            "OpenObject",
+            "CloseObject",
+            "BreakObject",
+            "SliceObject",
+            "SwitchOn",
+            "SwitchOff",
+            "PickupObject",
+            "PutObject",
+            "DropHandObject",
+            "ThrowObject",
+            "PushObject",
+            "PullObject"
+        ],
+        "additional_info": {
+            "mass_capacity": 0.4
+        }
+    },
+    {
+        "name": "robot9",
+        "skills": [
+            "GoToObject",
+            "OpenObject",
+            "CloseObject",
+            "BreakObject",
+            "SliceObject",
+            "SwitchOn",
+            "SwitchOff",
+            "PickupObject",
+            "PutObject",
+            "DropHandObject",
+            "ThrowObject",
+            "PushObject",
+            "PullObject"
+        ],
+        "additional_info": {
+            "mass_capacity": 5
+        }
+    },
+    {
+        "name": "robot10",
+        "skills": [
+            "GoToObject",
+            "OpenObject",
+            "CloseObject",
+            "BreakObject",
+            "SliceObject",
+            "SwitchOn",
+            "SwitchOff",
+            "PickupObject",
+            "PutObject",
+            "DropHandObject",
+            "ThrowObject",
+            "PushObject",
+            "PullObject"
+        ],
+        "additional_info": {
+            "mass_capacity": 0.02
+        }
+    },
+    {
+        "name": "robot28",
+        "skills": [
+            "GoToObject",
+            "OpenObject",
+            "CloseObject",
+            "BreakObject",
+            "SliceObject",
+            "SwitchOn",
+            "SwitchOff",
+            "PickupObject",
+            "PutObject",
+            "DropHandObject",
+            "ThrowObject",
+            "PushObject",
+            "PullObject"
+        ],
+        "additional_info": {
+            "mass_capacity": 0.9
+        }
+    },
+    {
+        "name": "robot29",
+        "skills": [
+            "move_to_point",
+            "rotate",
+            "detect_with_camera",
+            "wait_for_signal",
+            "communicate_with_apm",
+            "fly",
+            "return_to_base"
+        ]
+    },
+    {
+        "name": "robot30",
+        "skills": [
+            "move_to_point",
+            "rotate",
+            "detect_with_camera",
+            "wait_for_signal",
+            "communicate_with_apm",
+            "jump",
+            "return_to_base",
+            "retrieve_the_object"
+        ]
+    }
+]
