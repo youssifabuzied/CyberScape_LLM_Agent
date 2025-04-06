@@ -11,6 +11,6 @@ To retrieve an object after detecting it, retrieve_the_object should be used.
 When waiting for information from the drone, wait_for_signal should be used.
 When scanning an area, detect_with_camera should be called after each movement until detection.
 Use detect_with_camera when you are scanning with the intention of detecting something.
-If you want to communicate a given square to the apm, you should send the coordinates of the center of the sqaure, this is the identifier of the square.
+If you want to communicate a given square to the apm, you should send the coordinates of the center of the square, this is the identifier of the square.
 Do not use excessive indentation in the generated plan.
 Any scanning should be done in one phase and not distributed on separate phases.

@@ -75,8 +75,7 @@ class MultiRobotTestingFramework:
     def _load_drone_actions(self):
         # Parse the drone_specifications.txt file
         return [
-            "move_forward", "move_to_point", "rotate", "get_position_data",
-            "get_camera_data", "detect_with_camera", "process_messages",
+            "move_forward", "move_to_point", "rotate", "detect_with_camera", "process_messages",
             "wait_for_signal", "communicate_with_apm", "monitor_task",
             "send_feedback_for_rethinking", "fly", "return_to_base"
         ]
@@ -84,8 +83,7 @@ class MultiRobotTestingFramework:
     def _load_dog_actions(self):
         # Parse the dog_specifications.txt file
         return [
-            "move_forward", "move_to_point", "rotate", "get_position_data",
-            "get_camera_data", "detect_with_camera", "process_messages",
+            "move_forward", "move_to_point", "rotate", "detect_with_camera", "process_messages",
             "wait_for_signal", "communicate_with_apm", "monitor_task",
             "send_feedback_for_rethinking", "jump", "return_to_base", "retrieve_the_object"
         ]

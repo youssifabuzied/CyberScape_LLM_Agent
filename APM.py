@@ -19,7 +19,7 @@ def load_file(file_path):
             return f.read().strip()
     return ""
 
-def analyze_error(robot, phase, error_description):
+def analyze_error(robot, phase, instruction, error_description):
     """Analyze the error and provide a textual suggestion for a fix."""
     spec_file = config[f"{robot.lower()}_spec_file"]
     mission_text_file = config["mission_text_file"]
@@ -46,6 +46,7 @@ def analyze_error(robot, phase, error_description):
     **Failed Phase Details:**
     - State: {failed_phase["state"]}
     - Goal: {failed_phase["phase_target"]}
+    - Failed Instruction Number: {instruction}
     - Instructions:
     {failed_phase["low_level_plan"]}
     
@@ -95,11 +96,12 @@ def fix_low_level_plan(robot, phase, fix_suggestion):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: python APM.py <robot_name> <failed_phase_number> <error_description_file>")
+        print("Usage: python APM.py <robot_name> <failed_phase_number> <<failed_instruction_number> <error_description_file>")
         sys.exit(1)
     
     robot_name = sys.argv[1]
     failed_phase_number = int(sys.argv[2])
+    failed_instruction_number = int(sys.argv[3])
     error_file = sys.argv[3]
     
     if not os.path.exists(error_file):
@@ -112,7 +114,7 @@ if __name__ == "__main__":
     error_description = error_data.get("description", "No description provided.")
     
     # Analyze error
-    fix_suggestion = analyze_error(robot_name, failed_phase_number, error_description)
+    fix_suggestion = analyze_error(robot_name, failed_phase_number, failed_instruction_number, error_description)
     print("Suggested Fix:", fix_suggestion)
     
     # Apply fix

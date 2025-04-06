@@ -64,7 +64,7 @@ def report_error():
     print(error_file_path)
     error_data = {
         "description": description,
-        "failed_instructionnumber": instruction_number
+        "failed_instruction_number": instruction_number
     }
 
     with open(error_file_path, "w") as f:
@@ -72,7 +72,7 @@ def report_error():
 
     # Run APM.py to handle the error
     try:
-        subprocess.run(["python", "APM.py", robot, str(phase), error_file_path], check=True)
+        subprocess.run(["python", "APM.py", robot, str(phase), instruction_number, error_file_path], check=True)
     except subprocess.CalledProcessError as e:
         logging.error(f"APM execution failed: {e}")
         return jsonify({"error": "APM execution failed. Check server logs for details."}), 500
