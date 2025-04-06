@@ -43,7 +43,7 @@ class MultiRobotTestingFramework:
         # Shared data between robots
         self.shared_data = {
             "ball_detected": False,
-            "ball_location": None,
+            "LightSwitch": "ON",
             "area_coordinates": None
         }
 
@@ -75,17 +75,15 @@ class MultiRobotTestingFramework:
     def _load_drone_actions(self):
         # Parse the drone_specifications.txt file
         return [
-            "move_forward", "move_to_point", "rotate", "detect_with_camera", "process_messages",
-            "wait_for_signal", "communicate_with_apm", "monitor_task",
-            "send_feedback_for_rethinking", "fly", "return_to_base"
+            "move_to_point", "rotate", "detect_with_camera",
+            "wait_for_signal", "communicate_with_apm", "fly", "return_to_base"
         ]
 
     def _load_dog_actions(self):
         # Parse the dog_specifications.txt file
         return [
-            "move_forward", "move_to_point", "rotate", "detect_with_camera", "process_messages",
-            "wait_for_signal", "communicate_with_apm", "monitor_task",
-            "send_feedback_for_rethinking", "jump", "return_to_base", "retrieve_the_object"
+            "move_to_point", "rotate", "detect_with_camera",
+            "wait_for_signal", "communicate_with_apm", "jump", "return_to_base", "retrieve_the_object"
         ]
 
     def _parse_action(self, action_str):
