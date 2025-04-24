@@ -1,80 +1,124 @@
 Phase 1:
-Drone.move_to_point((5.0, 5.0, 10.0))
-Drone.fly(10.0)
+Drone.move_to_point((5,5,10))
 Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((15.0, 5.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((25.0, 5.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((35.0, 5.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((45.0, 5.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((5.0, 15.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((15.0, 15.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((25.0, 15.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((35.0, 15.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((45.0, 15.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((5.0, 25.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((15.0, 25.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((25.0, 25.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((35.0, 25.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((45.0, 25.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((5.0, 35.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((15.0, 35.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((25.0, 35.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((35.0, 35.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((45.0, 35.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((5.0, 45.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((15.0, 45.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((25.0, 45.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((35.0, 45.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.move_to_point((45.0, 45.0, 10.0))
-Drone.detect_with_camera('ball')
-Drone.communicate_with_apm({'X': <X>, 'Y': <Y>})
-Drone.return_to_base()
+Drone.communicate_with_apm({'X': 5, 'Y': 5, 'detection_status': detection_status})
 
 Phase 2:
+Drone.move_to_point((15,5,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 15, 'Y': 5, 'detection_status': detection_status})
+
+Phase 3:
+Drone.move_to_point((25,5,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 25, 'Y': 5, 'detection_status': detection_status})
+
+Phase 4:
+Drone.move_to_point((35,5,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 35, 'Y': 5, 'detection_status': detection_status})
+
+Phase 5:
+Drone.move_to_point((45,5,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 45, 'Y': 5, 'detection_status': detection_status})
+
+Phase 6:
+Drone.move_to_point((5,15,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 5, 'Y': 15, 'detection_status': detection_status})
+
+Phase 7:
+Drone.move_to_point((15,15,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 15, 'Y': 15, 'detection_status': detection_status})
+
+Phase 8:
+Drone.move_to_point((25,15,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 25, 'Y': 15, 'detection_status': detection_status})
+
+Phase 9:
+Drone.move_to_point((35,15,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 35, 'Y': 15, 'detection_status': detection_status})
+
+Phase 10:
+Drone.move_to_point((45,15,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 45, 'Y': 15, 'detection_status': detection_status})
+
+Phase 11:
+Drone.move_to_point((5,25,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 5, 'Y': 25, 'detection_status': detection_status})
+
+Phase 12:
+Drone.move_to_point((15,25,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 15, 'Y': 25, 'detection_status': detection_status})
+
+Phase 13:
+Drone.move_to_point((25,25,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 25, 'Y': 25, 'detection_status': detection_status})
+
+Phase 14:
+Drone.move_to_point((35,25,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 35, 'Y': 25, 'detection_status': detection_status})
+
+Phase 15:
+Drone.move_to_point((45,25,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 45, 'Y': 25, 'detection_status': detection_status})
+
+Phase 16:
+Drone.move_to_point((5,35,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 5, 'Y': 35, 'detection_status': detection_status})
+
+Phase 17:
+Drone.move_to_point((15,35,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 15, 'Y': 35, 'detection_status': detection_status})
+
+Phase 18:
+Drone.move_to_point((25,35,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 25, 'Y': 35, 'detection_status': detection_status})
+
+Phase 19:
+Drone.move_to_point((35,35,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 35, 'Y': 35, 'detection_status': detection_status})
+
+Phase 20:
+Drone.move_to_point((45,35,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 45, 'Y': 35, 'detection_status': detection_status})
+
+Phase 21:
+Drone.move_to_point((5,45,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 5, 'Y': 45, 'detection_status': detection_status})
+
+Phase 22:
+Drone.move_to_point((15,45,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 15, 'Y': 45, 'detection_status': detection_status})
+
+Phase 23:
+Drone.move_to_point((25,45,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 25, 'Y': 45, 'detection_status': detection_status})
+
+Phase 24:
+Drone.move_to_point((35,45,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 35, 'Y': 45, 'detection_status': detection_status})
+
+Phase 25:
+Drone.move_to_point((45,45,10))
+Drone.detect_with_camera('ball')
+Drone.communicate_with_apm({'X': 45, 'Y': 45, 'detection_status': detection_status})

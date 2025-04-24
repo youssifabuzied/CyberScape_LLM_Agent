@@ -272,16 +272,10 @@ def main():
         temperature=0.1
     )
 
-    drone_plan = generate_plan(llm, mission_text, "DRONE")
-    robot_dog_plan = generate_plan(llm, mission_text, "ROBOT_DOG")
-
-    # refined_drone_plan = refine_plan(llm, mission_text, drone_plan)
-    # refined_robot_dog_plan = refine_plan(llm, mission_text, robot_dog_plan)
-
-    mission_output = {
-        "drone_plan": drone_plan.to_dict(),
-        "robot_dog_plan": robot_dog_plan.to_dict()
-    }
+    mission_output = {}
+    for robot in config["robots_in_curr_mission"]:
+        plan = generate_plan(llm, mission_text, robot)
+        mission_output[ config["robots_config"][robot]["high_plan_key"] ] = plan.to_dict()
 
     mission_plan_file = config.get("mission_plan_file", "Plans/mission_plan.json")
     with open(mission_plan_file, 'w') as output_file:

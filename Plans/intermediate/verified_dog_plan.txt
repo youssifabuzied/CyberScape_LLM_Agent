@@ -1,12 +1,17 @@
 Phase 1:
 RobotDog.wait_for_signal()
+RobotDog.communicate_with_apm('block_location_received')
 
 Phase 2:
 RobotDog.move_to_point(<X>, <Y>)
-RobotDog.detect_with_camera('ball')
-RobotDog.communicate_with_apm({'X': <X>, 'Y': <Y>})
+RobotDog.communicate_with_apm('arrived_at_block')
 
 Phase 3:
+RobotDog.detect_with_camera('ball')
+RobotDog.communicate_with_apm('ball_location_X', 'ball_location_Y')
+
+Phase 4:
 RobotDog.retrieve_the_object('ball')
 RobotDog.return_to_base()
+RobotDog.communicate_with_apm('retrieval_status')
 

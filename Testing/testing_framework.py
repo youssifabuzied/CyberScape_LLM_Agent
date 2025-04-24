@@ -2,7 +2,6 @@ import json
 import math
 import random
 
-
 class MultiRobotTestingFramework:
     def __init__(self, mission_plan_path, drone_low_level_plan_path, dog_low_level_plan_path):
         # Load mission plans

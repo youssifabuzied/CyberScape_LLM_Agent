@@ -22,27 +22,7 @@ sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 class LowLevelPlan(RootModel[Dict[str, str]]):
     """Mapping of phase numbers (as strings) to low-level instruction blocks."""
 
-
 # ---------- Helper Functions for LLM Prompting ----------
-
-def get_example_output(target):
-    """Return the target-specific example output."""
-    if target.upper() == "DRONE":
-        return (
-            "Drone.move_to_point((100.0,200.0,50.0))\n"
-            "Drone.scan_area()\n"
-            "if Drone.scan_successful():\n"
-            "    Drone.send_data_to_apm()"
-        )
-    elif target.upper() == "ROBOT_DOG":
-        return (
-            "RobotDog.move_to(100.0,200.0)\n"
-            "RobotDog.scan_area()\n"
-            "RobotDog.send_data_to_apm()"
-        )
-    else:
-        return ""
-
 
 def build_phases_text(phases):
     """
@@ -59,36 +39,7 @@ def build_phases_text(phases):
     return phases_text
 
 
-def get_target_rules(target):
-    """Return the rules for the target as a string."""
-    if target.upper() == "DRONE":
-        return (
-            """
-            - ONLY use the functions provided in the specification for the drone. Do not invent or assume additional functions.
-            - NO while loops and NO recursive calls.
-            - Each phase must be independent, executing only after the previous phase completes.
-            - If the drone needs to wait, explicitly include an idle state.
-            - You are responsible for the translation of the high-level plan of the drone into a low-level set of executable drone instructions using ONLY the provided instructions. You won't be doing anything for the robot dog.  
-            - You can use the set of Input variables for a given phase for the functions if needed. However, you should place the variables between those symboles <>. For example, Drone.move_to(<x>, <y>)
-            """
-        )
-    elif target.upper() == "ROBOT_DOG":
-        return (
-            """
-            - ONLY use the functions provided in the specification for the robot dog. Do not invent or assume additional functions.
-            - NO while loops and NO recursive calls.
-            - Each phase must be independent, executing only after the previous phase completes.
-            - If the robot dog needs to wait, explicitly include an idle state.
-            - Every movement must be verified using `if RobotDog.has_reached(X, Y):` before proceeding.
-            - You are responsible for the translation of the high-level plan of the robot dog into a low-level set of executable robot dog instructions using ONLY the provided instructions. You won't be doing anything for the drone.  
-            - You can use the set of Input variables for a given phase and pass them when calling the functions you use in the low-level plan if needed. However, you should place the variables between those symboles <>. For example, Drone.move_to(<x>, <y>)
-            """
-        )
-    else:
-        return ""
-
-
-def generate_low_level_for_plan(llm, mission_text, phases, robot_spec, target):
+def generate_low_level_for_plan(llm, mission_text, phases, robot_spec, rules, example_output, target):
     """
     Makes a single LLM call for all phases for the given target.
     The prompt includes:
@@ -99,13 +50,15 @@ def generate_low_level_for_plan(llm, mission_text, phases, robot_spec, target):
     The LLM is instructed to output a JSON object mapping phase numbers (as strings)
     to the low-level instruction block for that phase.
     """
-    example_output = get_example_output(target)
     phases_text = build_phases_text(phases)
-    rules = get_target_rules(target)
 
     # NEW: Initialize the output parser with our Pydantic model.
     parser = PydanticOutputParser(pydantic_object=LowLevelPlan)
     format_instructions = parser.get_format_instructions()
+
+    words = target.lower().split("_")         # ["robot","dog"]
+    camel = "".join(w.capitalize() for w in words)  # "RobotDog"
+    prefix = f"{camel}."
 
     prompt = f"""
 
@@ -129,7 +82,7 @@ Example Output for {target} (for one phase):
 Please follow these format instructions:
 {format_instructions}
 
-Output a JSON object where each key is the phase number (as a string) and each value is the low-level instruction block for that phase. Don't output any other text. Make sure that the instructions follow the format provided in the example (instructions start with "RobotDog." for the robot dog, and "Drone." for the drone). 
+Output a JSON object where each key is the phase number (as a string) and each value is the low-level instruction block for that phase. Don't output any other text. Make sure that the instructions follow the format provided in the example (instructions start with {prefix}). 
     """
     print("LLM Prompt:\n", prompt)  # For debugging
 
@@ -153,12 +106,11 @@ Output a JSON object where each key is the phase number (as a string) and each v
     return instructions_json
 
 
-def update_plan_with_low_level(mission_plan, instructions_json, target):
+def update_plan_with_low_level(mission_plan, instructions_json, target_key, target):
     """
     For the given target, update each phase in the mission plan with the corresponding low-level instructions.
     Each low_level_plan will be stored as a list of instruction lines.
     """
-    target_key = "drone_plan" if target.upper() == "DRONE" else "robot_dog_plan"
     for phase in mission_plan[target_key]["phases"]:
         phase_num = str(phase["phase_number"])
         if phase_num in instructions_json:
@@ -219,33 +171,34 @@ def run_subprocess_command(command, shell=True,
 
 def main():
     parser_arg = argparse.ArgumentParser(
-        description="Generate low-level plans for a specified target (DRONE or ROBOT_DOG) from a high-level mission plan with verification and parsing steps."
+        description="Generate low-level plans for a specified target robot from a high-level mission plan with verification and parsing steps."
     )
-    parser_arg.add_argument("target", help="Target robot type: 'DRONE' or 'ROBOT_DOG'")
+    parser_arg.add_argument("target", help="Target robot type")
     args = parser_arg.parse_args()
 
     with open("config.json", "r") as f:
         config = json.load(f)
 
+    robot_cfg = config["robots_config"][args.target.upper()]
     mission_plan_file = config["mission_plan_file"]
     mission_text_file = config["mission_text_file"]
-    if args.target == "ROBOT_DOG":
-        spec_file = config["dog_spec_file"]
-        output_file = config["dog_output_file"]
-    else:
-        spec_file = config["drone_spec_file"]
-        output_file = config["drone_output_file"]
+
+    spec_file   = robot_cfg["spec_file"]
+    output_file = robot_cfg["final_low"]
 
     # Read the high-level mission plan JSON
-    with open(mission_plan_file, "r") as f:
+    with open(mission_plan_file, "r") as f: 
         mission_plan = json.load(f)
 
     # Read the original mission text and the robot specifications
     mission_text = read_file(mission_text_file)
     spec = read_file(spec_file)
 
+    rules          = read_file(robot_cfg["rules_file"])
+    example_output = read_file(robot_cfg["example_output"])
+
     # Determine the key for the target's plan and retrieve its phases
-    target_key = "drone_plan" if args.target.upper() == "DRONE" else "robot_dog_plan"
+    target_key = robot_cfg["high_plan_key"]
     phases = mission_plan[target_key]["phases"]
 
     # OpenAI API Key
@@ -271,16 +224,14 @@ def main():
     )
 
     # --------- Step 1: Generate Low-Level Instructions ---------
-    instructions_json = generate_low_level_for_plan(llm, mission_text, phases, spec, args.target)
-    updated_target_plan = update_plan_with_low_level(mission_plan, instructions_json, args.target)
+    instructions_json = generate_low_level_for_plan(llm, mission_text, phases, spec, rules, example_output, args.target)
+    updated_target_plan = update_plan_with_low_level(mission_plan, instructions_json, target_key, args.target)
 
     # --------- Step 2: Verification Step ---------
     # Convert the low-level plan for the target into text
     low_level_text = low_level_plan_to_text(updated_target_plan["phases"])
-    if args.target == "ROBOT_DOG":
-        temp_plan_file = config["dog_temp_low_level_plan"]
-    else:
-        temp_plan_file = config["drone_temp_low_level_plan"]
+    
+    temp_plan_file = robot_cfg["temp_low"]
 
     with open(temp_plan_file, "w") as f:
         f.write(low_level_text)
@@ -297,10 +248,7 @@ def main():
     run_subprocess_command(parsing_command, shell=True,
                            cwd=r"\\wsl.localhost\Ubuntu\home\zein\Uni\Thesis\CyberScape_LLM_Agent")
     # Get the output of plan_parser
-    if args.target == "ROBOT_DOG":
-        parsed_file = config["dog_parsed_plan_file"]
-    else:
-        parsed_file = config["drone_parsed_plan_file"]
+    parsed_file = robot_cfg["parsed"]
 
     with open(parsed_file, "r") as f:
         parsed_text = f.read()

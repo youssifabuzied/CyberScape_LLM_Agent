@@ -1,0 +1,9 @@
+"""
+- ONLY use the functions provided in the specification for the robot dog. Do not invent or assume additional functions.
+- NO while loops and NO recursive calls.
+- Each phase must be independent, executing only after the previous phase completes.
+- If the robot dog needs to wait, explicitly include an idle state.
+- Every movement must be verified using `if RobotDog.has_reached(X, Y):` before proceeding.
+- You are responsible for the translation of the high-level plan of the robot dog into a low-level set of executable robot dog instructions using ONLY the provided instructions. You won't be doing anything for the drone.  
+- You can use the set of Input variables for a given phase and pass them when calling the functions you use in the low-level plan if needed. However, you should place the variables between those symboles <>. For example, Drone.move_to(<x>, <y>)
+"""

@@ -122,8 +122,13 @@ def generate_plan():
 
         # Run the Manager.py script
         subprocess.run(["python", "Manager.py"], check=True)
-        load_plan("ROBOT_DOG", "final_dog_low_level_plan.json")
-        load_plan("DRONE", "final_drone_low_level_plan.json")
+
+        for robot in config["robots_in_curr_mission"]:
+            filename = config["robots_config"][robot]["final_low"]
+            load_plan(robot, filename)
+
+        # load_plan("ROBOT_DOG", "final_dog_low_level_plan.json")
+        # load_plan("DRONE", "final_drone_low_level_plan.json")
         return jsonify({"message": "Mission plan generation started successfully."}), 200
 
     except Exception as e:
@@ -131,16 +136,19 @@ def generate_plan():
 
 
 def load_plan(robot_name, filename):
-    with open(os.path.join("Plans", filename)) as f:
+    with open(filename)  as f:
         plans[robot_name] = json.load(f)
         progress[robot_name] = {
             "completed_phases": set(),
             "outputs": {}  # Stores outputs of completed phases
         }
 
-
-load_plan("ROBOT_DOG", "final_dog_low_level_plan.json")
-load_plan("DRONE", "final_drone_low_level_plan.json")
+for robot in config["robots_in_curr_mission"]:
+    filename = config["robots_config"][robot]["final_low"]
+    load_plan(robot, filename)
+    
+# load_plan("ROBOT_DOG", "final_dog_low_level_plan.json")
+# load_plan("DRONE", "final_drone_low_level_plan.json")
 
 
 # Function to fill in variables in the low-level plan using LangChain

@@ -4,10 +4,9 @@
         {
             "target": "ROBOT_DOG",
             "phase_number": 1,
-            "state": "The robot dog is at the starting point (25,25), awaiting the drone's scan results. The mission is to locate and retrieve the ball. The drone is scanning the field to identify the 10x10 meter area containing the ball.",
-            "phase_target": "Receive the coordinates of the 10x10 meter area containing the ball from the drone.",
-            "inputs": [],
-            "outputs": {
+            "state": "We have a mission to locate and retrieve a ball. The robot dog is stationed at the starting point (25,25), awaiting the drone's scan results to identify the 10x10 meter block containing the ball.",
+            "phase_target": "Receive the coordinates of the 10x10 meter block containing the ball from the drone.",
+            "inputs": {
                 "X": {
                     "type": "float"
                 },
@@ -15,13 +14,18 @@
                     "type": "float"
                 }
             },
-            "low_level_plan": "RobotDog.wait_for_signal()"
+            "outputs": {
+                "block_location_received": {
+                    "type": "string"
+                }
+            },
+            "low_level_plan": "RobotDog.wait_for_signal()\nRobotDog.communicate_with_apm('block_location_received')"
         },
         {
             "target": "ROBOT_DOG",
             "phase_number": 2,
-            "state": "The robot dog has received the coordinates (X, Y) of the 10x10 meter area containing the ball. It is now positioned at (X, Y) and ready to perform a detailed scan. The mission is to locate the exact 1x1 meter cell within this area.",
-            "phase_target": "Scan the 10x10 meter area to identify the exact 1x1 meter cell containing the ball.",
+            "state": "We have a mission to locate and retrieve a ball. The robot dog has received the coordinates of the 10x10 meter block containing the ball and is ready to navigate to that block.",
+            "phase_target": "Move to the specified 10x10 meter block and begin scanning for the exact 1x1 meter cell containing the ball.",
             "inputs": {
                 "X": {
                     "type": "float"
@@ -31,25 +35,38 @@
                 }
             },
             "outputs": {
-                "exact_X": {
-                    "type": "float"
-                },
-                "exact_Y": {
-                    "type": "float"
+                "arrived_at_block": {
+                    "type": "string"
                 }
             },
-            "low_level_plan": "RobotDog.move_to_point(<X>, <Y>)\nRobotDog.detect_with_camera('ball')\nRobotDog.communicate_with_apm({'X': <X>, 'Y': <Y>})"
+            "low_level_plan": "RobotDog.move_to_point(<X>, <Y>)\nRobotDog.communicate_with_apm('arrived_at_block')"
         },
         {
             "target": "ROBOT_DOG",
             "phase_number": 3,
-            "state": "The robot dog has identified the exact 1x1 meter cell (exact_X, exact_Y) containing the ball. It is positioned at this location, ready to retrieve the ball. The mission is to retrieve the ball and return it to the starting point.",
-            "phase_target": "Retrieve the ball and return to the starting point at (25,25).",
-            "inputs": {
-                "exact_X": {
+            "state": "We have a mission to locate and retrieve a ball. The robot dog is positioned at the 10x10 meter block and is scanning 2x2 meter squares to pinpoint the ball's exact location.",
+            "phase_target": "Identify the exact 1x1 meter cell within the block that contains the ball.",
+            "inputs": [],
+            "outputs": {
+                "ball_location_X": {
                     "type": "float"
                 },
-                "exact_Y": {
+                "ball_location_Y": {
+                    "type": "float"
+                }
+            },
+            "low_level_plan": "RobotDog.detect_with_camera('ball')\nRobotDog.communicate_with_apm('ball_location_X', 'ball_location_Y')"
+        },
+        {
+            "target": "ROBOT_DOG",
+            "phase_number": 4,
+            "state": "We have a mission to locate and retrieve a ball. The robot dog has identified the exact 1x1 meter cell containing the ball and is ready to retrieve it.",
+            "phase_target": "Retrieve the ball from the identified location and return to the starting point at (25,25).",
+            "inputs": {
+                "ball_location_X": {
+                    "type": "float"
+                },
+                "ball_location_Y": {
                     "type": "float"
                 }
             },
@@ -58,7 +75,7 @@
                     "type": "string"
                 }
             },
-            "low_level_plan": "RobotDog.retrieve_the_object('ball')\nRobotDog.return_to_base()"
+            "low_level_plan": "RobotDog.retrieve_the_object('ball')\nRobotDog.return_to_base()\nRobotDog.communicate_with_apm('retrieval_status')"
         }
     ]
 }

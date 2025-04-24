@@ -1,0 +1,4 @@
+"Drone.move_to_point((100.0,200.0,50.0))\n"
+"Drone.scan_area()\n"
+"if Drone.scan_successful():\n"
+"    Drone.send_data_to_apm()"

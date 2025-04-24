@@ -77,29 +77,18 @@ def verify_plan(llm, mission, plan, rubric):
 
 def main():
     parser = argparse.ArgumentParser(description="Verifies and improves a generated plan based on a rubric.")
-    # parser.add_argument("rubric_file", help="Path to the rubric file")
-    # parser.add_argument("plan_file", help="Path to the initial plan file")
-    # parser.add_argument("mission_file", help="Path to the mission description file")
-    # parser.add_argument("output_file", help="Path to save the verified plan")
     parser.add_argument("target", help="Target robot for the plan")
     args = parser.parse_args()
 
     with open("config.json", "r") as f:
         config = json.load(f)
 
-    
     mission_file = config["mission_text_file"]
-    if args.target == "ROBOT_DOG":
-        rubric_file = config["dog_low_verification_rubric"]
-        output_file = config["dog_verified_plan_file"]
-        plan_file = config["dog_temp_low_level_plan"]
-    else:
-        rubric_file = config["drone_low_verification_rubric"]
-        output_file = config["drone_verified_plan_file"]
-        plan_file = config["drone_temp_low_level_plan"]
-    
-    rubric = read_file(rubric_file)
-    plan = read_file(plan_file)
+    robot_cfg = config["robots_config"][args.target]
+    output_file = robot_cfg["verified"]
+
+    rubric   = read_file(robot_cfg["low_rubric_file"])
+    plan = read_file(robot_cfg["temp_low"])
     mission = read_file(mission_file)
     
     llm = ChatOpenAI(

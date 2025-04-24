@@ -31,15 +31,11 @@ def main():
     high_level_command = "python High_Level_Plan_Generator.py"
     asyncio.run(run_python_script(high_level_command))
 
-    print("=== Starting Low-Level Planning for DRONE ===")
-    # Run unified Low-Level Planner for DRONE
-    drone_ll_command = "python Low_Level_Planner.py DRONE"
-    asyncio.run(run_python_script(drone_ll_command))
-
-    print("=== Starting Low-Level Planning for ROBOT_DOG ===")
-    # Run unified Low-Level Planner for ROBOT_DOG
-    dog_ll_command = "python Low_Level_Planner.py ROBOT_DOG"
-    asyncio.run(run_python_script(dog_ll_command))
+    for robot in config["robots_in_curr_mission"]:
+        print(f"=== Starting Low-Level Planning for {robot} ===")
+        # Run unified Low-Level Planner for each robot
+        robot_ll_command = f"python Low_Level_Planner.py {robot}"
+        asyncio.run(run_python_script(robot_ll_command))
 
     print("=== All Planning Stages Completed ===")
 

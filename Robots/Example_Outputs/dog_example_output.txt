@@ -1,0 +1,3 @@
+"RobotDog.move_to(100.0,200.0)\n"
+"RobotDog.scan_area()\n"
+"RobotDog.send_data_to_apm()"

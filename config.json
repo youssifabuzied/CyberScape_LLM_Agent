@@ -1,17 +1,41 @@
 {
     "openai_api_key": "",
     "mission_plan_file": "Plans/mission_plan.json",
-    "mission_text_file": "mission_files\\Collaborative Drone and Robot Dog Ball Retrieval Mission.txt",
-    "drone_spec_file": "mission_files/drone_specifications.txt",
-    "dog_spec_file": "mission_files/dog_specifications.txt",
-    "dog_low_verification_rubric": "Rubrics/Dog_Low_Rubric.txt",
-    "drone_low_verification_rubric": "Rubrics/Drone_Low_Rubric.txt",
-    "dog_output_file": "Plans/final_dog_low_level_plan.json",
-    "drone_output_file": "Plans/final_drone_low_level_plan.json",
-    "dog_temp_low_level_plan": "Plans/intermediate/temp_dog_low_level_plan.txt",
-    "drone_temp_low_level_plan": "Plans/intermediate/temp_drone_low_level_plan.txt",
-    "dog_verified_plan_file": "Plans/intermediate/verified_dog_plan.txt",
-    "drone_verified_plan_file": "Plans/intermediate/verified_drone_plan.txt",
-    "dog_parsed_plan_file": "Plans/intermediate/parsed_dog_verified_plan.txt",
-    "drone_parsed_plan_file": "Plans/intermediate/parsed_drone_verified_plan.txt"
+    "mission_text_file": "mission_files/ball_retrieval_mission7.txt",
+    "robots": [
+        "DRONE",
+        "ROBOT_DOG"
+    ],
+    "robots_in_curr_mission": [
+        "DRONE",
+        "ROBOT_DOG"
+    ],
+    "robots_config": {
+        "DRONE": {
+            "spec_file": "mission_files/drone_specifications.txt",
+            "rules_file": "Robots/Rules/drone_rules.txt",
+            "low_rubric_file": "Robots/Rubrics/drone_low_rubric.txt",
+            "middle_rubric_file": "Robots/Rubrics/drone_middle_rubric.txt",
+            "high_plan_key": "drone_plan",
+            "example_output": "Robots/Example_Outputs/drone_example_output.txt",
+            "temp_low": "Plans/intermediate/temp_drone_low_level_plan.txt",
+            "verified": "Plans/intermediate/verified_drone_plan.txt",
+            "parsed": "Plans/intermediate/parsed_drone_verified_plan.txt",
+            "final_low": "Plans/final_drone_low_level_plan.json",
+            "instruction_format": "Drone.instruction()"
+        },
+        "ROBOT_DOG": {
+            "spec_file": "mission_files/dog_specifications.txt",
+            "rules_file": "Robots/Rules/dog_rules.txt",
+            "low_rubric_file": "Robots/Rubrics/dog_low_rubric.txt",
+            "middle_rubric_file": "Robots/Rubrics/dog_middle_rubric.txt",
+            "high_plan_key": "robot_dog_plan",
+            "example_output": "Robots/Example_Outputs/dog_example_output.txt",
+            "temp_low": "Plans/intermediate/temp_dog_low_level_plan.txt",
+            "verified": "Plans/intermediate/verified_dog_plan.txt",
+            "parsed": "Plans/intermediate/parsed_dog_verified_plan.txt",
+            "final_low": "Plans/final_dog_low_level_plan.json",
+            "instruction_format": "RobotDog.instruction()"
+        }
+    }
 }
