@@ -1,0 +1,4050 @@
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]
+
+ZIGZAG SCANNING ALGORITHM:
+--------------------------
+The Zigzag scanning algorithm is a coverage strategy where the agent (robot or drone) moves back and forth across the field, shifting slightly after each full-length pass. 
+This method is deterministic, simple, and optimal in open, rectangular spaces. Its efficiency depends on minimal turning cost and predictable obstacles. 
+It is often used in agricultural robots, autonomous vacuums, and systematic surveillance.
+
+1. Start at the origin of the grid.
+2. Move in the X-direction to the boundary.
+3. Shift up/down by the scanning width (e.g., 1 or 2 meters).
+4. Move in the reverse X-direction.
+5. Repeat until the entire field is covered.
+
+SPIRAL OUTWARD SCAN:
+--------------------
+The Spiral Scan starts at the center or a specific point and expands outward in an ever-widening spiral.
+Effective in smaller environments where central placement is possible.
+Used in bomb detection, lawn coverage, or small field surveys.
+
+1. Start at center point.
+2. Move right 1 unit, then up 1 unit.
+3. Move left 2 units, then down 2 units.
+4. Move right 3 units, up 3 units, and so on...
+
+BOUSTROPHEDON DECOMPOSITION:
+----------------------------
+A form of zigzag scanning where the space is first decomposed into simple cells using a vertical line sweep. 
+Then each cell is covered using a boustrophedon path.
+Useful in irregular environments.
+
+1. Divide space into cells using vertical sweep.
+2. For each cell:
+   - Follow a zigzag pattern.
+3. Skip areas with obstacles or known unreachable areas.
+
+LAWN MOWER ALGORITHM:
+---------------------
+The lawn mower pattern is a common strategy in autonomous vehicle navigation for field coverage. 
+It follows a back-and-forth route across the full extent of the field in long, narrow rows.
+This ensures complete coverage with minimal overlapping.
+
+SENSOR SWEEPING METHOD:
+-----------------------
+Sweeping methods involve rotating or shifting the sensor or camera array as the robot or drone moves forward.
+These methods are used when the sensor has a wide field of view (FOV) and can cover more than its immediate location.
+
+RANDOM WALK SCAN:
+-----------------
+A stochastic scanning algorithm used when no prior map is available.
+It relies on random direction changes, useful in highly dynamic environments.
+While not optimal in coverage time, it is easy to implement.
+
+FRONTIER-BASED EXPLORATION:
+---------------------------
+Frontier-based exploration is used in SLAM-based robots.
+Frontiers are defined as the boundary between explored and unexplored regions.
+
+1. Identify frontier cells.
+2. Select the closest or most informative frontier.
+3. Navigate to frontier.
+4. Update map and repeat.
+
+INFORMATION-THEORETIC SCAN:
+---------------------------
+This method selects the next scanning location based on the expected information gain (entropy reduction).
+Popular in autonomous mapping and environmental sampling.
+
+POTENTIAL FIELD-BASED COVERAGE:
+-------------------------------
+Inspired by electromagnetics, virtual attractive and repulsive fields are created.
+The robot is attracted to uncovered space and repelled from obstacles and visited areas.
+
+COVERAGE-AWARE A* SEARCH:
+-------------------------
+A variation of the A* algorithm that prioritizes unexplored or partially scanned cells when computing the shortest path.
+
+1. Use a priority queue ordered by cost + heuristic + coverage weight.
+2. Each node stores information about whether it's been scanned.
+3. Favor nodes that reduce unvisited area.
+
+[Repeated below multiple times to increase file size...]

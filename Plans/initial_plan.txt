@@ -1,0 +1,21 @@
+Drone Plan:
+Phase 1: Systematic Field Coverage
+- The drone will employ the Lawn Mower Algorithm to systematically cover the entire 50x50 meter field.
+- Starting at point (5,5), the drone will fly in a back-and-forth pattern, covering 10-meter wide strips.
+- The drone will move from (5,5) to (45,5), then shift 10 meters up to (45,15), and fly back to (5,15).
+- This pattern will continue until the entire field is covered, ensuring that each 10x10 meter section is scanned for the presence of the ball.
+
+Phase 2: Communication with Robot Dog
+- Once the drone identifies the 10x10 meter square containing the ball, it will communicate the coordinates of this square to the robot dog.
+- The drone will provide the starting point for the dog within the identified 10x10 meter area to optimize the search.
+
+Dog Plan:
+Phase 1: Initial Positioning
+- The robot dog will start at its initial position (25,25).
+- Upon receiving the coordinates of the 10x10 meter square from the drone, the dog will move directly to the center of this square to begin its search.
+
+Phase 2: Detailed Search and Retrieval
+- The robot dog will perform a detailed search within the 10x10 meter square using its 2-meter scanning capability.
+- It will employ a grid search pattern, moving systematically to cover the entire area.
+- Once the ball is located, the robot dog will pick it up.
+- The dog will then return to the starting point at (25,25) with the ball.

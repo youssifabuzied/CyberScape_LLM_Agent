@@ -1,15 +1,34 @@
 import openai
 import os
-# Initialize your OpenAI client (replace with your actual API key)
-client = openai.OpenAI(
-    api_key="b37a4309-f1a2-4fd9-b015-eacac68fd6e5",
-    base_url="https://api.sambanova.ai/v1",
-)
 
-# Initialize an empty message history list
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import FAISS
+from langchain.document_loaders import TextLoader
+from langchain.text_splitter import CharacterTextSplitter
+
+# ---------- Step 1: Setup API keys and environment ----------
+print(os.environ["OPENAI_API_KEY"]) 
+# ---------- Step 2: Load and chunk context documents ----------
+loader = TextLoader("database.txt")
+documents = loader.load()
+
+splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+docs = splitter.split_documents(documents)
+
+# ---------- Step 3: Create FAISS vector store ----------
+embeddings = OpenAIEmbeddings()
+vectorstore = FAISS.from_documents(docs, embeddings)
+
+retriever = vectorstore.as_retriever()
+
+# ---------- Step 4: Retrieve context for RAG ----------
+retrieved_docs = retriever.get_relevant_documents("drone and robot dog collaboration")
+retrieved_text = "\n\n".join([doc.page_content for doc in retrieved_docs])
+
+# ---------- Step 5: Build message history with RAG context ----------
 message_history = [
-    {"role": "system", "content": "You are a helpful assistant"},
-    {"role": "user", "content":'''Mission Scenario: We have a drone and a robot dog. 
+    {"role": "system", "content": f"You are a helpful assistant. Use this context if relevant:\n\n{retrieved_text}"},
+    {"role": "user", "content": '''Mission Scenario: We have a drone and a robot dog. 
     We also have a mission to pick up a ball from a field of size 50x50 meters. The goal is to locate a ball residing in a 1x1 cell.
     The drone can fly over the field and can determine the 10x10 meters square having the ball. The drone is initially located at point (5,5). Also, it can communicate
     with the robot dog when necessary. The dog robot must scan the area, locate the ball, and bring it back to the starting point located at point (25,25) and has to start scanning from there.
@@ -25,36 +44,27 @@ message_history = [
     Phase 2: ------------------------------'''},
 ]
 
-# Request initial response from the model
+# ---------- Step 6: Query the LLM ----------
+client = openai.OpenAI(
+    api_key=os.environ["OPENAI_API_KEY"])
+
 response = client.chat.completions.create(
-    model='Meta-Llama-3.1-405B-Instruct',
+    model='gpt-4o',
     messages=message_history,
     temperature=0.1,
     top_p=0.1
 )
 
-# # Update message history with the assistant's response
-# message_history.append({"role": "assistant", "content": response.choices[0].message.content})
+'''
 
-# # Now, user asks for the next part (lower-level plan)
-# message_history.append({
-#     "role": "user",
-#     "content": "Translate the plan you just generated to be a little bit lower level. Try to make them as a set of instructions that do not require further planning. Do not use the word repeat. Rather, provide all the steps needed even if they follow the same pattern. You need to provide an exhaustive list of instructions as they will be given to a robot who needs them to be straightforward. Make sure that the whole area is scanned and covered."
-# })
-
-# # Request the second response from the model with updated history
-# response = client.chat.completions.create(
-#     model='Meta-Llama-3.1-405B-Instruct',
-#     messages=message_history,
-#     temperature=0.1,
-#     top_p=0.1
-# )
-
-# # Update message history with the assistant's second response
-# message_history.append({"role": "assistant", "content": response.choices[0].message.content})
-
-# Write the final mission plan to a file
+   model_name="gpt-4o",
+        openai_api_key=OPENAI_API_KEY,
+        temperature=0.1
+'''
+# ---------- Step 7: Write the plan to file ----------
+os.makedirs("Plans", exist_ok=True)
 with open("Plans/initial_plan.txt", "w") as file:
     file.write(response.choices[0].message.content)
 
 print("Mission Plan is written to Plans/initial_plan.txt")
+print(retrieved_text)
